@@ -3,6 +3,7 @@
     <!-- Logo de la tienda tiene que estar centrado-->
     <div class="logo" style="text-align: center;">
       <h4>Padelta</h4>
+      <img src="../assets/logoPadelta.jpg" alt="Logo de Padelta" style="width: 75px; height: 75px;" />
     </div>
     <ul class="nav flex-column">
       <hr />
