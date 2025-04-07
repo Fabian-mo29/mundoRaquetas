@@ -1,6 +1,6 @@
 <template>
-  <div id="flexbox" class="d-flex justify-content-center align-items-center min-vh-100">
-    <div v-for="(product, index) in inventory" :key="index" class="card shadow" style="width: 18rem;">
+  <div id="grid" class="product-grid">
+    <div v-for="(product, index) in inventory" :key="index" class="card shadow">
       <img :src="getImage(product.image)" class="card-img-top" :alt="product.name" />
       <div class="card-body">
         <p class="card-text"><strong>{{ product.name }}</strong></p>
@@ -27,11 +27,51 @@ const getImage = (imageName) => {
 </script>
 
 <style lang="scss" scoped>
-#flexbox {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3%;
-  margin-left: 250px;
+#grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas grandes */
+  gap: 20px;
   padding: 20px;
+  justify-items: center;
+  margin-left: 250px; /* Deja espacio para la barra lateral */
+  width: calc(100% - 250px); /* Ocupa el espacio restante */
+}
+
+.card {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+button {
+  margin-top: auto;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 1200px) {
+  #grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  #grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
