@@ -1,8 +1,8 @@
 <template>
     <div class="user-actions">
-      <a href="#" class="icon">👤</a> <!-- Cuenta de usuario -->
-      <a href="#" class="icon">🔎</a> <!-- Búsqueda -->
-      <a href="#" class="icon">🛒</a> <!-- Carrito -->
+      <a href="#" class="icon"><i class="pi pi-cart-minus"></i></a> <!-- Carrito -->
+      <a href="#" class="icon"><i class="pi pi-search"></i></a> <!-- Búsqueda -->
+      <a href="#" class="icon"><i class="pi pi-user"></i></a> <!-- Cuenta de usuario -->
     </div>
 </template>
   
@@ -19,7 +19,6 @@ name: 'UserActions',
     align-items: center;
     gap: 1.5rem;
     padding: 0.5rem 1rem;
-    background-color: #547596;
     border-radius: 30px;
     max-width: 600px;
     margin:0%;
