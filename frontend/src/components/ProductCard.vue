@@ -1,65 +1,37 @@
 <template>
   <div id="flexbox" class="d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card shadow" style="width: 18rem;">
-      <img src="../../public/raqueta.jpg" class="card-img-top" alt="Imagen de raqueta" />
+    <div v-for="(product, index) in inventory" :key="index" class="card shadow" style="width: 18rem;">
+      <img :src="getImage(product.image)" class="card-img-top" :alt="product.name" />
       <div class="card-body">
-        <p class="card-text"><strong>Wilson m23</strong></p>
-        <p class="card-text">Raqueta wilson de tennis...</p>
+        <p class="card-text"><strong>{{ product.name }}</strong></p>
+        <p class="card-text">{{ product.Descripcion }}</p>
         <div class="d-flex justify-content-between align-items-center">
-          <p style="font-size: large;"><strong>$99,99</strong></p>
+          <p style="font-size: large;"><strong>${{ product.precio }}</strong></p>
           <button class="btn btn-success">Comprar</button>
         </div>
       </div>
     </div>
-
-    <div class="card shadow" style="width: 18rem;">
-      <img src="../../public/raqueta.jpg" class="card-img-top" alt="Imagen de raqueta" />
-      <div class="card-body">
-        <p class="card-text"><strong>Wilson m23</strong></p>
-        <p class="card-text">Raqueta wilson de tennis...</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <p style="font-size: large;"><strong>$99,99</strong></p>
-          <button class="btn btn-success">Comprar</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card shadow" style="width: 18rem;">
-      <img src="../../public/raqueta.jpg" class="card-img-top" alt="Imagen de raqueta" />
-      <div class="card-body">
-        <p class="card-text"><strong>Wilson m23</strong></p>
-        <p class="card-text">Raqueta wilson de tennis...</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <p style="font-size: large;"><strong>$99,99</strong></p>
-          <button class="btn btn-success">Comprar</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card shadow" style="width: 18rem;">
-      <img src="../../public/raqueta.jpg" class="card-img-top" alt="Imagen de raqueta" />
-      <div class="card-body">
-        <p class="card-text"><strong>Wilson m23</strong></p>
-        <p class="card-text">Raqueta wilson de tennis...</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <p style="font-size: large;"><strong>$99,99</strong></p>
-          <button class="btn btn-success">Comprar</button>
-        </div>
-      </div>
-      </div>
-
   </div>
 </template>
 
 <script setup>
+import inventory from '../assets/inventory.json'
+
+const getImage = (imageName) => {
+  try {
+    return require(`@/assets/imagesProducts/${imageName}`);
+  } catch (error) {
+    return require('@/assets/imagesProducts/raqueta.jpg');
+  }
+};
 </script>
 
 <style lang="scss" scoped>
- #flexbox {
+#flexbox {
   display: flex;
-  flex-wrap: wrap; /* Permite que las cartas se acomoden en varias líneas si es necesario */
+  flex-wrap: wrap;
   gap: 3%;
-  margin-left: 250px; /* Empuja las cartas a la derecha para que no tapen el sidebar */
-  padding: 20px; /* Espacio adicional */
+  margin-left: 250px;
+  padding: 20px;
 }
 </style>

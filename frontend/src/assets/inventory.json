@@ -1,7 +1,7 @@
 [
     {
         "name": "Wilson m23",
-        "image": "",
+        "image": "./imagesProducts/raqueta.jpg",
         "precio": "99.99",
         "Descripcion": "Raqueta Wilson de tenis con excelente control y potencia. Ideal para principiantes y jugadores intermedios."
     },
