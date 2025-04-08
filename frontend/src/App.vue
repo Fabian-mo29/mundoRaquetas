@@ -5,7 +5,7 @@
     <VertSidebar/>
   
     <NavBar/>
-    <ProductCard/>
+    <ProductList/>
 
     <FooterBar/>
   </div>
@@ -14,7 +14,7 @@
 <script>
 //import NavBar from './components/NavBar.vue';
 import HeaderBar from './components/HeaderBar.vue';
-import ProductCard from './components/ProductCard.vue';
+import ProductList from './components/ProductList.vue';
 import VertSidebar from './components/VertSidebar.vue';
 import FooterBar from './components/FooterBar.vue';
 
@@ -22,7 +22,7 @@ import FooterBar from './components/FooterBar.vue';
     components: {
       //NavBar,
       HeaderBar,
-      ProductCard,
+      ProductList,
       VertSidebar,
       FooterBar,
     },
