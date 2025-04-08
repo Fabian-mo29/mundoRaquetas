@@ -25,7 +25,7 @@ name: 'SocialMedia',
     align-items: center;
     gap: 1.5rem;
     padding: 0.5rem 1rem;
-    background-color: #547596;
+    //background-color: #547596;
     border-radius: 30px;
     max-width: 600px;
     margin:0%;

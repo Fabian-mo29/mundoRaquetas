@@ -1,7 +1,5 @@
 <template>
-  <div id="grid" class="product-grid">
-    <div v-for="(product, index) in inventory" :key="index" class="card shadow">
-      <img :src="getImage(product.image)" class="card-img-top" :alt="product.name" />
+    <img :src="getImage(product.image)" class="card-img-top" :alt="product.name" />
       <div class="card-body">
         <p class="card-text"><strong>{{ product.name }}</strong></p>
         <p class="card-text">{{ product.Descripcion }}</p>
@@ -10,33 +8,31 @@
           <button class="btn btn-success">Comprar</button>
         </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script setup>
-import inventory from '../assets/inventory.json'
+
+import { defineProps } from 'vue';
+
+defineProps({
+  limite: {
+    type: Number,
+    default: 6 
+  },
+  product: Object
+});
 
 const getImage = (imageName) => {
-  try {
-    return require(`@/assets/imagesProducts/${imageName}`);
-  } catch (error) {
-    return require('@/assets/imagesProducts/raqueta.jpg');
-  }
+    try {
+        return require(`@/assets/imagesProducts/${imageName}`);
+    } catch (error) {
+        return require('@/assets/imagesProducts/raqueta.jpg');
+    }
 };
+
 </script>
 
 <style lang="scss" scoped>
-#grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas grandes */
-  gap: 20px;
-  padding: 20px;
-  justify-items: center;
-  margin-left: 250px; /* Deja espacio para la barra lateral */
-  width: calc(100% - 250px); /* Ocupa el espacio restante */
-}
-
 .card {
   width: 100%;
   height: 400px;
@@ -60,18 +56,5 @@ const getImage = (imageName) => {
 
 button {
   margin-top: auto;
-}
-
-/* Media Queries para pantallas pequeñas */
-@media (max-width: 1200px) {
-  #grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  #grid {
-    grid-template-columns: 1fr;
-  }
 }
 </style>
