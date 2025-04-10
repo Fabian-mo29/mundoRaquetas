@@ -1,5 +1,5 @@
 <template>
-    <img :src="getImage(product.image)" class="card-img-top" :alt="product.name" />
+    <img :src="`/imagesProducts/${product.image}`" class="card-img-top img-ratio" :alt="'Imagen de ' + product.name" />
       <div class="card-body">
         <p class="card-text"><strong>{{ product.name }}</strong></p>
         <p class="card-text">{{ product.Descripcion }}</p>
@@ -22,13 +22,6 @@ defineProps({
   product: Object
 });
 
-const getImage = (imageName) => {
-    try {
-        return require(`@/assets/imagesProducts/${imageName}`);
-    } catch (error) {
-        return require('@/assets/imagesProducts/raqueta.jpg');
-    }
-};
 
 </script>
 

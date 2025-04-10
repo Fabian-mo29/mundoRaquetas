@@ -7,7 +7,7 @@
     },
     {
         "name": "Babolat Viper Carbon",
-        "image": "",
+        "image": "raqueta.jpg",
         "precio": "189.99",
         "Descripcion": "Raqueta de pádel de alta gama, diseñada para jugadores de nivel avanzado. Ofrece una combinación perfecta de potencia y control."
     },
@@ -25,19 +25,19 @@
     },
     {
         "name": "Bullpadel Vertex 03",
-        "image": "",
+        "image": "raqueta.jpg",
         "precio": "179.99",
         "Descripcion": "Raqueta de pádel de alto rendimiento, con un diseño espectacular y tecnología que optimiza el control y la potencia en cada partido."
     },
     {
         "name": "Siux Diablo",
-        "image": "",
+        "image": "raqueta.jpg",
         "precio": "159.99",
         "Descripcion": "Raqueta de pádel perfecta para jugadores agresivos que buscan potencia y durabilidad. Fabricada con materiales de alta calidad."
     },
     {
         "name": "Nox ML10 Pro Cup",
-        "image": "",
+        "image": "raqueta.jpg",
         "precio": "199.99",
         "Descripcion": "Raqueta de pádel de control con un diseño clásico, ideal para jugadores de nivel intermedio y avanzado. Ofrece gran confort y precisión."
     },
