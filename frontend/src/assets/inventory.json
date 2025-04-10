@@ -58,5 +58,47 @@
         "image": "pelotasPadel.jpg",
         "precio": "4.99",
         "Descripcion": "Pelotas de pádel de alta calidad, ideales para competiciones. Su durabilidad y rendimiento superior las hacen perfectas para cualquier nivel."
+    },
+    {
+        "name": "Prince Beast 100P",
+        "image": "raqueta.jpg",
+        "precio": "229.99",
+        "Descripcion": "Raqueta de tenis profesional con un diseño innovador. Ofrece un equilibrio perfecto entre control y potencia, ideal para jugadores avanzados."
+    },
+    {
+        "name": "Nike Air Zoom Vapor Pro",
+        "image": "zapatillas.jpg",
+        "precio": "120.00",
+        "Descripcion": "Zapatillas de tenis diseñadas para ofrecer rapidez y comodidad en la cancha. Con una suela que optimiza el agarre y estabilidad."
+    },
+    {
+        "name": "Wilson Pro Staff 97L",
+        "image": "raqueta.jpg",
+        "precio": "249.99",
+        "Descripcion": "Raqueta ligera y precisa, ideal para jugadores de nivel intermedio a avanzado. Su diseño equilibrado ayuda a maximizar el control del golpe."
+    },
+    {
+        "name": "Adidas Adipower 3.0",
+        "image": "palaPadel.jpg",
+        "precio": "229.99",
+        "Descripcion": "Raqueta de pádel de alto rendimiento, diseñada para jugadores que buscan equilibrio entre control y potencia. Su núcleo de goma EVA ofrece una gran respuesta."
+    },
+    {
+        "name": "Tecnifibre Dynergy",
+        "image": "palaPadel.jpg",
+        "precio": "199.99",
+        "Descripcion": "Raqueta de pádel para jugadores de nivel intermedio a avanzado. Su tecnología optimiza el control y la salida de bola para un juego más preciso."
+    },
+    {
+        "name": "Babolat Propulse Fury",
+        "image": "zapatillas.jpg",
+        "precio": "139.99",
+        "Descripcion": "Zapatillas de tenis de alto rendimiento que combinan confort y durabilidad. Ofrecen gran amortiguación y soporte para movimientos rápidos."
+    },
+    {
+        "name": "Wilson Clash 100",
+        "image": "raqueta.jpg",
+        "precio": "299.99",
+        "Descripcion": "Raqueta innovadora con tecnología para mejorar el confort y la potencia. Su diseño flexible reduce las vibraciones, ideal para un juego más suave."
     }
 ]

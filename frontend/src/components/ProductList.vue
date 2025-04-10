@@ -1,28 +1,36 @@
 <template>
   <div class="main-container">
     <div id="grid" class="product-grid">
-      <div v-for="(product, index) in products.slice(0, limite || products.length)" :key="index" class="card shadow">
+      <div v-for="(product, index) in products.slice(0, show)" :key="index" class="card shadow">
         <ProductCard :product="product" :limite="limite"/>
       </div>
-      <button v-if="limite<products.length" class="btn btn-success center-button">Ver más Productos</button>
+      <button @click="verMasProductos" v-if="show < products.length" class="btn btn-success center-button">Ver más Productos</button>
     </div>
   </div>
 </template>
 
 <script setup>
 import inventory from '@/assets/inventory.json'
-import { ref, defineProps } from 'vue';
-import ProductCard from './ProductCard.vue';
+import { ref, defineProps, defineEmits } from 'vue'
+import ProductCard from './ProductCard.vue'
 
-const products = ref(inventory);
-
-defineProps({
+const props = defineProps({
   limite: {
     type: Number,
-    default: 6 
+    default: 6
   }
-});
+})
 
+const show = ref(props.limite);
+
+const emit = defineEmits(['update:limite']);
+
+function verMasProductos() {
+  show.value = products.value.length;
+  emit('update:limite', products.value.length);
+}
+
+const products = ref(inventory)
 </script>
 
 <style lang="scss" scoped>
@@ -42,12 +50,9 @@ defineProps({
   justify-items: center;
 }
 
-
 .center-button {
   grid-column: 1 / -1;
   justify-self: center;
   margin-top: 20px;
 }
-
-
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="main-container">
         <div class="container-fluid mt-5 sala-carousel-container">
-            <h2 class="mb-4">Ofertas del Día</h2>
+            <h2 class="fw-bold mb-4">Ofertas del Día</h2>
             <div class="position-relative">
                 <div class="sala-carousel-wrapper">
         <div class="sala-carousel-track" ref="ofertasTrack">
