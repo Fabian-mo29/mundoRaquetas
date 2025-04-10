@@ -117,12 +117,7 @@ onMounted(() => {
 }
 
 .sala-carousel-container {
-  color: #198754;
-  padding: 0 50px;
-}
-
-.sala-carousel-container {
-  color: #198754;
+  color: #000;
   padding: 0 50px;
 }
 
