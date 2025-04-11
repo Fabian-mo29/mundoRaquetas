@@ -2,7 +2,6 @@
   <div class = "layout">
     <HeaderBar/>  
     <VertSidebar/>
-    <!-- <NavBar/> -->
     <RouterView/>
     <FooterBar/>
   </div>
@@ -16,7 +15,6 @@ import FooterBar from './components/FooterBar.vue';
 
   export default {
     components: {
-      //NavBar,
       HeaderBar,
       VertSidebar,
       FooterBar,
@@ -25,4 +23,16 @@ import FooterBar from './components/FooterBar.vue';
 </script>
 
 <style lang="scss" scoped>
+
+.vertsidebar {
+  z-index: 1;
+  position: fixed; 
+  left: 0;
+  top: 0;
+}
+
+header {
+  position: relative;
+  z-index: 10;
+}
 </style>

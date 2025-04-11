@@ -1,10 +1,6 @@
 <template>
   <div class="vertsidebar">
-    <!-- Logo de la tienda tiene que estar centrado-->
-    <div class="logo" style="text-align: center;">
-      <h4>Padelta</h4>
-      <img src="../assets/logoPadelta.jpg" alt="Logo de Padelta" style="width: 75px; height: 75px;" />
-    </div>
+    <div class="space"></div>
     <ul class="nav flex-column">
       <hr />
       <li class="nav-item">
@@ -45,13 +41,6 @@ const categories = ref([
   bottom: 0;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
 .nav-title {
   font-size: 1rem;
   font-weight: bold;
@@ -70,5 +59,9 @@ const categories = ref([
 .nav-link:hover {
   background: #e9ecef;
   border-radius: 5px;
+}
+
+.space {
+  height: 95px; 
 }
 </style>

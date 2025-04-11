@@ -1,6 +1,6 @@
 <template>
   <header class="headerBar">
-    <h1><a href="#">Padelta</a></h1>
+    <img src="../assets/logoPadelta.png" alt="Logo de Padelta" class="logo-img" />
     <UserActions />
   </header>
 </template>
@@ -24,7 +24,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 250px;
 }
 
 a {
@@ -36,5 +35,12 @@ a {
 a:hover {
   transform: scale(1.2);
   cursor: pointer;
+}
+
+.logo-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-right: 1rem;
 }
 </style>
