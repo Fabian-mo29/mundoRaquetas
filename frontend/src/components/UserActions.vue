@@ -2,14 +2,12 @@
     <div class="user-actions">
       <a href="#" class="icon"><i class="pi pi-cart-minus"></i></a> <!-- Carrito -->
       <a href="#" class="icon"><i class="pi pi-search"></i></a> <!-- Búsqueda -->
-      <a href="#" class="icon"><i class="pi pi-user"></i></a> <!-- Cuenta de usuario -->
+      <RouterLink to="/logIn" class="icon"><i class="pi pi-user"></i></RouterLink> <!-- Cuenta de usuario -->
     </div>
 </template>
   
-<script>
-export default {
-name: 'UserActions',
-};
+<script setup>
+import { RouterLink } from 'vue-router';
 </script>
 
 <style lang="scss" scoped>

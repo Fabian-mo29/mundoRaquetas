@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div id="mainCard" class="d-flex justify-content-center align-items-center min-vh-100">
         <form @submit.prevent="logIn" class="border p-4 rounded shadow-sm" style="width: 100%; max-width: 400px;">
             <h3 class="text-center mb-4">Register</h3>
             
@@ -31,7 +31,7 @@
             
 
             <div class="d-flex justify-content-between">
-                <p class="mb-4">If you already have an account <a href="#" class="text-primary">Log In</a></p>
+                <p class="mb-4">If you already have an account <RouterLink to="logIn" class="text-primary">Log In</RouterLink></p>
             </div>
             <button type="submit" class="btn btn-success" style="width: 100%;" >Register</button>
         </form>
@@ -39,6 +39,7 @@
 </template>
 
 <script setup>
+    import { RouterLink } from 'vue-router';
 
     const datosSesion = { correo : "", password: ""};
 
@@ -49,4 +50,7 @@
 </script>
 
 <style lang="scss" scoped>
+#mainCard {
+    margin-left: 300px;
+}
 </style>
