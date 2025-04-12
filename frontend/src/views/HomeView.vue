@@ -1,7 +1,7 @@
 <template>
     <div>
-    <ProductList/>
     <CarruselOfertas/>
+    <ProductList/>
     </div>
 </template>
 

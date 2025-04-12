@@ -1,5 +1,6 @@
 <template>
   <div class="main-container">
+    <h2 class="fw-bold mb-4">Productos</h2>
     <div id="grid" class="product-grid">
       <div v-for="(product, index) in products.slice(0, show)" :key="index" class="card shadow">
         <ProductCard :product="product" :limite="limite"/>
@@ -34,6 +35,11 @@ const products = ref(inventory)
 </script>
 
 <style lang="scss" scoped>
+
+h2 {
+  margin-left: 5%;
+}
+
 .main-container {
   margin-left: 250px;
   width: calc(100% - 250px);

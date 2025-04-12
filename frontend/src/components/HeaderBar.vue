@@ -1,19 +1,14 @@
 <template>
   <header class="headerBar">
-    <img src="../assets/logoPadelta.png" alt="Logo de Padelta" class="logo-img" />
+    <RouterLink to="/"><img src="../assets/logoPadelta.png" alt="Logo de Padelta" class="logo-img" /></RouterLink>
     <UserActions />
   </header>
 </template>
 
-<script>
+<script setup>
 import UserActions from './UserActions.vue';
+import { RouterLink } from 'vue-router';
 
-export default {
-  name: 'HeaderBar',
-  components: {
-    UserActions
-  }
-};
 </script>
 
 <style lang="scss" scoped>
