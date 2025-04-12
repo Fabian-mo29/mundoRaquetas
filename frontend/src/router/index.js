@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue';
 import RegisterView from '@/views/RegisterView.vue';
 import LogInView from '@/views/LogInView.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -20,7 +21,12 @@ const router = createRouter({
       path: "/logIn",
       name: "LogIn",
       component: LogInView,
-    }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: "NotFound",
+      component: NotFoundView,
+    },
   ],
 });
 
