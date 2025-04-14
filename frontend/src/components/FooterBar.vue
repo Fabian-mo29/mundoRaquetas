@@ -1,98 +1,64 @@
 <template>
-    <footer class="footerBar">
-    <div class="footerSections">
-        <div>
-            <h3>Políticas</h3>
-                <nav>
-                    <ul>  
-                        <li><a href="#">Términos y condiciones</a></li>
-                        <li><a href="#">Reembolso</a></li>
-                        <li><a href="#">Privacidad</a></li>
-                        <li><a href="#">Cookies</a></li>
+    <!-- Código inspirado en el tutorial de "Coding Yaar" en YouTube -->
+    <!-- Video: https://www.youtube.com/watch?v=YFJ4IVicc_s -->
+    <footer class="custom-footer text-light pt-5">
+        <div class="container px-5">
+            <div class="row">
+                <div class="col">
+                    <h3>Políticas</h3>
+                    <ul class="list-unstyled pt-2">
+                        <li class="py-1">Términos y condiciones</li>
+                        <li class="py-1">Reembolso</li>
+                        <li class="py-1">Privacidad</li>
+                        <li class="py-1">Cookies</li>
                     </ul>
-                 </nav>
-        </div>
-        <div>
-            <h3>Ayuda</h3>
-                <nav>
-                    <ul>  
-                        <li><a href="#">Solicitar garantía</a></li>
-                        <li><a href="#">Seguir orden</a></li>
-                        <li><a href="#">Contáctanos</a></li>
+                </div>
+                <div class="col">
+                    <h3>Ayuda</h3>
+                    <ul class="list-unstyled pt-2">
+                        <li class="py-1">Solicitar garantía</li>
+                        <li class="py-1">Seguir orden</li>
+                        <li class="py-1">Contáctanos</li>
                     </ul>
-                </nav>
-        </div>
-        <div>
-            <h3>Nosotros</h3>
-                <nav>
-                    <ul>  
-                        <li><a href="#">Tiendas físicas</a></li>
-                        <li><a href="#">Blog</a></li>
+                </div>
+                <div class="col">
+                    <h3>Nosotros</h3>
+                    <ul class="list-unstyled pt-2">
+                        <li class="py-1">Tiendas físicas</li>
+                        <li class="py-1">Blog</li>
                     </ul>
-                 </nav>
-        </div>
-        <div>
-            <h3>Recursos</h3>
-                <nav>
-                    <ul>  
-                        <li><a href="#">Guía para comprar</a></li>
-                        <li><a href="#">Garantías</a></li>
+                </div>
+                <div class="col">
+                    <h3>Recursos</h3>
+                    <ul class="list-unstyled pt-2">
+                        <li class="py-1">Guía para comprar</li>
+                        <li class="py-1">Garantías</li>
                     </ul>
-                 </nav>
+                </div>
+                <div class="col-6 col-lg-3 text-lg-end">
+                    <h3>Redes Sociales</h3>
+                    <div class="social-media pt-2">
+                        <a href="#" class="text-light fs-2 me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light fs-2 me-3"><i class="bi bi-tiktok"></i></a>
+                        <a href="#" class="text-light fs-2 me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light fs-2"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="d-sm-flex justify-content-between py-1">
+                <p>2025 &copy; Padelta Dev Team. All Rights Reserved. </p>
+            </div>
         </div>
-        <p>&copy; 2025 Padelta. Todos los derechos reservados.</p>
-    </div>
-        <SocialMedia/>
     </footer>
 </template>
 
 <script setup>
-import SocialMedia from './SocialMedia.vue';
-
-
 </script>
 
 <style lang="scss" scoped>
-/* Estilo para la barra de pie de página */
-.footerBar {
-  background-color: #2c3e50;
-  color: white;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 250px;
+/* Estilo para poner el footer del mismo color que el header */
+.custom-footer {
+    background-color: #2c3e50;
 }
-
-/* Estilo para las secciones dentro del pie de página (Políticas, Ayuda, Nosotros y Recursos) */
-.footerSections {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-/* Estilo para que cada div dentro de footerSections tenga ese ancho */
-.footerSections > div {
-  width: 22%;
-}
-
-/* Estilo para cada lista dentro de cada sección */
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-/* Estilo para cada punto dentro de cada sección */
-nav a {
-  text-decoration: none;
-  color: #6e99c5;
-  display: block;
-  padding: 5px 0;
-}
-
-/* Estilo para el hover de cada punto de cada sección */
-nav ul li a:hover {
-  color: #007bff; 
-}
-
 </style>
