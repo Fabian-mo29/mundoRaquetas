@@ -7,32 +7,43 @@
                 <div class="col">
                     <h3>Políticas</h3>
                     <ul class="list-unstyled pt-2">
-                        <li class="py-1">Términos y condiciones</li>
-                        <li class="py-1">Reembolso</li>
-                        <li class="py-1">Privacidad</li>
-                        <li class="py-1">Cookies</li>
+                        <li class="py-1"></li>
+                        <a href="#">Términos y condiciones</a>
+                        <li class="py-1"></li>
+                        <a href="#">Reembolsos</a>
+                        <li class="py-1"></li>
+                        <a href="#">Privacidad</a>
+                        <li class="py-1"></li>
+                        <a href="#">Cookies</a>
                     </ul>
                 </div>
                 <div class="col">
                     <h3>Ayuda</h3>
                     <ul class="list-unstyled pt-2">
-                        <li class="py-1">Solicitar garantía</li>
-                        <li class="py-1">Seguir orden</li>
-                        <li class="py-1">Contáctanos</li>
+                        <li class="py-1"></li>
+                        <a href="#">Solicitar garantía</a>
+                        <li class="py-1"></li>
+                        <a href="#">Seguir orden</a>
+                        <li class="py-1"></li>
+                        <a href="#">Contáctanos</a>
                     </ul>
                 </div>
                 <div class="col">
                     <h3>Nosotros</h3>
                     <ul class="list-unstyled pt-2">
-                        <li class="py-1">Tiendas físicas</li>
-                        <li class="py-1">Blog</li>
+                        <li class="py-1"></li>
+                        <a href="#">Tiendas físicas</a>
+                        <li class="py-1"></li>
+                        <a href="#">Blog</a>
                     </ul>
                 </div>
                 <div class="col">
                     <h3>Recursos</h3>
                     <ul class="list-unstyled pt-2">
-                        <li class="py-1">Guía para comprar</li>
-                        <li class="py-1">Garantías</li>
+                        <li class="py-1"></li>
+                        <a href="#">Guía para comprar</a>
+                        <li class="py-1"></li>
+                        <a href="#">Garantías</a>
                     </ul>
                 </div>
                 <div class="col-6 col-lg-3 text-lg-end">
@@ -60,5 +71,22 @@
 /* Estilo para poner el footer del mismo color que el header */
 .custom-footer {
     background-color: #2c3e50;
+}
+
+/* Estilo para el color de los links */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Estilo para el color de los links al pasar el mouse */
+a:hover {
+    color : #3498db;
+}
+
+/* Estilo para el color de los iconos de redes sociales al pasar el mouse*/
+.social-media i:hover {
+    color: #3498db;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 </style>
