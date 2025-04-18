@@ -1,6 +1,6 @@
 <template>
     <div class="user-actions">
-      <a href="#" class="icon"><i class="pi pi-cart-minus"></i></a> <!-- Carrito -->
+      <RouterLink to="/shoppingCart" class="icon"><i class="pi pi-cart-minus"></i></RouterLink> <!-- Carrito -->
       <a href="#" class="icon"><i class="pi pi-search"></i></a> <!-- Búsqueda -->
       <RouterLink to="/logIn" class="icon"><i class="pi pi-user"></i></RouterLink> <!-- Cuenta de usuario -->
     </div>
