@@ -46,6 +46,5 @@
 
 <style lang="scss" scoped>
 #mainCard {
-    margin-left: 300px;
 }
 </style>

@@ -1,22 +1,24 @@
 <template>
   <div class = "layout">
     <HeaderBar/>  
-    <VertSidebar/>
+    <!-- <VertSidebar/> -->
+    <NavBar/>
     <RouterView/>
     <FooterBar/>
   </div>
 </template>
 
 <script>
-//import NavBar from './components/NavBar.vue';
+import NavBar from './components/NavBar.vue';
 import HeaderBar from './components/HeaderBar.vue';
-import VertSidebar from './components/VertSidebar.vue';
+// import VertSidebar from './components/VertSidebar.vue';
 import FooterBar from './components/FooterBar.vue';
 
   export default {
     components: {
       HeaderBar,
-      VertSidebar,
+      NavBar,
+      // VertSidebar,
       FooterBar,
     },
   };  

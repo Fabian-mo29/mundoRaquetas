@@ -18,7 +18,7 @@ import ProductCard from './ProductCard.vue'
 const props = defineProps({
   limite: {
     type: Number,
-    default: 6
+    default: 8
   }
 })
 
@@ -41,8 +41,7 @@ h2 {
 }
 
 .main-container {
-  margin-left: 250px;
-  width: calc(100% - 250px);
+  width: calc(100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

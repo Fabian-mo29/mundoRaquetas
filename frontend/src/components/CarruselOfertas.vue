@@ -70,8 +70,8 @@ onMounted(() => {
 <style lang="scss" scoped>
 
 .main-container {
-  margin-left: 250px;
-  width: calc(100% - 250px);
+  // margin-left: 250px;
+  width: calc(100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

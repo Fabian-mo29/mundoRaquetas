@@ -11,6 +11,6 @@ import NotFoundComp from '@/components/NotFoundComp.vue';
 
 <style lang="scss" scoped>
 div {
-    margin-left: 300px;
+    margin: 100px 0;
 }
 </style>
