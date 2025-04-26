@@ -1,122 +1,147 @@
 [
     {
-      "id": 1,
-      "name": "Wilson m23",
-      "image": "raqueta.jpg",
-      "precio": "99.99",
-      "Descripcion": "Raqueta Wilson de tenis con excelente control y potencia. Ideal para principiantes y jugadores intermedios."
+        "id": 1,
+        "name": "Wilson m23",
+        "image": "raqueta.jpg",
+        "precio": "99.99",
+        "Descripcion": "Raqueta Wilson de tenis con excelente control y potencia. Ideal para principiantes y jugadores intermedios.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 2,
-      "name": "Babolat Viper Carbon",
-      "image": "raqueta.jpg",
-      "precio": "189.99",
-      "Descripcion": "Raqueta de pádel de alta gama, diseñada para jugadores de nivel avanzado. Ofrece una combinación perfecta de potencia y control."
+        "id": 2,
+        "name": "Babolat Viper Carbon",
+        "image": "raqueta.jpg",
+        "precio": "189.99",
+        "Descripcion": "Raqueta de pádel de alta gama, diseñada para jugadores de nivel avanzado. Ofrece una combinación perfecta de potencia y control.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 3,
-      "name": "Head Graphene 360+ Alpha Pro",
-      "image": "palaPadel.jpg",
-      "precio": "219.99",
-      "Descripcion": "Raqueta profesional de pádel con tecnología Graphene 360+ que maximiza la estabilidad y la potencia en cada golpe."
+        "id": 3,
+        "name": "Head Graphene 360+ Alpha Pro",
+        "image": "palaPadel.jpg",
+        "precio": "219.99",
+        "Descripcion": "Raqueta profesional de pádel con tecnología Graphene 360+ que maximiza la estabilidad y la potencia en cada golpe.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 4,
-      "name": "Adidas Adipower Control 3.0",
-      "image": "palaPadel.jpg",
-      "precio": "249.99",
-      "Descripcion": "Raqueta de pádel premium, ideal para jugadores que buscan control total y precisión en sus golpes. Tecnología de carbono y goma EVA."
+        "id": 4,
+        "name": "Adidas Adipower Control 3.0",
+        "image": "palaPadel.jpg",
+        "precio": "249.99",
+        "Descripcion": "Raqueta de pádel premium, ideal para jugadores que buscan control total y precisión en sus golpes. Tecnología de carbono y goma EVA.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 5,
-      "name": "Bullpadel Vertex 03",
-      "image": "raqueta.jpg",
-      "precio": "179.99",
-      "Descripcion": "Raqueta de pádel de alto rendimiento, con un diseño espectacular y tecnología que optimiza el control y la potencia en cada partido."
+        "id": 5,
+        "name": "Bullpadel Vertex 03",
+        "image": "raqueta.jpg",
+        "precio": "179.99",
+        "Descripcion": "Raqueta de pádel de alto rendimiento, con un diseño espectacular y tecnología que optimiza el control y la potencia en cada partido.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 6,
-      "name": "Siux Diablo",
-      "image": "raqueta.jpg",
-      "precio": "159.99",
-      "Descripcion": "Raqueta de pádel perfecta para jugadores agresivos que buscan potencia y durabilidad. Fabricada con materiales de alta calidad."
+        "id": 6,
+        "name": "Siux Diablo",
+        "image": "raqueta.jpg",
+        "precio": "159.99",
+        "Descripcion": "Raqueta de pádel perfecta para jugadores agresivos que buscan potencia y durabilidad. Fabricada con materiales de alta calidad.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 7,
-      "name": "Nox ML10 Pro Cup",
-      "image": "raqueta.jpg",
-      "precio": "199.99",
-      "Descripcion": "Raqueta de pádel de control con un diseño clásico, ideal para jugadores de nivel intermedio y avanzado. Ofrece gran confort y precisión."
+        "id": 7,
+        "name": "Nox ML10 Pro Cup",
+        "image": "raqueta.jpg",
+        "precio": "199.99",
+        "Descripcion": "Raqueta de pádel de control con un diseño clásico, ideal para jugadores de nivel intermedio y avanzado. Ofrece gran confort y precisión.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 8,
-      "name": "Asics Gel Padel Pro 5",
-      "image": "zapatillas.jpg",
-      "precio": "89.99",
-      "Descripcion": "Zapatillas de pádel de alta comodidad y soporte, ideales para jugadores que buscan estabilidad y protección en el campo."
+        "id": 8,
+        "name": "Asics Gel Padel Pro 5",
+        "image": "zapatillas.jpg",
+        "precio": "89.99",
+        "Descripcion": "Zapatillas de pádel de alta comodidad y soporte, ideales para jugadores que buscan estabilidad y protección en el campo.",
+        "Categoría": "Unisex"
     },
     {
-      "id": 9,
-      "name": "K-Swiss Hypercourt Express",
-      "image": "zapatillas.jpg",
-      "precio": "99.99",
-      "Descripcion": "Zapatillas de pádel ligeras y resistentes, con una suela que proporciona un excelente agarre en el campo de juego."
+        "id": 9,
+        "name": "K-Swiss Hypercourt Express",
+        "image": "zapatillas.jpg",
+        "precio": "99.99",
+        "Descripcion": "Zapatillas de pádel ligeras y resistentes, con una suela que proporciona un excelente agarre en el campo de juego.",
+        "Categoría": "Unisex"
     },
     {
-      "id": 10,
-      "name": "Head Padel Pro S",
-      "image": "pelotasPadel.jpg",
-      "precio": "4.99",
-      "Descripcion": "Pelotas de pádel de alta calidad, ideales para competiciones. Su durabilidad y rendimiento superior las hacen perfectas para cualquier nivel."
+        "id": 10,
+        "name": "Head Padel Pro S",
+        "image": "pelotasPadel.jpg",
+        "precio": "4.99",
+        "Descripcion": "Pelotas de pádel de alta calidad, ideales para competiciones. Su durabilidad y rendimiento superior las hacen perfectas para cualquier nivel.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 11,
-      "name": "Prince Beast 100P",
-      "image": "raqueta.jpg",
-      "precio": "229.99",
-      "Descripcion": "Raqueta de tenis profesional con un diseño innovador. Ofrece un equilibrio perfecto entre control y potencia, ideal para jugadores avanzados."
+        "id": 11,
+        "name": "Prince Beast 100P",
+        "image": "raqueta.jpg",
+        "precio": "229.99",
+        "Descripcion": "Raqueta de tenis profesional con un diseño innovador. Ofrece un equilibrio perfecto entre control y potencia, ideal para jugadores avanzados.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 12,
-      "name": "Nike Air Zoom Vapor Pro",
-      "image": "zapatillas.jpg",
-      "precio": "120.00",
-      "Descripcion": "Zapatillas de tenis diseñadas para ofrecer rapidez y comodidad en la cancha. Con una suela que optimiza el agarre y estabilidad."
+        "id": 12,
+        "name": "Nike Air Zoom Vapor Pro",
+        "image": "zapatillas.jpg",
+        "precio": "120.00",
+        "Descripcion": "Zapatillas de tenis diseñadas para ofrecer rapidez y comodidad en la cancha. Con una suela que optimiza el agarre y estabilidad.",
+        "Categoría": "Hombres"
     },
     {
-      "id": 13,
-      "name": "Wilson Pro Staff 97L",
-      "image": "raqueta.jpg",
-      "precio": "249.99",
-      "Descripcion": "Raqueta ligera y precisa, ideal para jugadores de nivel intermedio a avanzado. Su diseño equilibrado ayuda a maximizar el control del golpe."
+        "id": 13,
+        "name": "Adidas Air Zoom Vapor Pro",
+        "image": "zapatillas.jpg",
+        "precio": "145.00",
+        "Descripcion": "Zapatillas de tenis diseñadas para ofrecer comodidad y estabilidad en la cancha. Cuenta con suela antidezlizante para una mejor rendimiento en la cancha.",
+        "Categoría": "Mujeres"
     },
     {
-      "id": 14,
-      "name": "Adidas Adipower 3.0",
-      "image": "palaPadel.jpg",
-      "precio": "229.99",
-      "Descripcion": "Raqueta de pádel de alto rendimiento, diseñada para jugadores que buscan equilibrio entre control y potencia. Su núcleo de goma EVA ofrece una gran respuesta."
+        "id": 14,
+        "name": "Wilson Pro Staff 97L",
+        "image": "raqueta.jpg",
+        "precio": "249.99",
+        "Descripcion": "Raqueta ligera y precisa, ideal para jugadores de nivel intermedio a avanzado. Su diseño equilibrado ayuda a maximizar el control del golpe.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 15,
-      "name": "Tecnifibre Dynergy",
-      "image": "palaPadel.jpg",
-      "precio": "199.99",
-      "Descripcion": "Raqueta de pádel para jugadores de nivel intermedio a avanzado. Su tecnología optimiza el control y la salida de bola para un juego más preciso."
+        "id": 15,
+        "name": "Adidas Adipower 3.0",
+        "image": "palaPadel.jpg",
+        "precio": "229.99",
+        "Descripcion": "Raqueta de pádel de alto rendimiento, diseñada para jugadores que buscan equilibrio entre control y potencia. Su núcleo de goma EVA ofrece una gran respuesta.",
+        "Categoría": "Accesorios"
     },
     {
-      "id": 16,
-      "name": "Babolat Propulse Fury",
-      "image": "zapatillas.jpg",
-      "precio": "139.99",
-      "Descripcion": "Zapatillas de tenis de alto rendimiento que combinan confort y durabilidad. Ofrecen gran amortiguación y soporte para movimientos rápidos."
+        "id": 16,
+        "name": "Tecnifibre Dynergy",
+        "image": "palaPadel.jpg",
+        "precio": "199.99",
+        "Descripcion": "Raqueta de pádel para jugadores de nivel intermedio a avanzado. Su tecnología optimiza el control y la salida de bola para un juego más preciso.",
+        "Categoría": "Niños"
     },
     {
-      "id": 17,
-      "name": "Wilson Clash 100",
-      "image": "raqueta.jpg",
-      "precio": "299.99",
-      "Descripcion": "Raqueta innovadora con tecnología para mejorar el confort y la potencia. Su diseño flexible reduce las vibraciones, ideal para un juego más suave."
+        "id": 17,
+        "name": "Babolat Propulse Fury",
+        "image": "zapatillas.jpg",
+        "precio": "139.99",
+        "Descripcion": "Zapatillas de tenis de alto rendimiento que combinan confort y durabilidad. Ofrecen gran amortiguación y soporte para movimientos rápidos.",
+        "Categoría": "Unisex"
+    },
+    {
+        "id": 18,
+        "name": "Wilson Clash 100",
+        "image": "raqueta.jpg",
+        "precio": "299.99",
+        "Descripcion": "Raqueta innovadora con tecnología para mejorar el confort y la potencia. Su diseño flexible reduce las vibraciones, ideal para un juego más suave.",
+        "Categoría": "Niños"
     }
   ]
   

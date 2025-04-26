@@ -6,6 +6,12 @@ import NotFoundView from "@/views/NotFoundView.vue";
 import ShoppingCartView from "@/views/ShoppingCartView.vue";
 import ProductDetailsView from "@/views/ProductDetailsView.vue";
 import ProductOfertasView from "@/views/ProductOfertasView.vue";
+import CategoryView from '@/views/CategoryView.vue';
+import CategoryMenView from '@/views/CategoryMenView.vue';
+import CategoryWomenView from '@/views/CategoryWomenView.vue';
+import CategoryKidsView from '@/views/CategoryKidsView.vue';
+import CategoryAccessoriesView from '@/views/CategoryAccessoriesView.vue';
+import CategoryDiscountsView from '@/views/CategoryDiscountsView.vue';
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -29,6 +35,36 @@ const router = createRouter({
       path: "/shoppingCart",
       name: "ShoppingCart",
       component: ShoppingCartView,
+    },
+    {
+      path: "/category/",
+      name: "Category",
+      component: CategoryView,
+    },
+    {
+      path: "/category/men",
+      name: "CategoryMen",
+      component: CategoryMenView,
+    },
+    {
+      path: "/category/women",
+      name: "CategoryWomen",
+      component: CategoryWomenView,
+    },
+    {
+      path: "/category/kids",
+      name: "CategoryKids",
+      component: CategoryKidsView,
+    },
+    {
+      path: "/category/accessories",
+      name: "CategoryAccessories",
+      component: CategoryAccessoriesView,
+    },
+    {
+      path: "/category/ofertas",
+      name: "CategoryOfertas",
+      component: CategoryDiscountsView,
     },
     {
       path: "/product/:id",
