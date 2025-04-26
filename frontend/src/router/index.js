@@ -1,9 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue';
-import RegisterView from '@/views/RegisterView.vue';
-import LogInView from '@/views/LogInView.vue';
-import NotFoundView from '@/views/NotFoundView.vue';
-import ShoppingCartView from '@/views/ShoppingCartView.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "@/views/HomeView.vue";
+import RegisterView from "@/views/RegisterView.vue";
+import LogInView from "@/views/LogInView.vue";
+import NotFoundView from "@/views/NotFoundView.vue";
+import ShoppingCartView from "@/views/ShoppingCartView.vue";
+import ProductDetailsView from "@/views/ProductDetailsView.vue";
+import ProductOfertasView from "@/views/ProductOfertasView.vue";
 import CategoryView from '@/views/CategoryView.vue';
 import CategoryMenView from '@/views/CategoryMenView.vue';
 import CategoryWomenView from '@/views/CategoryWomenView.vue';
@@ -12,7 +14,7 @@ import CategoryAccessoriesView from '@/views/CategoryAccessoriesView.vue';
 import CategoryDiscountsView from '@/views/CategoryDiscountsView.vue';
 
 const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHistory("/"),
   routes: [
     {
       path: "/",
@@ -28,11 +30,6 @@ const router = createRouter({
       path: "/logIn",
       name: "LogIn",
       component: LogInView,
-    },
-    {
-      path: '/:pathMatch(.*)*',
-      name: "NotFound",
-      component: NotFoundView,
     },
     {
       path: "/shoppingCart",
@@ -68,6 +65,23 @@ const router = createRouter({
       path: "/category/ofertas",
       name: "CategoryOfertas",
       component: CategoryDiscountsView,
+    },
+    {
+      path: "/product/:id",
+      name: "Product",
+      component: ProductDetailsView,
+      props: (route) => ({ productId: Number(route.params.id) }),
+    },
+    {
+      path: "/oferta/:id",
+      name: "Oferta",
+      component: ProductOfertasView,
+      props: (route) => ({ ofertaId: Number(route.params.id) }),
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: NotFoundView,
     },
   ],
 });

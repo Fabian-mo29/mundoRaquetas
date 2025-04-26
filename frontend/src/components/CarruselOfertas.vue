@@ -1,52 +1,64 @@
 <template>
-    <div class="main-container">
-        <div class="container-fluid mt-5 sala-carousel-container">
-            <h2 class="fw-bold mb-4">Ofertas del Día</h2>
-            <div class="position-relative">
-                <div class="sala-carousel-wrapper">
-        <div class="sala-carousel-track" ref="ofertasTrack">
-            <div class="sala-card" v-for="oferta in ofertasDelDia" :key="oferta.id">
-                <div class="ratio-container">
-                    <img :src="`/imagesProducts/${oferta.imagen}`" class="card-img-top img-ratio" :alt="'Imagen de ' + oferta.nombre" />
-                    <div class="offer-badge">OFERTA</div>
+  <div class="main-container">
+    <div class="container-fluid mt-5 sala-carousel-container">
+      <h2 class="fw-bold mb-4">Ofertas del Día</h2>
+      <div class="position-relative">
+        <div class="sala-carousel-wrapper">
+          <div class="sala-carousel-track" ref="ofertasTrack">
+            <div
+              class="sala-card"
+              v-for="oferta in ofertasDelDia"
+              :key="oferta.id"
+            >
+              <div class="ratio-container">
+                <img
+                  :src="`/imagesProducts/${oferta.imagen}`"
+                  class="card-img-top img-ratio"
+                  :alt="'Imagen de ' + oferta.nombre"
+                />
+                <div class="offer-badge">OFERTA</div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <h5 class="card-title">{{ oferta.nombre }}</h5>
+                  <p class="card-text">{{ oferta.descripcion }}</p>
                 </div>
-                <div class="card-body">
-                    <div>
-                        <h5 class="card-title">{{ oferta.nombre }}</h5>
-                        <p class="card-text">{{ oferta.descripcion }}</p>
-                    </div>
-                    <div class="button-container">
-                        <p class="h5 mb-0 text-danger">
-                            <strong class="precio-oferta">{{ oferta.precio }}</strong>
-                            <span class="descuento-oferta">{{ oferta.descuento }}</span>
-                </p>
-                <div class="originalprice-and-button">
-                    <small class="text-muted original-price" v-if="oferta.precioOriginal">${{ oferta.precioOriginal
-                  }}</small>
-                  <button class="btn">Reservar</button>
+                <div class="button-container">
+                  <p class="h5 mb-0 text-danger">
+                    <strong class="precio-oferta">{{ oferta.precio }}</strong>
+                    <span class="descuento-oferta">{{ oferta.descuento }}</span>
+                  </p>
+                  <div class="originalprice-and-button">
+                    <small
+                      class="text-muted original-price"
+                      v-if="oferta.precioOriginal"
+                      >${{ oferta.precioOriginal }}</small
+                    >
+                    <RouterLink :to="'/oferta/' + oferta.id"
+                      ><button class="btn">Reservar</button></RouterLink
+                    >
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    </div>
-    </div>
-    <button class="carousel-control prev" @click="scrollOfertas(-1)">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <button class="carousel-control prev" @click="scrollOfertas(-1)">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         </button>
         <button class="carousel-control next" @click="scrollOfertas(1)">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
-        </div>
-        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup>
-import ofertas from '@/assets/ofertas.json'
-import { ref, onMounted } from 'vue';
+import ofertas from "@/assets/ofertas.json";
+import { ref, onMounted } from "vue";
 
 const ofertasDelDia = ref(ofertas);
-
 
 const ofertasTrack = ref(null);
 const cardWidth = 350;
@@ -55,8 +67,8 @@ const scrollOfertas = (direction) => {
   if (ofertasTrack.value) {
     const currentScroll = ofertasTrack.value.scrollLeft;
     ofertasTrack.value.scrollTo({
-      left: currentScroll + (cardWidth * direction),
-      behavior: 'smooth'
+      left: currentScroll + cardWidth * direction,
+      behavior: "smooth",
     });
   }
 };
@@ -64,11 +76,9 @@ const scrollOfertas = (direction) => {
 onMounted(() => {
   setInterval(() => scrollOfertas(1), 3000);
 });
-
 </script>
 
 <style lang="scss" scoped>
-
 .main-container {
   // margin-left: 250px;
   width: calc(100%);
@@ -148,7 +158,7 @@ onMounted(() => {
 .original-price {
   color: #6c757d;
   text-decoration: line-through;
-  font-size: 1.0em;
+  font-size: 1em;
 }
 
 .carousel-control {
@@ -157,7 +167,7 @@ onMounted(() => {
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
-  background: rgba(0, 0, 0, 0.5);;
+  background: rgba(0, 0, 0, 0.5);
   border: none;
   border-radius: 50%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -220,7 +230,7 @@ onMounted(() => {
   color: #000 !important;
 
   .precio-oferta {
-  color: #000;
+    color: #000;
   }
 
   .descuento-oferta {
@@ -228,7 +238,6 @@ onMounted(() => {
     margin-left: 0.5rem;
     font-weight: bold;
   }
-
 }
 
 .btn {
@@ -252,7 +261,7 @@ onMounted(() => {
 .btn:hover {
   background-color: #157347;
   border-color: #157347;
-  color:#fff;
+  color: #fff;
 }
 
 .originalprice-and-button {
@@ -266,6 +275,6 @@ onMounted(() => {
 }
 
 .card-text {
-    color: #000;
-  }
+  color: #000;
+}
 </style>

@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "name": "Wilson m23",
         "image": "raqueta.jpg",
         "precio": "99.99",
@@ -7,6 +8,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 2,
         "name": "Babolat Viper Carbon",
         "image": "raqueta.jpg",
         "precio": "189.99",
@@ -14,6 +16,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 3,
         "name": "Head Graphene 360+ Alpha Pro",
         "image": "palaPadel.jpg",
         "precio": "219.99",
@@ -21,6 +24,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 4,
         "name": "Adidas Adipower Control 3.0",
         "image": "palaPadel.jpg",
         "precio": "249.99",
@@ -28,6 +32,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 5,
         "name": "Bullpadel Vertex 03",
         "image": "raqueta.jpg",
         "precio": "179.99",
@@ -35,6 +40,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 6,
         "name": "Siux Diablo",
         "image": "raqueta.jpg",
         "precio": "159.99",
@@ -42,6 +48,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 7,
         "name": "Nox ML10 Pro Cup",
         "image": "raqueta.jpg",
         "precio": "199.99",
@@ -49,6 +56,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 8,
         "name": "Asics Gel Padel Pro 5",
         "image": "zapatillas.jpg",
         "precio": "89.99",
@@ -56,6 +64,7 @@
         "Categoría": "Unisex"
     },
     {
+        "id": 9,
         "name": "K-Swiss Hypercourt Express",
         "image": "zapatillas.jpg",
         "precio": "99.99",
@@ -63,6 +72,7 @@
         "Categoría": "Unisex"
     },
     {
+        "id": 10,
         "name": "Head Padel Pro S",
         "image": "pelotasPadel.jpg",
         "precio": "4.99",
@@ -70,6 +80,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 11,
         "name": "Prince Beast 100P",
         "image": "raqueta.jpg",
         "precio": "229.99",
@@ -77,6 +88,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 12,
         "name": "Nike Air Zoom Vapor Pro",
         "image": "zapatillas.jpg",
         "precio": "120.00",
@@ -84,6 +96,7 @@
         "Categoría": "Hombres"
     },
     {
+        "id": 13,
         "name": "Adidas Air Zoom Vapor Pro",
         "image": "zapatillas.jpg",
         "precio": "145.00",
@@ -91,6 +104,7 @@
         "Categoría": "Mujeres"
     },
     {
+        "id": 14,
         "name": "Wilson Pro Staff 97L",
         "image": "raqueta.jpg",
         "precio": "249.99",
@@ -98,6 +112,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 15,
         "name": "Adidas Adipower 3.0",
         "image": "palaPadel.jpg",
         "precio": "229.99",
@@ -105,6 +120,7 @@
         "Categoría": "Accesorios"
     },
     {
+        "id": 16,
         "name": "Tecnifibre Dynergy",
         "image": "palaPadel.jpg",
         "precio": "199.99",
@@ -112,6 +128,7 @@
         "Categoría": "Niños"
     },
     {
+        "id": 17,
         "name": "Babolat Propulse Fury",
         "image": "zapatillas.jpg",
         "precio": "139.99",
@@ -119,10 +136,12 @@
         "Categoría": "Unisex"
     },
     {
+        "id": 18,
         "name": "Wilson Clash 100",
         "image": "raqueta.jpg",
         "precio": "299.99",
         "Descripcion": "Raqueta innovadora con tecnología para mejorar el confort y la potencia. Su diseño flexible reduce las vibraciones, ideal para un juego más suave.",
         "Categoría": "Niños"
     }
-]
+  ]
+  
