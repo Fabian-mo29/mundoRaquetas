@@ -113,4 +113,36 @@ import { RouterLink } from 'vue-router';
         margin-top: auto;
     }
 }
+
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+h4 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+h5 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+p {
+    font-family: Noto Sans, sans-serif;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+span {
+    font-family: Noto Sans, sans-serif;
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
 </style>

@@ -81,12 +81,29 @@ a {
 
 /* Estilo para el color de los links al pasar el mouse */
 a:hover {
-    color : #3498db;
+    color : #ffc107;
+    transition: color 0.3s ease;
 }
 
 /* Estilo para el color de los iconos de redes sociales al pasar el mouse*/
 .social-media i:hover {
     color: #3498db;
     transition: transform 0.3s ease, color 0.3s ease;
+}
+
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+ul {
+    font-family: Noto Sans, sans-serif;
+}
+
+p{
+    font-family: Noto Sans, sans-serif;
+    color: #ffffff;
+    font-size: 1rem;
 }
 </style>

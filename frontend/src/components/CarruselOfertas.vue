@@ -130,16 +130,24 @@ onMounted(() => {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
+  .card-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  .card-text {
+    font-family: Noto Sans, sans-serif;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
   .card-body {
     padding: 1.25rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 
-    .button-container {
-      margin-top: auto;
-      padding-top: 1rem;
-    }
   }
 }
 
@@ -276,5 +284,11 @@ onMounted(() => {
 
 .card-text {
   color: #000;
+}
+
+h2 {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
 }
 </style>

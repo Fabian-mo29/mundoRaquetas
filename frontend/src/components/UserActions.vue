@@ -32,21 +32,22 @@ import { RouterLink } from 'vue-router';
 
 /* Estilo para hacer el hover para cada ícono */
 .icon:hover {
-    opacity: 0.8;
+    color: #3498db;
+    transition: color 0.3s ease;
 }
 
-/* Estilo para hacer el círculo detrás de cada ícono */
-.icon:hover::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: 50%;
-  opacity: 0.6;
-  z-index: -1;
-}
+// /* Estilo para hacer el círculo detrás de cada ícono */
+// .icon:hover::before {
+//   content: '';
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   width: 40px;
+//   height: 40px;
+//   background-color: white;
+//   border-radius: 50%;
+//   opacity: 0.6;
+//   z-index: -1;
+// }
 </style>

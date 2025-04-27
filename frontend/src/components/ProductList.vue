@@ -56,8 +56,13 @@ h2 {
 }
 
 .center-button {
+  font-family: "Poppins", sans-serif;
   grid-column: 1 / -1;
   justify-self: center;
   margin-top: 20px;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
 }
 </style>
