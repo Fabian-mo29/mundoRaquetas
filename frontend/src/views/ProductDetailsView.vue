@@ -1,15 +1,24 @@
 <template>
-  <div class="container mt-5">
-    <h1>{{ product.name }}</h1>
-    <p>{{ product.Descripcion }}</p>
-    <p style="font-size: large">
-      <strong>${{ product.precio }}</strong>
-    </p>
-    <img
-      :src="`/imagesProducts/${product.image}`"
-      class="img-fluid mb-3"
-      :alt="'Imagen de ' + product.name"
-    />
+  <div class="container mt-5 product-detail">
+    <div class="product-image-container">
+      <img
+        :src="`/imagesProducts/${product.image}`"
+        class="img-fluid product-image"
+        :alt="'Imagen de ' + product.name"
+      />
+    </div>
+
+    <div class="product-info">
+      <h1>{{ product.name }}</h1>
+      <p class="product-description">{{ product.Descripcion }}</p>
+      <p class="product-price">
+        <strong>${{ product.precio }}</strong>
+      </p>
+      <!-- Botón añador al carrito-->
+      <button class="btn btn-success btn-add-to-cart">
+        Añadir al carrito
+      </button>
+    </div>
   </div>
 </template>
 
@@ -27,4 +36,75 @@ const props = defineProps({
 const product = inventory.find((item) => item.id === Number(props.productId));
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.product-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.product-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
+  width: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-add-to-cart {
+  padding: 10px 30px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: fit-content;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-add-to-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background-color: #2e7d32;
+}
+
+.product-info {
+  padding: 0 1rem;
+}
+
+.product-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  color: #2e7d32;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .product-detail {
+    flex-direction: row;
+  }
+  
+  .product-image-container {
+    flex: 1;
+    max-width: 50%;
+  }
+  
+  .product-info {
+    flex: 1;
+    padding: 0 2rem;
+    max-width: 50%;
+  }
+}
+</style>

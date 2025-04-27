@@ -7,9 +7,9 @@ import ShoppingCartView from "@/views/ShoppingCartView.vue";
 import ProductDetailsView from "@/views/ProductDetailsView.vue";
 import ProductOfertasView from "@/views/ProductOfertasView.vue";
 import CategoryView from '@/views/CategoryView.vue';
-import CategoryMenView from '@/views/CategoryMenView.vue';
-import CategoryWomenView from '@/views/CategoryWomenView.vue';
-import CategoryKidsView from '@/views/CategoryKidsView.vue';
+import CategoryRacketsView from '@/views/CategoryRacketsView.vue';
+import CategoryBallsView from '@/views/CategoryBallsView.vue';
+import CategoryShoesView from '@/views/CategoryShoesView.vue';
 import CategoryAccessoriesView from '@/views/CategoryAccessoriesView.vue';
 import CategoryDiscountsView from '@/views/CategoryDiscountsView.vue';
 
@@ -42,19 +42,19 @@ const router = createRouter({
       component: CategoryView,
     },
     {
-      path: "/category/men",
-      name: "CategoryMen",
-      component: CategoryMenView,
+      path: "/category/rackets",
+      name: "CategoryRackets",
+      component: CategoryRacketsView,
     },
     {
-      path: "/category/women",
-      name: "CategoryWomen",
-      component: CategoryWomenView,
+      path: "/category/balls",
+      name: "CategoryBalls",
+      component: CategoryBallsView,
     },
     {
-      path: "/category/kids",
-      name: "CategoryKids",
-      component: CategoryKidsView,
+      path: "/category/shoes",
+      name: "CategoryShoes",
+      component: CategoryShoesView,
     },
     {
       path: "/category/accessories",
@@ -77,6 +77,15 @@ const router = createRouter({
       name: "Oferta",
       component: ProductOfertasView,
       props: (route) => ({ ofertaId: Number(route.params.id) }),
+    },
+    {
+      path: '/category/:product/:id',
+      name: 'CategoryProduct',
+      component: ProductDetailsView,
+      props: (route) => ({
+        productId: Number(route.params.id),
+        fromCategory: route.params.category
+      })
     },
     {
       path: "/:pathMatch(.*)*",

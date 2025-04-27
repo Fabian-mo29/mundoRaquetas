@@ -35,7 +35,7 @@ const emit = defineEmits(['update:limite']);
 
 const filteredProducts = ref(
   inventory.filter(product => {
-    if (props.categoryType === "Hombres" || props.categoryType === "Mujeres") {
+    if (props.categoryType === "Palas" || props.categoryType === "Bolas" || props.categoryType === "Calzado") {
       return product.Categoría === props.categoryType || product.Categoría === "Unisex";
     }
     return product.Categoría === props.categoryType;

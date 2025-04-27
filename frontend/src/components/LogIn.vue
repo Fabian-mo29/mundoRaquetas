@@ -13,13 +13,13 @@
 
             <div class="mb-3">
                 <label class="form-label" for="inputPassword">Contraseña</label>
-                <input class="form-control" type="password" id="inputPassword" required placeholder="password">
+                <input class="form-control" type="password" id="inputPassword" required placeholder="contraseña">
             </div>
 
             
             <div class="mb-3">
                 <label class="form-label" for="inputDireccion">Dirección</label>
-                <input class="form-control" type="Direccion" id="inputDireccion" required placeholder="Pedro">
+                <input class="form-control" type="Direccion" id="inputDireccion" required placeholder="dirección">
             </div>
 
             <div class="mb-4 form-check">

@@ -42,13 +42,13 @@ const activeLink = (link) => {
       <div class="d-none d-lg-flex align-items-center flex-grow-1 justify-content-center">
         <ul class="navbar-nav">
           <li class="nav-item px-3">
-            <RouterLink :to="'/category/men'" :class="[activeLink('/category/men'), 'nav-link']">Hombres</RouterLink>
+            <RouterLink :to="'/category/rackets'" :class="[activeLink('/category/rackets'), 'nav-link']">Palas</RouterLink>
           </li>
           <li class="nav-item px-3">
-            <RouterLink :to="'/category/women'" :class="[activeLink('/category/women'), 'nav-link']">Mujeres</RouterLink>
+            <RouterLink :to="'/category/balls'" :class="[activeLink('/category/balls'), 'nav-link']">Bolas</RouterLink>
           </li>
           <li class="nav-item px-3">
-            <RouterLink :to="'/category/kids'" :class="[activeLink('/category/kids'), 'nav-link']">Niños</RouterLink>
+            <RouterLink :to="'/category/shoes'" :class="[activeLink('/category/shoes'), 'nav-link']">Calzado</RouterLink>
           </li>
           <li class="nav-item px-3">
             <RouterLink :to="'/category/accessories'" :class="[activeLink('/category/accessories'), 'nav-link']">Accesorios</RouterLink>
@@ -86,13 +86,13 @@ const activeLink = (link) => {
       <div class="offcanvas-body d-flex flex-column align-items-center">
         <ul class="navbar-nav flex-column text-center">
           <li class="nav-item py-2">
-            <RouterLink :to="'/category/men'" :class="[activeLink('/category/men'), 'nav-link']" data-bs-dismiss="offcanvas">Hombres</RouterLink>
+            <RouterLink :to="'/category/rackets'" :class="[activeLink('/category/rackets'), 'nav-link']" data-bs-dismiss="offcanvas">Palas</RouterLink>
           </li>
           <li class="nav-item py-2">
-            <RouterLink :to="'/category/women'" :class="[activeLink('/category/women'), 'nav-link']" data-bs-dismiss="offcanvas">Mujeres</RouterLink>
+            <RouterLink :to="'/category/balls'" :class="[activeLink('/category/balls'), 'nav-link']" data-bs-dismiss="offcanvas">Bolas</RouterLink>
           </li>
           <li class="nav-item py-2">
-            <RouterLink :to="'/category/kids'" :class="[activeLink('/category/kids'), 'nav-link']" data-bs-dismiss="offcanvas">Niños</RouterLink>
+            <RouterLink :to="'/category/shoes'" :class="[activeLink('/category/shoes'), 'nav-link']" data-bs-dismiss="offcanvas">Calzado</RouterLink>
           </li>
           <li class="nav-item py-2">
             <RouterLink :to="'/category/accessories'" :class="[activeLink('/category/accessories'), 'nav-link']" data-bs-dismiss="offcanvas">Accesorios</RouterLink>

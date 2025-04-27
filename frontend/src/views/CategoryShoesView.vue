@@ -1,5 +1,5 @@
 <template>
-  <CategoryView categoryType="Hombres" categoryHeader="Productos para Hombres"/>
+  <CategoryView categoryType="Calzado" categoryHeader="Calzado para Pádel"/>
 </template>
 
 <script setup>

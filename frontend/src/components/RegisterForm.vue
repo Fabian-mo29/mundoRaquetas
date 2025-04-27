@@ -9,12 +9,12 @@
             
             <div class="mb-3">
                 <label class="form-label" for="inputNombre">Nombre</label>
-                <input class="form-control" type="Nombre" id="inputNombre" required placeholder="Pedro">
+                <input class="form-control" type="Nombre" id="inputNombre" required placeholder="nombre">
             </div>
             
             <div class="mb-3">
                 <label class="form-label" for="inputApellido">Apellido</label>
-                <input class="form-control" type="Apellido" id="inputApellido" required placeholder="Lopez">
+                <input class="form-control" type="Apellido" id="inputApellido" required placeholder="apellido">
             </div>
 
             <div class="mb-3">
@@ -24,7 +24,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="inputPassword">Contraseña</label>
-                <input class="form-control" type="password" id="inputPassword" required placeholder="password">
+                <input class="form-control" type="password" id="inputPassword" required placeholder="contraseña">
             </div>
 
             <div class="mb-4 form-check">
