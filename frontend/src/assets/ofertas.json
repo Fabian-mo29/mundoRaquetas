@@ -6,7 +6,7 @@
       "precio": "$89.99",
       "descuento": "(-10%)",
       "precioOriginal": "99.99",
-      "imagen": "raqueta.jpg"
+      "imagen": "palaPadel.jpg"
     },
     {
       "id": 102,
@@ -15,7 +15,7 @@
       "precio": "$170.99",
       "descuento": "(-10%)",
       "precioOriginal": "189.99",
-      "imagen": "/palaPadel.jpg"
+      "imagen": "palaPadel.jpg"
     },
     {
       "id": 103,
@@ -42,7 +42,7 @@
       "precio": "$161.99",
       "descuento": "(-10%)",
       "precioOriginal": "179.99",
-      "imagen": "raqueta.jpg"
+      "imagen": "palaPadel.jpg"
     },
     {
       "id": 106,
@@ -51,7 +51,7 @@
       "precio": "$143.99",
       "descuento": "(-10%)",
       "precioOriginal": "159.99",
-      "imagen": "raqueta.jpg"
+      "imagen": "palaPadel.jpg"
     },
     {
       "id": 107,
@@ -60,7 +60,7 @@
       "precio": "$179.99",
       "descuento": "(-10%)",
       "precioOriginal": "199.99",
-      "imagen": "raqueta.jpg"
+      "imagen": "palaPadel.jpg"
     },
     {
       "id": 108,
