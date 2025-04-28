@@ -1,13 +1,22 @@
 <template>
     <div class="user-actions">
-      <RouterLink to="/shoppingCart" class="icon"><i class="pi pi-cart-minus"></i></RouterLink> <!-- Carrito -->
+      <RouterLink to="/shoppingCart" class="icon" @click="closeCanvas()"><i class="pi pi-cart-minus"></i></RouterLink> <!-- Carrito -->
       <a href="#" class="icon"><i class="pi pi-search"></i></a> <!-- Búsqueda -->
-      <RouterLink to="/logIn" class="icon"><i class="pi pi-user"></i></RouterLink> <!-- Cuenta de usuario -->
+      <RouterLink to="/logIn" class="icon" @click="closeCanvas()"><i class="pi pi-user"></i></RouterLink> <!-- Cuenta de usuario -->
     </div>
 </template>
   
 <script setup>
 import { RouterLink } from 'vue-router';
+import { Offcanvas } from "bootstrap";
+
+const closeCanvas = () => {
+  const offcanvasElement = document.getElementById("mobile-menu");
+  const offcanvas = Offcanvas.getInstance(offcanvasElement);
+  if (offcanvas) {
+    offcanvas.hide();
+  }
+};
 </script>
 
 <style lang="scss" scoped>
