@@ -17,7 +17,7 @@
                             <input type="number" class="form-control fixed-input" value="1">
                         </div>
                     </div>
-                    <div class="d-flex flex-column justify-content-between">
+                    <div class="item-price-btn d-flex flex-column justify-content-between">
                         <span>$219.99</span>
                         <button class="btn btn-sm btn-danger">Eliminar</button>
                     </div>
@@ -33,7 +33,7 @@
                             <input type="number" class="form-control fixed-input" value="1">
                         </div>
                     </div>
-                    <div class="d-flex flex-column justify-content-between">
+                    <div class="item-price-btn d-flex flex-column justify-content-between">
                         <span>$4.99</span>
                         <button class="btn btn-sm btn-danger">Eliminar</button>
                     </div>
@@ -107,11 +107,28 @@ import { RouterLink } from 'vue-router';
     object-fit: cover;
 }
 
-// Estilo para que cuando se reduzca la pantalla, el resumen del carrito no tenga el margen superior
+// Estilo para el botón de eliminar producto y el precio
+.item-price-btn {
+    align-items: center;
+}
+
+// Estilos para cuando se reduzca la pantalla
 @media (max-width: 768px) {
     .cart-summary {
         margin-top: auto;
+        margin-bottom: 20px;
     }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-price-btn {
+        margin-top: 20px;
+        gap: 10px;
+    }
+
 }
 
 h3 {
