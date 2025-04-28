@@ -2,8 +2,8 @@
 # Estudiantes
 - Gabriel Zúñiga Vega C28741
 - Emanuel García Rojas C23166
-- Fabián Mora x C2
-- Álvaro Moya x C1
+- Fabián Mora Arias C25095
+- Álvaro Moya Arrieta C15331
 
 ## Para instalar lo necesario para correr el programa de forma correcta
 ```
