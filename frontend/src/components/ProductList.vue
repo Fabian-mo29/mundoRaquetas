@@ -13,6 +13,7 @@
         @click="verMasProductos"
         v-if="show < products.length"
         class="btn btn-success center-button"
+        style='background-color: #2c3e50'
       >
         Ver más Productos
       </button>

@@ -5,7 +5,7 @@
         <div v-for="(product, index) in filteredProducts.slice(0, show)" :key="index" class="card shadow">
             <ProductCard :product="product" :limite="limite"/>
         </div>
-        <button @click="verMasProductos" v-if="show < filteredProducts.length" class="btn btn-success center-button">Ver más Productos</button>
+        <button @click="verMasProductos" v-if="show < filteredProducts.length" class="btn btn-success center-button" style='background-color: #2c3e50'>Ver más Productos </button>
         </div>
     </div>
 </template>
