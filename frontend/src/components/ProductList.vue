@@ -1,43 +1,52 @@
 <template>
-  <div class="main-container">
-    <h2 class="fw-bold mb-4">Productos</h2>
+  <div class="main-container margin-auto">
+    <h2 class="fw-bold mb-4 responsive-text">Productos</h2>
     <div id="grid" class="product-grid">
-      <div v-for="(product, index) in products.slice(0, show)" :key="index" class="card shadow">
-        <ProductCard :product="product" :limite="limite"/>
+      <div
+        v-for="(product, index) in products.slice(0, show)"
+        :key="index"
+        class="card shadow"
+      >
+        <ProductCard :product="product" :limite="limite" />
       </div>
-      <button @click="verMasProductos" v-if="show < products.length" class="btn btn-success center-button">Ver más Productos</button>
+      <button
+        @click="verMasProductos"
+        v-if="show < products.length"
+        class="btn btn-success center-button"
+      >
+        Ver más Productos
+      </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import inventory from '@/assets/inventory.json'
-import { ref, defineProps, defineEmits } from 'vue'
-import ProductCard from './ProductCard.vue'
+import inventory from "@/assets/inventory.json";
+import { ref, defineProps, defineEmits } from "vue";
+import ProductCard from "./ProductCard.vue";
 
 const props = defineProps({
   limite: {
     type: Number,
-    default: 8
-  }
-})
+    default: 8,
+  },
+});
 
 const show = ref(props.limite);
 
-const emit = defineEmits(['update:limite']);
+const emit = defineEmits(["update:limite"]);
 
 function verMasProductos() {
   show.value = products.value.length;
-  emit('update:limite', products.value.length);
+  emit("update:limite", products.value.length);
 }
 
-const products = ref(inventory)
+const products = ref(inventory);
 </script>
 
 <style lang="scss" scoped>
-
 h2 {
-  margin-left: 5%;
+  margin-left: 3%;
 }
 
 .main-container {
@@ -64,5 +73,11 @@ h2 {
 
 h2 {
   font-family: "Poppins", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .responsive-text {
+    text-align: center;
+  }
 }
 </style>

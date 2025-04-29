@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <div class="container-fluid mt-5 sala-carousel-container">
-      <h2 class="fw-bold mb-4">Ofertas del Día</h2>
+      <h2 class="fw-bold mb-4 responsive-text">Ofertas del Día</h2>
       <div class="position-relative">
         <div class="sala-carousel-wrapper">
           <div class="sala-carousel-track" ref="ofertasTrack">
@@ -21,7 +21,9 @@
               <div class="card-body">
                 <div>
                   <h5 class="card-title">{{ oferta.nombre }}</h5>
-                  <p class="card-text">{{ oferta.descripcion }}</p>
+                  <p class="card-text">
+                    {{ descripcionTruncada(oferta.descripcion) }}
+                  </p>
                 </div>
                 <div class="button-container">
                   <p class="h5 mb-0 text-danger">
@@ -62,6 +64,13 @@ const ofertasDelDia = ref(ofertas);
 
 const ofertasTrack = ref(null);
 const cardWidth = 350;
+
+const descripcionTruncada = (descripcion) => {
+  if (descripcion.length > 80) {
+    return descripcion.substring(0, 80) + "...";
+  }
+  return descripcion;
+};
 
 const scrollOfertas = (direction) => {
   if (ofertasTrack.value) {
@@ -147,7 +156,6 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-
   }
 }
 
@@ -290,5 +298,11 @@ h2 {
   color: #000;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .responsive-text {
+    text-align: center;
+  }
 }
 </style>
