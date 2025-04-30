@@ -3,12 +3,12 @@ const cors = require("cors");
 // require("dotenv").config();
 
 const app = express();
-const apiRoutes = require("./routes/api");
+// const apiRoutes = require("./routes/apiRoutes");
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", apiRoutes);
+// app.use("/api" ,apiRoutes);
 
 const PORT = 3000; // Cambia el puerto si es necesario
 app.listen(PORT, () => {
