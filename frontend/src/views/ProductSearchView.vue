@@ -12,11 +12,22 @@
             type="text"
             id="search"
             placeholder="Buscar productos..."
+            @click="toggleSuggestions"
           />
           <button type="button" @click="buscar" class="search-btn">
             <i class="pi pi-search"></i>
           </button>
         </div>
+        <ul v-if="products.length && searchQuery" class="suggestions-list">
+          <li
+            v-for="(product, index) in products.slice(0, 7)"
+            :key="index"
+            class="suggestion-item"
+            @click="selectSuggestion(index)"
+          >
+            {{ product.name }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -24,11 +35,18 @@
 
 <script setup>
 import { ref } from "vue";
-
+import inventory from "@/assets/inventory.json";
 const searchQuery = ref("");
+
+const products = ref(inventory);
 
 function buscar() {
   console.log("Buscando productos:", searchQuery.value);
+}
+
+function selectSuggestion(index) {
+  searchQuery.value = products.value[index].name;
+  console.log("Producto seleccionado:", products.value[index]);
 }
 </script>
 
@@ -37,7 +55,7 @@ function buscar() {
   background-image: url("@/assets/canchaPadel.jpg");
   background-size: cover;
   background-position: center;
-  height: 60vh;
+  height: 80vh;
   position: relative;
   z-index: 0;
 }
@@ -111,5 +129,28 @@ input {
 input:focus {
   outline: none;
   box-shadow: none;
+}
+
+.suggestions-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+}
+
+.suggestion-item:hover {
+  color: #3498db;
+  background-color: #f1f1f1;
 }
 </style>
