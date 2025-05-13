@@ -6,12 +6,13 @@ import NotFoundView from "@/views/NotFoundView.vue";
 import ShoppingCartView from "@/views/ShoppingCartView.vue";
 import ProductDetailsView from "@/views/ProductDetailsView.vue";
 import ProductOfertasView from "@/views/ProductOfertasView.vue";
-import CategoryView from '@/views/CategoryView.vue';
-import CategoryRacketsView from '@/views/CategoryRacketsView.vue';
-import CategoryBallsView from '@/views/CategoryBallsView.vue';
-import CategoryShoesView from '@/views/CategoryShoesView.vue';
-import CategoryAccessoriesView from '@/views/CategoryAccessoriesView.vue';
-import CategoryDiscountsView from '@/views/CategoryDiscountsView.vue';
+import CategoryView from "@/views/CategoryView.vue";
+import CategoryRacketsView from "@/views/CategoryRacketsView.vue";
+import CategoryBallsView from "@/views/CategoryBallsView.vue";
+import CategoryShoesView from "@/views/CategoryShoesView.vue";
+import CategoryAccessoriesView from "@/views/CategoryAccessoriesView.vue";
+import CategoryDiscountsView from "@/views/CategoryDiscountsView.vue";
+import ProductSearchView from "@/views/ProductSearchView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -79,13 +80,18 @@ const router = createRouter({
       props: (route) => ({ ofertaId: Number(route.params.id) }),
     },
     {
-      path: '/category/:product/:id',
-      name: 'CategoryProduct',
+      path: "/category/:product/:id",
+      name: "CategoryProduct",
       component: ProductDetailsView,
       props: (route) => ({
         productId: Number(route.params.id),
-        fromCategory: route.params.category
-      })
+        fromCategory: route.params.category,
+      }),
+    },
+    {
+      path: "/search",
+      name: "ProductSearch",
+      component: ProductSearchView,
     },
     {
       path: "/:pathMatch(.*)*",
