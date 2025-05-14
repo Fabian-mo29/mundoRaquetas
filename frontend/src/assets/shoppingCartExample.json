@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "name": "Wilson m23",
+        "image": "palaPadel.jpg",
+        "precio": "99.99",
+        "Descripcion": "Raqueta Wilson de tenis con excelente control y potencia. Ideal para principiantes y jugadores intermedios.",
+        "Categoría": "Palas"
+    },
+    {
+        "id": 8,
+        "name": "Asics Gel Padel Pro 5",
+        "image": "zapatillas.jpg",
+        "precio": "89.99",
+        "Descripcion": "Zapatillas de pádel de alta comodidad y soporte, ideales para jugadores que buscan estabilidad y protección en el campo.",
+        "Categoría": "Calzado"
+    },
+    {
+        "id": 31,
+        "name": "Camiseta Nike Dri-Fit",
+        "image": "camisetaPadel.jpg",
+        "precio": "34.99",
+        "Descripcion": "Camiseta técnica para pádel con tejido transpirable.",
+        "Categoría": "Accesorios"
+    },
+    {
+        "id": 32,
+        "name": "Pantalón Adidas Club",
+        "image": "pantalonPadel.jpg",
+        "precio": "45.99",
+        "Descripcion": "Pantalón deportivo con bolsillos para pelotas.",
+        "Categoría": "Accesorios"
+    }
+]
