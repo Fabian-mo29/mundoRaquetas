@@ -1,0 +1,92 @@
+[
+  {
+    "id": 101,
+    "nombre": "Wilson m23",
+    "descripcion": "Raqueta Wilson de tenis con excelente control y potencia. Ideal para principiantes y jugadores intermedios.",
+    "precio": "$89.99",
+    "descuento": "(-10%)",
+    "precioOriginal": "99.99",
+    "imagen": "adidasAdiPower2.jpg"
+  },
+  {
+    "id": 102,
+    "nombre": "Babolat Viper Carbon",
+    "descripcion": "Raqueta de pádel de alta gama, diseñada para jugadores de nivel avanzado.",
+    "precio": "$170.99",
+    "descuento": "(-10%)",
+    "precioOriginal": "189.99",
+    "imagen": "babolatViperCarbon.jpg"
+  },
+  {
+    "id": 103,
+    "nombre": "Head Graphene 360+ Alpha Pro",
+    "descripcion": "Raqueta profesional de pádel con tecnología Graphene 360+.",
+    "precio": "$197.99",
+    "descuento": "(-10%)",
+    "precioOriginal": "219.99",
+    "imagen": "headGraphene360.jpg"
+  },
+  {
+    "id": 104,
+    "nombre": "Adidas Adipower Control 3.0",
+    "descripcion": "Raqueta de pádel premium, ideal para jugadores que buscan control total y precisión en sus golpes.",
+    "precio": "$224.99",
+    "descuento": "(-10%)",
+    "precioOriginal": "249.99",
+    "imagen": "adidasAdipowerControl.jpg"
+  },
+  {
+    "id": 105,
+    "nombre": "Bullpadel Vertex 03",
+    "descripcion": "Raqueta de pádel de alto rendimiento, con un diseño espectacular.",
+    "precio": "$161.99",
+    "descuento": "(-10%)",
+    "precioOriginal": "179.99",
+    "imagen": "bullpadelVertex.jpg"
+  },
+  {
+    "id": 106,
+    "nombre": "Siux Diablo",
+    "descripcion": "Raqueta de pádel perfecta para jugadores agresivos que buscan potencia y durabilidad.",
+    "precio": "$143.99",
+    "descuento": "(-10%)",
+    "precioOriginal": "159.99",
+    "imagen": "siuxDiablo.jpg"
+  },
+  {
+    "id": 107,
+    "nombre": "Nox ML10 Pro Cup",
+    "descripcion": "Raqueta de pádel de control con un diseño clásico, ideal para jugadores de nivel intermedio y avanzado.",
+    "precio": "$179.99",
+    "descuento": "(-10%)",
+    "precioOriginal": "199.99",
+    "imagen": "noxML10.jpg"
+  },
+  {
+    "id": 108,
+    "nombre": "Asics Gel Padel Pro 5",
+    "descripcion": "Zapatillas de pádel de alta comodidad y soporte, ideales para jugadores que buscan estabilidad.",
+    "precio": "$80.99",
+    "descuento": "(-10%)",
+    "precioOriginal": "89.99",
+    "imagen": "zapatillas.jpg"
+  },
+  {
+    "id": 109,
+    "nombre": "K-Swiss Hypercourt Express",
+    "descripcion": "Zapatillas de pádel ligeras y resistentes, con una suela que proporciona un excelente agarre en el campo de juego.",
+    "precio": "$89.99",
+    "descuento": "(-10%)",
+    "precioOriginal": "99.99",
+    "imagen": "kswissHypercourt.jpg"
+  },
+  {
+    "id": 110,
+    "nombre": "Head Padel Pro S",
+    "descripcion": "Pelotas de pádel de alta calidad, ideales para competiciones. Su durabilidad las hacen perfectas para cualquier nivel.",
+    "precio": "$4.49",
+    "descuento": "(-10%)",
+    "precioOriginal": "4.99",
+    "imagen": "pelotasPadel.jpg"
+  }
+]
