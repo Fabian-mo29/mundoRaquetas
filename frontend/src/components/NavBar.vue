@@ -71,7 +71,8 @@
 
       <!-- Acciones de usuario desktop -->
       <div class="d-none d-lg-flex user-actions">
-        <UserActions />
+      <span class="me-3" style="color:#ffc107; font-weight:bold;">{{ username }}</span>
+      <UserActions />
       </div>
     </div>
 
@@ -142,9 +143,10 @@
         </ul>
 
         <!-- Acciones de usuario móvil -->
-        <div class="mt-4">
-          <UserActions />
-        </div>
+        <div class="mt-4 d-flex flex-column align-items-center">
+        <span class="mb-2" style="color:#ffc107; font-weight:bold;">{{ username }}</span>
+        <UserActions />
+      </div>
       </div>
     </div>
   </nav>
@@ -154,6 +156,23 @@
 import UserActions from "./UserActions.vue";
 import { RouterLink } from "vue-router";
 import { Offcanvas } from "bootstrap";
+import { ref, onMounted } from "vue";
+
+const username = ref("Invitado");
+
+const loadUsername = () => {
+  const user = sessionStorage.getItem("usuario");
+  if (user) {
+    try {
+      const parsed = JSON.parse(user);
+      username.value = parsed.Username || "Invitado";
+    } catch {
+      username.value = "Invitado";
+    }
+  } else {
+    username.value = "Invitado";
+  }
+};
 
 const closeCanvas = () => {
   const offcanvasElement = document.getElementById("mobile-menu");
@@ -162,6 +181,11 @@ const closeCanvas = () => {
     offcanvas.hide();
   }
 };
+
+onMounted(() => {
+  loadUsername();
+  window.addEventListener("storage", loadUsername);
+});
 </script>
 
 <style scoped lang="scss">

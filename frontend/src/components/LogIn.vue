@@ -18,6 +18,7 @@
           class="form-control"
           type="email"
           id="inputEmail"
+          v-model="datosSesion.correo"
           required
           placeholder="correo@email.com"
         />
@@ -29,19 +30,9 @@
           class="form-control"
           type="password"
           id="inputPassword"
+          v-model="datosSesion.password"
           required
           placeholder="contraseña"
-        />
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label" for="inputDireccion">Dirección</label>
-        <input
-          class="form-control"
-          type="Direccion"
-          id="inputDireccion"
-          required
-          placeholder="dirección"
         />
       </div>
 
@@ -67,12 +58,41 @@
 </template>
 
 <script setup>
-import { RouterLink } from "vue-router";
+import { ref } from "vue";
+import { useRouter, RouterLink } from "vue-router";
 
-const datosSesion = { correo: "", password: "" };
+const router = useRouter();
 
-function logIn() {
-  alert(`${datosSesion.correo}`);
+const datosSesion = ref({
+  correo: "",
+  password: ""
+});
+
+async function logIn() {
+  try {
+    const response = await fetch("http://localhost:3000/api/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: datosSesion.value.correo,
+        password: datosSesion.value.password
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Guarda la info de usuario en sessionStorage
+      sessionStorage.setItem("usuario", JSON.stringify(data.user));
+      // Dispara un evento personalizado para avisar al NavBar
+      window.dispatchEvent(new Event("storage"));
+      router.push("/"); // Redirige al inicio
+    } else {
+      alert(data.message || "Error al iniciar sesión");
+    }
+  } catch (error) {
+    alert("Error de conexión con el servidor");
+  }
 }
 </script>
 
