@@ -25,7 +25,10 @@
         </div>
 
         <!-- Botón de añadir al carrito -->
-        <button class="btn btn-success btn-add-to-cart">
+        <button
+          class="btn btn-success btn-add-to-cart"
+          style="background-color: #2c3e50"
+        >
           Añadir al carrito
         </button>
       </div>
@@ -130,11 +133,11 @@ const product = inventory.find((item) => item.id === Number(props.ofertaId));
   .product-title {
     font-size: 1.6rem;
   }
-  
+
   .product-price {
     font-size: 1.5rem;
   }
-  
+
   .btn-add-to-cart {
     width: 100%;
     padding: 12px;

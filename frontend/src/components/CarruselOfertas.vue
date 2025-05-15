@@ -1,49 +1,61 @@
 <template>
-    <!-- Carrusel de ofertas -->
-    <div class="mt-5 sala-carousel-container">
-      <h2 class="mb-4">Ofertas del Día</h2>
-      <div class="position-relative">
-        <div class="sala-carousel-wrapper">
-          <div class="sala-carousel-track" ref="ofertasTrack">
-            <div class="sala-card" v-for="oferta in ofertasDelDia" :key="oferta.id">
-              <div class="ratio-container">
-                <img :src="`/imagesProducts/${oferta.imagen}`" 
-                class="card-img-top img-ratio" 
-                :alt="'Imagen de ' + oferta.nombre">
-                <div class="offer-badge">OFERTA</div>
+  <!-- Carrusel de ofertas -->
+  <div class="mt-5 sala-carousel-container">
+    <h2 class="mb-4">Ofertas del Día</h2>
+    <div class="position-relative">
+      <div class="sala-carousel-wrapper">
+        <div class="sala-carousel-track" ref="ofertasTrack">
+          <div
+            class="sala-card"
+            v-for="oferta in ofertasDelDia"
+            :key="oferta.id"
+          >
+            <div class="ratio-container">
+              <img
+                :src="`/imagesProducts/${oferta.imagen}`"
+                class="card-img-top img-ratio"
+                :alt="'Imagen de ' + oferta.nombre"
+              />
+              <div class="offer-badge">OFERTA</div>
+            </div>
+            <div class="card-body">
+              <div>
+                <h5 class="card-title">{{ oferta.nombre }}</h5>
+                <p class="card-text">{{ oferta.descripcion }}</p>
               </div>
-              <div class="card-body">
-                <div>
-                  <h5 class="card-title">{{ oferta.nombre }}</h5>
-                  <p class="card-text">{{ oferta.descripcion }}</p>
-                </div>
-                <div class="button-container">
-                  <p class="h5 mb-0 text-danger">
-                    <strong class="precio-oferta">{{ oferta.precio }}</strong>
-                    <span class="descuento-oferta">{{ oferta.descuento }}</span>
-                  </p>
-                  <div class="originalprice-and-button">
-                    <small class="text-muted original-price" v-if="oferta.precioOriginal">${{ oferta.precioOriginal }}</small>
-                    <button class="btn">Reservar</button>
-                  </div>
+              <div class="button-container">
+                <p class="h5 mb-0 text-danger">
+                  <strong class="precio-oferta">{{ oferta.precio }}</strong>
+                  <span class="descuento-oferta">{{ oferta.descuento }}</span>
+                </p>
+                <div class="originalprice-and-button">
+                  <small
+                    class="text-muted original-price"
+                    v-if="oferta.precioOriginal"
+                    >${{ oferta.precioOriginal }}</small
+                  >
+                  <RouterLink :to="'/oferta/' + oferta.id">
+                    <button class="btn">Comprar</button>
+                  </RouterLink>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <button class="carousel-control prev" @click="scrollOfertas(-1)">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control next" @click="scrollOfertas(1)">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
       </div>
+      <button class="carousel-control prev" @click="scrollOfertas(-1)">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control next" @click="scrollOfertas(1)">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
     </div>
+  </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import ofertas from '@/assets/ofertas.json';
+import { ref, onMounted, onUnmounted } from "vue";
+import ofertas from "@/assets/ofertas.json";
 
 const ofertasDelDia = ref(ofertas);
 const ofertasTrack = ref(null);
@@ -56,24 +68,24 @@ const prevTranslate = ref(0);
 
 const scrollToCard = (index) => {
   if (!ofertasTrack.value) return;
-  
+
   const cardWidth = ofertasTrack.value.children[0]?.offsetWidth || 330;
   const gap = 20; // El mismo gap que tienes en el CSS
   const scrollPosition = index * (cardWidth + gap);
-  
-  ofertasTrack.value.style.transition = 'transform 0.5s ease-out';
+
+  ofertasTrack.value.style.transition = "transform 0.5s ease-out";
   ofertasTrack.value.style.transform = `translateX(-${scrollPosition}px)`;
   currentIndex.value = index;
 };
 
 const scrollOfertas = (direction) => {
   const newIndex = currentIndex.value + direction;
-  
+
   // Validar límites
   if (newIndex < 0 || newIndex >= ofertasDelDia.value.length) {
     return;
   }
-  
+
   scrollToCard(newIndex);
 };
 
@@ -81,25 +93,29 @@ const scrollOfertas = (direction) => {
 const startDrag = (e) => {
   isDragging.value = true;
   startPos.value = getPositionX(e);
-  ofertasTrack.value.style.transition = 'none';
+  ofertasTrack.value.style.transition = "none";
 };
 
 const duringDrag = (e) => {
   if (!isDragging.value) return;
   const currentPosition = getPositionX(e);
-  currentTranslate.value = prevTranslate.value + currentPosition - startPos.value;
+  currentTranslate.value =
+    prevTranslate.value + currentPosition - startPos.value;
   ofertasTrack.value.style.transform = `translateX(${currentTranslate.value}px)`;
 };
 
 const endDrag = () => {
   isDragging.value = false;
   const movedBy = currentTranslate.value - prevTranslate.value;
-  
+
   // Si el movimiento fue significativo, cambiar de card
   if (Math.abs(movedBy) > 50) {
     if (movedBy > 0 && currentIndex.value > 0) {
       scrollToCard(currentIndex.value - 1);
-    } else if (movedBy < 0 && currentIndex.value < ofertasDelDia.value.length - 1) {
+    } else if (
+      movedBy < 0 &&
+      currentIndex.value < ofertasDelDia.value.length - 1
+    ) {
       scrollToCard(currentIndex.value + 1);
     }
   } else {
@@ -108,7 +124,7 @@ const endDrag = () => {
 };
 
 const getPositionX = (e) => {
-  return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+  return e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
 };
 
 // Auto-scroll
@@ -123,17 +139,19 @@ const startAutoScroll = () => {
 
 onMounted(() => {
   startAutoScroll();
-  
+
   // Event listeners para drag
   if (ofertasTrack.value) {
-    ofertasTrack.value.addEventListener('mousedown', startDrag);
-    ofertasTrack.value.addEventListener('touchstart', startDrag, { passive: true });
-    
-    window.addEventListener('mousemove', duringDrag);
-    window.addEventListener('touchmove', duringDrag, { passive: false });
-    
-    window.addEventListener('mouseup', endDrag);
-    window.addEventListener('touchend', endDrag);
+    ofertasTrack.value.addEventListener("mousedown", startDrag);
+    ofertasTrack.value.addEventListener("touchstart", startDrag, {
+      passive: true,
+    });
+
+    window.addEventListener("mousemove", duringDrag);
+    window.addEventListener("touchmove", duringDrag, { passive: false });
+
+    window.addEventListener("mouseup", endDrag);
+    window.addEventListener("touchend", endDrag);
   }
 });
 
@@ -141,17 +159,17 @@ onUnmounted(() => {
   if (autoScrollInterval.value) {
     clearInterval(autoScrollInterval.value);
   }
-  
+
   // Cleanup event listeners
   if (ofertasTrack.value) {
-    ofertasTrack.value.removeEventListener('mousedown', startDrag);
-    ofertasTrack.value.removeEventListener('touchstart', startDrag);
-    
-    window.removeEventListener('mousemove', duringDrag);
-    window.removeEventListener('touchmove', duringDrag);
-    
-    window.removeEventListener('mouseup', endDrag);
-    window.removeEventListener('touchend', endDrag);
+    ofertasTrack.value.removeEventListener("mousedown", startDrag);
+    ofertasTrack.value.removeEventListener("touchstart", startDrag);
+
+    window.removeEventListener("mousemove", duringDrag);
+    window.removeEventListener("touchmove", duringDrag);
+
+    window.removeEventListener("mouseup", endDrag);
+    window.removeEventListener("touchend", endDrag);
   }
 });
 </script>
@@ -177,7 +195,7 @@ onUnmounted(() => {
 
 .card {
   transition: all 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -186,7 +204,7 @@ onUnmounted(() => {
 
 /* Estilos para el carrusel de ofertas */
 .sala-carousel-container {
-  color: #1A4456;
+  color: #1a4456;
   padding: 0 50px;
 }
 
@@ -252,7 +270,7 @@ onUnmounted(() => {
   transform: translateY(-50%);
   width: 50px;
   height: 50px;
-  background: #1A4456;
+  background: #1a4456;
   border: none;
   border-radius: 50%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -295,10 +313,10 @@ onUnmounted(() => {
 }
 
 .text-danger {
-  color: #1A4456 !important;
+  color: #1a4456 !important;
 
   .precio-oferta {
-    color: #1A4456;
+    color: #1a4456;
   }
 
   .descuento-oferta {
@@ -310,8 +328,8 @@ onUnmounted(() => {
 
 .btn {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #1A4456;
-  --bs-btn-border-color: #1A4456;
+  --bs-btn-bg: #1a4456;
+  --bs-btn-border-color: #1a4456;
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #122e3a;
   --bs-btn-hover-border-color: #122e3a;
@@ -321,7 +339,7 @@ onUnmounted(() => {
 .btn:hover {
   background-color: #122e3a;
   border-color: #122e3a;
-  color:#fff;
+  color: #fff;
 }
 
 .originalprice-and-button {
@@ -333,7 +351,7 @@ onUnmounted(() => {
 .original-price {
   color: #6c757d;
   text-decoration: line-through;
-  font-size: 1.0em;
+  font-size: 1em;
 }
 
 @media (max-width: 768px) {
@@ -344,7 +362,7 @@ onUnmounted(() => {
   .sala-card {
     min-width: 280px;
   }
-  
+
   .col-md-4 {
     flex: 0 0 100%;
     max-width: 100%;

@@ -15,7 +15,10 @@
         <strong>${{ product.precio }}</strong>
       </p>
       <!-- Botón añador al carrito-->
-      <button class="btn btn-success btn-add-to-cart">
+      <button
+        class="btn btn-success btn-add-to-cart"
+        style="background-color: #2c3e50"
+      >
         Añadir al carrito
       </button>
     </div>
@@ -55,7 +58,7 @@ const product = inventory.find((item) => item.id === Number(props.productId));
   max-height: 400px;
   width: auto;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-add-to-cart {
@@ -71,7 +74,7 @@ const product = inventory.find((item) => item.id === Number(props.productId));
 
 .btn-add-to-cart:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   background-color: #2e7d32;
 }
 
@@ -95,12 +98,12 @@ const product = inventory.find((item) => item.id === Number(props.productId));
   .product-detail {
     flex-direction: row;
   }
-  
+
   .product-image-container {
     flex: 1;
     max-width: 50%;
   }
-  
+
   .product-info {
     flex: 1;
     padding: 0 2rem;
