@@ -4,13 +4,11 @@ const product = require("../src/models/productModel");
 
 const app = express();
 const apiRoutes = require("./routes/productRoutes");
-const userRoutes = require("./routes/userRoutes");
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/api", apiRoutes);
-app.use("/api/users", userRoutes);
 
 app.use((req, res, next) => {
   res.status(404).json({ message: "Endpoint not found" });
