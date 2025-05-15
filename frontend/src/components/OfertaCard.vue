@@ -1,6 +1,12 @@
 <template>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <div class="ratio-container">
     <img
@@ -26,7 +32,7 @@
         </small>
       </div>
       <RouterLink :to="'/oferta/' + oferta.id">
-        <button class="btn btn-success">Reservar</button>
+        <button class="btn btn-success">Comprar</button>
       </RouterLink>
     </div>
   </div>
@@ -37,7 +43,7 @@ import { defineProps } from "vue";
 import { RouterLink } from "vue-router";
 
 defineProps({
-  oferta: Object
+  oferta: Object,
 });
 
 const descripcionTruncada = (descripcion) => {
@@ -101,24 +107,24 @@ const descripcionTruncada = (descripcion) => {
 }
 
 .card-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
 .card-text {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 1rem;
   margin-bottom: 0.5rem;
 }
 
 .card-price {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 0.25rem;
-  
+
   .descuento-oferta {
     color: #dc3545;
     margin-left: 0.5rem;
@@ -135,6 +141,6 @@ const descripcionTruncada = (descripcion) => {
 
 button {
   margin-top: auto;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 </style>

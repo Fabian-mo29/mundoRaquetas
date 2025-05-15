@@ -1,6 +1,12 @@
 <template>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <img
     :src="`/imagesProducts/${product.image}`"
@@ -13,11 +19,13 @@
     </p>
     <p class="card-text">{{ product.Descripcion }}</p>
     <div class="d-flex justify-content-between align-items-center">
-      <p class = "card-price">
+      <p class="card-price">
         <strong>${{ product.precio }}</strong>
       </p>
       <RouterLink :to="'product/' + product.id"
-        ><button class="btn btn-success">Comprar</button></RouterLink
+        ><button class="btn btn-success" style="background-color: #2c3e50">
+          Comprar
+        </button></RouterLink
       >
     </div>
   </div>
@@ -59,7 +67,7 @@ defineProps({
 }
 
 .card-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -73,7 +81,7 @@ defineProps({
 
 .card-price {
   //font-family: Noto Sans, sans-serif;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
@@ -81,7 +89,7 @@ defineProps({
 
 button {
   margin-top: auto;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   //font-family: Noto Sans, sans-serif;
 }
 </style>
