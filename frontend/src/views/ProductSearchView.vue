@@ -18,9 +18,12 @@
             <i class="pi pi-search"></i>
           </button>
         </div>
-        <ul v-if="products.length && searchQuery" class="suggestions-list">
+        <ul
+          v-if="showSuggestions && products.length && searchQuery"
+          class="suggestions-list"
+        >
           <li
-            v-for="(product, index) in products.slice(0, 7)"
+            v-for="(product, index) in filterProducts().slice(0, 7)"
             :key="index"
             class="suggestion-item"
             @click="selectSuggestion(index)"
@@ -39,9 +42,20 @@ import inventory from "@/assets/inventory.json";
 const searchQuery = ref("");
 
 const products = ref(inventory);
+const showSuggestions = ref(false);
 
 function buscar() {
   console.log("Buscando productos:", searchQuery.value);
+}
+
+function filterProducts() {
+  return products.value.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+}
+
+function toggleSuggestions() {
+  showSuggestions.value = !showSuggestions.value;
 }
 
 function selectSuggestion(index) {
