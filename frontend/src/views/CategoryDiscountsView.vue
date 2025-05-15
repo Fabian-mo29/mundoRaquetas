@@ -1,11 +1,11 @@
 <template>
   <div>
-      <CarruselOfertas/>
+      <OfertaList/>
   </div>
 </template>
 
 <script setup>
-import CarruselOfertas from '@/components/CarruselOfertas.vue';
+import OfertaList from '@/components/OfertaList.vue';
 
 </script>
 
