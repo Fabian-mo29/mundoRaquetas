@@ -57,6 +57,12 @@ const descripcionTruncada = (descripcion) => {
   overflow: hidden;
 }
 
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
 .ratio-container {
   position: relative;
   width: 100%;

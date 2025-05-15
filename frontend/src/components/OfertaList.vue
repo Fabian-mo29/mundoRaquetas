@@ -44,10 +44,9 @@ h2 {
 
 .main-container {
   width: calc(100%);
-  min-height: auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 20px;
 }
 
 #grid {
@@ -81,12 +80,6 @@ h2 {
 @media (max-width: 768px) {
   .responsive-text {
     text-align: center;
-    margin-left: 0;
-  }
-  
-  #grid {
-    grid-template-columns: 1fr;
-    padding: 10px;
   }
 }
 </style>
