@@ -13,6 +13,9 @@ import CategoryShoesView from "@/views/CategoryShoesView.vue";
 import CategoryAccessoriesView from "@/views/CategoryAccessoriesView.vue";
 import CategoryDiscountsView from "@/views/CategoryDiscountsView.vue";
 import ProductSearchView from "@/views/ProductSearchView.vue";
+import ContactUsView from "@/views/ContactUsView.vue";
+import RequestWarrantyView from "@/views/RequestWarrantyView.vue";
+import TrackOrderView from "@/views/TrackOrderView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -97,6 +100,21 @@ const router = createRouter({
       path: "/:pathMatch(.*)*",
       name: "NotFound",
       component: NotFoundView,
+    },
+    {
+      path: "/contactUs",
+      name: "ContactUs",
+      component: ContactUsView,
+    },
+    {
+      path: "/reqWarranty",
+      name: "RequestWarranty",
+      component: RequestWarrantyView,
+    },
+    {
+      path: "/trackOrder",
+      name: "TrackOrder",
+      component: TrackOrderView,
     },
   ],
 });
