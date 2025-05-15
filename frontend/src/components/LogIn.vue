@@ -50,7 +50,11 @@
         </p>
       </div>
 
-      <button type="submit" class="btn btn-success" style="width: 100%">
+      <button
+        type="submit"
+        class="btn btn-success"
+        style="width: 100%; background-color: #2c3e50"
+      >
         Iniciar Sesión
       </button>
     </form>
@@ -65,7 +69,7 @@ const router = useRouter();
 
 const datosSesion = ref({
   correo: "",
-  password: ""
+  password: "",
 });
 
 async function logIn() {
@@ -75,8 +79,8 @@ async function logIn() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: datosSesion.value.correo,
-        password: datosSesion.value.password
-      })
+        password: datosSesion.value.password,
+      }),
     });
 
     const data = await response.json();

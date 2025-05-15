@@ -1,7 +1,14 @@
 <template>
   <div class="background-logo"></div>
-  <div id="mainCard" class="d-flex justify-content-center align-items-center min-vh-100">
-    <form @submit.prevent="Register" class="form-container" style="width: 100%; max-width: 400px">
+  <div
+    id="mainCard"
+    class="d-flex justify-content-center align-items-center min-vh-100 mt-5 mb-5"
+  >
+    <form
+      @submit.prevent="Register"
+      class="form-container"
+      style="width: 100%; max-width: 400px"
+    >
       <h3 class="text-center mb-4">Registro</h3>
 
       <div class="mb-3">
@@ -14,7 +21,9 @@
           required
           placeholder="nombre de usuario"
         />
-        <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
+        <div v-if="errors.username" class="text-danger">
+          {{ errors.username }}
+        </div>
       </div>
 
       <div class="mb-3">
@@ -40,7 +49,9 @@
           required
           placeholder="primer apellido"
         />
-        <div v-if="errors.apellido1" class="text-danger">{{ errors.apellido1 }}</div>
+        <div v-if="errors.apellido1" class="text-danger">
+          {{ errors.apellido1 }}
+        </div>
       </div>
 
       <div class="mb-3">
@@ -53,7 +64,9 @@
           required
           placeholder="segundo apellido"
         />
-        <div v-if="errors.apellido2" class="text-danger">{{ errors.apellido2 }}</div>
+        <div v-if="errors.apellido2" class="text-danger">
+          {{ errors.apellido2 }}
+        </div>
       </div>
 
       <div class="mb-3">
@@ -79,7 +92,9 @@
           required
           placeholder="contraseña"
         />
-        <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
+        <div v-if="errors.password" class="text-danger">
+          {{ errors.password }}
+        </div>
       </div>
 
       <div class="mb-4 form-check">
@@ -90,14 +105,24 @@
       <div class="d-flex justify-content-between">
         <p class="mb-4">
           Si ya tiene una cuenta
-          <RouterLink to="/login" class="text-primary">Inicie sesión aquí</RouterLink>
+          <RouterLink to="/login" class="text-primary"
+            >Inicie sesión aquí</RouterLink
+          >
         </p>
       </div>
-      <button type="submit" class="btn btn-success" style="width: 100%">
+      <button
+        type="submit"
+        class="btn btn-success"
+        style="width: 100%; background-color: #2c3e50"
+      >
         Registrarse
       </button>
-      <div v-if="serverError" class="text-danger mt-3 text-center">{{ serverError }}</div>
-      <div v-if="success" class="text-success mt-3 text-center">{{ success }}</div>
+      <div v-if="serverError" class="text-danger mt-3 text-center">
+        {{ serverError }}
+      </div>
+      <div v-if="success" class="text-success mt-3 text-center">
+        {{ success }}
+      </div>
     </form>
   </div>
 </template>
@@ -114,7 +139,7 @@ const form = ref({
   apellido1: "",
   apellido2: "",
   email: "",
-  password: ""
+  password: "",
 });
 
 const errors = ref({});
@@ -124,14 +149,16 @@ const success = ref("");
 // Mapea los mensajes del backend a los campos del formulario
 function mapBackendError(message) {
   if (message.includes("usuario")) errors.value.username = message;
-  else if (message.includes("Nombre de usuario")) errors.value.username = message;
+  else if (message.includes("Nombre de usuario"))
+    errors.value.username = message;
   else if (message.includes("Nombre y apellidos")) {
     errors.value.nombre = message;
     errors.value.apellido1 = message;
     errors.value.apellido2 = message;
-  }
-  else if (message.includes("email") || message.includes("Email")) errors.value.email = message;
-  else if (message.includes("contraseña") || message.includes("Contraseña")) errors.value.password = message;
+  } else if (message.includes("email") || message.includes("Email"))
+    errors.value.email = message;
+  else if (message.includes("contraseña") || message.includes("Contraseña"))
+    errors.value.password = message;
   else serverError.value = message;
 }
 
@@ -144,7 +171,7 @@ async function Register() {
     const response = await fetch("http://localhost:3000/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form.value)
+      body: JSON.stringify(form.value),
     });
     const data = await response.json();
     if (response.ok) {
@@ -158,3 +185,82 @@ async function Register() {
   }
 }
 </script>
+<style lang="scss" scoped>
+.background-logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("@/assets/canchaPadel.jpg"); /* Ruta de la imagen del logo */
+  background-size: cover;
+  background-position: center;
+  background-color: black;
+  filter: blur(10px); /* Efecto de desenfoque */
+  z-index: -1; /* Envía la imagen al fondo */
+  opacity: 0.5; /* Hace la imagen más tenue */
+}
+
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #000000; /* Color del texto */
+}
+
+#mainCard {
+  position: relative;
+  z-index: 1; /* Asegura que el contenido esté encima de la imagen */
+}
+
+.form-container {
+  background-color: white; /* Fondo blanco */
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 2rem; /* Espaciado interno */
+}
+.form-label {
+  font-family: "Poppins", sans-serif;
+}
+
+.form-control {
+  font-family: Noto Sans, sans-serif;
+  font-size: 1rem;
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+.form-check {
+  font-family: Noto Sans, sans-serif;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-check-input {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0;
+  margin-right: 0.5rem;
+}
+
+.form-check-label {
+  font-size: 1rem;
+}
+.form-check-input:checked {
+  background-color: #28a745; /* Color verde */
+  border-color: #28a745; /* Color verde */
+}
+
+p {
+  font-family: Noto Sans, sans-serif;
+  font-size: 1rem;
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+}
+</style>
