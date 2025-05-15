@@ -12,18 +12,14 @@
             type="text"
             id="search"
             placeholder="Buscar productos..."
-            @click="toggleSuggestions"
           />
           <button type="button" @click="buscar" class="search-btn">
             <i class="pi pi-search"></i>
           </button>
         </div>
-        <ul
-          v-if="showSuggestions && products.length && searchQuery"
-          class="suggestions-list"
-        >
+        <ul v-if="validateShowSuggestions()" class="suggestions-list">
           <li
-            v-for="(product, index) in filterProducts().slice(0, 7)"
+            v-for="(product, index) in suggestions.slice(0, 7)"
             :key="index"
             class="suggestion-item"
             @click="selectSuggestion(index)"
@@ -31,6 +27,9 @@
             {{ product.name }}
           </li>
         </ul>
+        <p v-else-if="searchQuery && showSuggestions">
+          No hay productos que coincidan con la búsqueda.
+        </p>
       </div>
     </div>
   </div>
@@ -39,19 +38,32 @@
 <script setup>
 import { ref } from "vue";
 import inventory from "@/assets/inventory.json";
-const searchQuery = ref("");
 
+const searchQuery = ref("");
 const products = ref(inventory);
-const showSuggestions = ref(false);
+const suggestions = ref([]);
+const showSuggestions = ref(true);
 
 function buscar() {
   console.log("Buscando productos:", searchQuery.value);
 }
 
 function filterProducts() {
-  return products.value.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+  if (!searchQuery.value) {
+    suggestions.value = [];
+  }
+  suggestions.value = products.value.filter((product) =>
+    product.name?.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
+}
+
+function validateShowSuggestions() {
+  if (searchQuery.value === "") {
+    showSuggestions.value = true;
+    return false;
+  }
+  filterProducts();
+  return suggestions.value.length > 0 && showSuggestions.value;
 }
 
 function toggleSuggestions() {
@@ -59,8 +71,9 @@ function toggleSuggestions() {
 }
 
 function selectSuggestion(index) {
-  searchQuery.value = products.value[index].name;
-  console.log("Producto seleccionado:", products.value[index]);
+  searchQuery.value = suggestions.value[index].name;
+  console.log("Producto seleccionado:", suggestions.value[index]);
+  toggleSuggestions();
 }
 </script>
 
