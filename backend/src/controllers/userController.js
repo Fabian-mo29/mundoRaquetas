@@ -1,10 +1,45 @@
 const User = require('../models/userModel');
 
+function isValidUsername(username) {
+  // 4-30 caracteres, solo letras, números y guion bajo
+  return /^[a-zA-Z0-9_]{4,30}$/.test(username);
+}
+
+function isValidName(name) {
+  // Solo letras y espacios, 2-30 caracteres
+  return /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,30}$/.test(name);
+}
+
+function isValidEmail(email) {
+  // Email básico
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPassword(password) {
+  // Al menos 6 caracteres
+  return typeof password === "string" && password.length >= 6;
+}
+
 const registerUser = (req, res) => {
   const { username, nombre, apellido1, apellido2, email, password } = req.body;
+
+  // Validaciones
   if (!username || !nombre || !apellido1 || !apellido2 || !email || !password) {
     return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
   }
+  if (!isValidUsername(username)) {
+    return res.status(400).json({ message: 'El nombre de usuario debe tener entre 4 y 30 caracteres y solo puede contener letras, números y guion bajo.' });
+  }
+  if (!isValidName(nombre) || !isValidName(apellido1) || !isValidName(apellido2)) {
+    return res.status(400).json({ message: 'Nombre y apellidos solo pueden contener letras y espacios (2-30 caracteres).' });
+  }
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ message: 'El email no es válido.' });
+  }
+  if (!isValidPassword(password)) {
+    return res.status(400).json({ message: 'La contraseña debe tener al menos 6 caracteres.' });
+  }
+
   User.findUserByEmail(email, (err, user) => {
     if (err) return res.status(500).json({ message: 'Error en la base de datos.' });
     if (user) return res.status(409).json({ message: 'El usuario ya existe.' });
