@@ -24,7 +24,7 @@
             class="suggestion-item"
             @click="selectSuggestion(index)"
           >
-            {{ product.name }}
+            {{ product.Name }}
           </li>
         </ul>
         <p v-else-if="searchQuery && showSuggestions">
@@ -37,20 +37,36 @@
     <h2 class="fw-bold mb-4 responsive-text text-center">
       Resultados de la búsqueda
     </h2>
-    <ProductList :products="searchResults" />
+    <ProductList :inventory="searchResults" />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import inventory from "@/assets/inventory.json";
 import ProductList from "@/components/ProductList.vue";
+import axios from "axios";
+import { onMounted } from "vue";
 
 const searchQuery = ref("");
-const products = ref(inventory);
+const products = ref([]);
 const suggestions = ref([]);
 const searchResults = ref([]);
 const showSuggestions = ref(true);
+
+function getProducts() {
+  axios
+    .get("http://localhost:3000/api/products")
+    .then((response) => {
+      products.value = response.data;
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
+    });
+}
+
+onMounted(() => {
+  getProducts();
+});
 
 function buscar() {
   searchResults.value = suggestions.value;
@@ -61,7 +77,7 @@ function filterProducts() {
     suggestions.value = [];
   }
   suggestions.value = products.value.filter((product) =>
-    product.name?.toLowerCase().includes(searchQuery.value.toLowerCase())
+    product.Name?.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 }
 
@@ -79,7 +95,7 @@ function toggleSuggestions() {
 }
 
 function selectSuggestion(index) {
-  searchQuery.value = suggestions.value[index].name;
+  searchQuery.value = suggestions.value[index].Name;
   toggleSuggestions();
 }
 </script>

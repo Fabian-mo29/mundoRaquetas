@@ -71,10 +71,10 @@ const router = createRouter({
       component: CategoryDiscountsView,
     },
     {
-      path: "/product/:id",
+      path: "/product/:Id",
       name: "Product",
       component: ProductDetailsView,
-      props: (route) => ({ productId: Number(route.params.id) }),
+      props: (route) => ({ productId: String(route.params.Id) }),
     },
     {
       path: "/oferta/:id",

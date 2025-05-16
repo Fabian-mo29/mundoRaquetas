@@ -1,7 +1,7 @@
 <template>
   <div class="main-container margin-auto">
-    <h2 class="fw-bold mb-4 responsive-text">Productos</h2>
-    <div id="grid" class="product-grid">
+    <h2 class="fw-bold mt-5 responsive-text">Productos</h2>
+    <div v-if="products.length > 0" id="grid" class="product-grid">
       <div
         v-for="(product, index) in products.slice(0, show)"
         :key="index"
@@ -18,13 +18,18 @@
         Ver más Productos
       </button>
     </div>
+    <div v-else>
+      <h2 class="fw-bold mb-4 responsive-text text-center">
+        No hay productos disponibles
+      </h2>
+    </div>
   </div>
 </template>
 
 <script setup>
-import inventory from "@/assets/inventory.json";
-import { ref, defineProps, defineEmits } from "vue";
+import { ref, defineProps, defineEmits, onMounted } from "vue";
 import ProductCard from "./ProductCard.vue";
+import axios from "axios";
 
 const props = defineProps({
   limite: {
@@ -38,6 +43,7 @@ const props = defineProps({
 });
 
 const show = ref(props.limite);
+const products = ref([]);
 
 const emit = defineEmits(["update:limite"]);
 
@@ -46,7 +52,24 @@ function verMasProductos() {
   emit("update:limite", products.value.length);
 }
 
-const products = ref(inventory);
+function getProducts() {
+  axios
+    .get("http://localhost:3000/api/products")
+    .then((response) => {
+      products.value = response.data;
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
+    });
+}
+
+onMounted(() => {
+  if (props.inventory.length > 0) {
+    products.value = props.inventory;
+  } else {
+    getProducts();
+  }
+});
 </script>
 
 <style lang="scss" scoped>

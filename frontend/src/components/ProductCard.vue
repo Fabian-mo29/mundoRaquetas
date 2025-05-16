@@ -9,20 +9,20 @@
   />
 
   <img
-    :src="`/imagesProducts/${product.image}`"
+    :src="`/imagesProducts/${product.ImageName}`"
     class="card-img-top img-ratio"
-    :alt="'Imagen de ' + product.name"
+    :alt="'Imagen de ' + product.Name"
   />
   <div class="card-body">
     <p class="card-title">
-      <strong>{{ product.name }}</strong>
+      <strong>{{ product.Name }}</strong>
     </p>
-    <p class="card-text">{{ product.Descripcion }}</p>
+    <p class="card-text">{{ product.Description }}</p>
     <div class="d-flex justify-content-between align-items-center">
       <p class="card-price">
-        <strong>${{ product.precio }}</strong>
+        <strong>${{ product.Price }}</strong>
       </p>
-      <RouterLink :to="'product/' + product.id"
+      <RouterLink :to="'product/' + product.Id"
         ><button class="btn btn-success" style="background-color: #2c3e50">
           Comprar
         </button></RouterLink

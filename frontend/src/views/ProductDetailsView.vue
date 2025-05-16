@@ -2,17 +2,17 @@
   <div class="container mt-5 product-detail">
     <div class="product-image-container">
       <img
-        :src="`/imagesProducts/${product.image}`"
+        :src="`/imagesProducts/${product.ImageName}`"
         class="img-fluid product-image"
-        :alt="'Imagen de ' + product.name"
+        :alt="'Imagen de ' + product.Name"
       />
     </div>
 
     <div class="product-info">
-      <h1>{{ product.name }}</h1>
-      <p class="product-description">{{ product.Descripcion }}</p>
+      <h1>{{ product.Name }}</h1>
+      <p class="product-description">{{ product.Description }}</p>
       <p class="product-price">
-        <strong>${{ product.precio }}</strong>
+        <strong>${{ product.Price }}</strong>
       </p>
       <!-- Botón añador al carrito-->
       <button
@@ -26,17 +26,33 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-import inventory from "@/assets/inventory.json";
+import { defineProps, ref } from "vue";
+import axios from "axios";
+import { onMounted } from "vue";
 
 const props = defineProps({
   productId: {
-    type: Number,
+    type: String,
     required: true,
   },
 });
 
-const product = inventory.find((item) => item.id === Number(props.productId));
+const product = ref({});
+
+function getProducts() {
+  axios
+    .get("http://localhost:3000/api/products/" + props.productId)
+    .then((response) => {
+      product.value = response.data;
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
+    });
+}
+
+onMounted(() => {
+  getProducts();
+});
 </script>
 
 <style scoped>
