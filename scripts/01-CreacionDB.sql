@@ -13,14 +13,20 @@ Contrasena VARCHAR(30)
 );
 
 CREATE TABLE Productos(
-Id INT PRIMARY KEY IDENTITY(1,1),
+Id uniqueidentifier PRIMARY KEY not null DEFAULT NEWID(),
 Name VARCHAR(50) NOT NULL,
 Description VARCHAR(255),
-Image VARCHAR(100),
 Price DECIMAL(10, 2) NOT NULL,
 Discount INT,
 Category VARCHAR(30),
 Active BIT NOT NULL,
 Stock INT NOT NULL,
 CreatedAt DATETIME DEFAULT GETDATE(),
+);
+
+CREATE TABLE Imagen(
+Id uniqueidentifier PRIMARY KEY not null DEFAULT NEWID(),
+ProductoId uniqueidentifier NOT NULL,
+Name VARCHAR(100) NOT NULL,
+FOREIGN KEY (ProductoId) REFERENCES Productos(Id)
 );
