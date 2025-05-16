@@ -1,129 +1,138 @@
 <template>
-  <div class="background-logo"></div>
-  <div
-    id="mainCard"
-    class="d-flex justify-content-center align-items-center min-vh-100 mt-5 mb-5"
-  >
-    <form
-      @submit.prevent="Register"
-      class="form-container"
-      style="width: 100%; max-width: 400px"
-    >
-      <h3 class="text-center mb-4">Registro</h3>
-
-      <div class="mb-3">
-        <label class="form-label" for="inputUsername">Nombre de usuario</label>
-        <input
-          class="form-control"
-          type="text"
-          id="inputUsername"
-          v-model="form.username"
-          required
-          placeholder="nombre de usuario"
-        />
-        <div v-if="errors.username" class="text-danger">
-          {{ errors.username }}
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label" for="inputNombre">Nombre</label>
-        <input
-          class="form-control"
-          type="text"
-          id="inputNombre"
-          v-model="form.nombre"
-          required
-          placeholder="nombre"
-        />
-        <div v-if="errors.nombre" class="text-danger">{{ errors.nombre }}</div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label" for="inputApellido1">Primer apellido</label>
-        <input
-          class="form-control"
-          type="text"
-          id="inputApellido1"
-          v-model="form.apellido1"
-          required
-          placeholder="primer apellido"
-        />
-        <div v-if="errors.apellido1" class="text-danger">
-          {{ errors.apellido1 }}
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label" for="inputApellido2">Segundo apellido</label>
-        <input
-          class="form-control"
-          type="text"
-          id="inputApellido2"
-          v-model="form.apellido2"
-          required
-          placeholder="segundo apellido"
-        />
-        <div v-if="errors.apellido2" class="text-danger">
-          {{ errors.apellido2 }}
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label" for="inputEmail">Email</label>
-        <input
-          class="form-control"
-          type="email"
-          id="inputEmail"
-          v-model="form.email"
-          required
-          placeholder="correo@email.com"
-        />
-        <div v-if="errors.email" class="text-danger">{{ errors.email }}</div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label" for="inputPassword">Contraseña</label>
-        <input
-          class="form-control"
-          type="password"
-          id="inputPassword"
-          v-model="form.password"
-          required
-          placeholder="contraseña"
-        />
-        <div v-if="errors.password" class="text-danger">
-          {{ errors.password }}
-        </div>
-      </div>
-
-      <div class="mb-4 form-check">
-        <input class="form-check-input" type="checkbox" id="rememberMe" />
-        <label class="form-check-label" for="rememberMe">Recuérdame</label>
-      </div>
-
-      <div class="d-flex justify-content-between">
-        <p class="mb-4">
-          Si ya tiene una cuenta
-          <RouterLink to="/login" class="text-primary"
-            >Inicie sesión aquí</RouterLink
-          >
-        </p>
-      </div>
-      <button
-        type="submit"
-        class="btn btn-success"
-        style="width: 100%; background-color: #2c3e50"
+  <div class="bg-image">
+    <div class="overlay">
+      <div
+        id="mainCard"
+        class="d-flex justify-content-center align-items-center content-box my-5 py-4"
       >
-        Registrarse
-      </button>
-      <div v-if="serverError" class="text-danger mt-3 text-center">
-        {{ serverError }}
+        <form @submit.prevent="Register" style="width: 100%; max-width: 400px">
+          <h2 class="text-center mb-4">Registro</h2>
+
+          <div class="mb-3">
+            <label class="form-label" for="inputUsername"
+              >Nombre de usuario</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="inputUsername"
+              v-model="form.username"
+              required
+              placeholder="nombre de usuario"
+            />
+            <div v-if="errors.username" class="text-danger">
+              {{ errors.username }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="inputNombre">Nombre</label>
+            <input
+              class="form-control"
+              type="text"
+              id="inputNombre"
+              v-model="form.nombre"
+              required
+              placeholder="nombre"
+            />
+            <div v-if="errors.nombre" class="text-danger">
+              {{ errors.nombre }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="inputApellido1"
+              >Primer apellido</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="inputApellido1"
+              v-model="form.apellido1"
+              required
+              placeholder="primer apellido"
+            />
+            <div v-if="errors.apellido1" class="text-danger">
+              {{ errors.apellido1 }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="inputApellido2"
+              >Segundo apellido</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="inputApellido2"
+              v-model="form.apellido2"
+              required
+              placeholder="segundo apellido"
+            />
+            <div v-if="errors.apellido2" class="text-danger">
+              {{ errors.apellido2 }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="inputEmail">Email</label>
+            <input
+              class="form-control"
+              type="email"
+              id="inputEmail"
+              v-model="form.email"
+              required
+              placeholder="correo@email.com"
+            />
+            <div v-if="errors.email" class="text-danger">
+              {{ errors.email }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="inputPassword">Contraseña</label>
+            <input
+              class="form-control"
+              type="password"
+              id="inputPassword"
+              v-model="form.password"
+              required
+              placeholder="contraseña"
+            />
+            <div v-if="errors.password" class="text-danger">
+              {{ errors.password }}
+            </div>
+          </div>
+
+          <!-- <div class="mb-4 form-check">
+            <input class="form-check-input" type="checkbox" id="rememberMe" />
+            <label class="form-check-label" for="rememberMe">Recuérdame</label>
+          </div> -->
+
+          <div class="d-flex justify-content-between">
+            <p class="mb-4">
+              Si ya tiene una cuenta
+              <RouterLink to="/login" class="text-primary"
+                >Inicie sesión aquí</RouterLink
+              >
+            </p>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            style="width: 100%; background-color: #2c3e50"
+          >
+            Registrarse
+          </button>
+          <div v-if="serverError" class="text-danger mt-3 text-center">
+            {{ serverError }}
+          </div>
+          <div v-if="success" class="text-success mt-3 text-center">
+            {{ success }}
+          </div>
+        </form>
       </div>
-      <div v-if="success" class="text-success mt-3 text-center">
-        {{ success }}
-      </div>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -186,40 +195,44 @@ async function Register() {
 }
 </script>
 <style lang="scss" scoped>
-.background-logo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("@/assets/canchaPadel.jpg"); /* Ruta de la imagen del logo */
+.bg-image {
+  background-image: url("@/assets/canchaPadel.jpg");
   background-size: cover;
   background-position: center;
-  background-color: black;
-  filter: blur(10px); /* Efecto de desenfoque */
-  z-index: -1; /* Envía la imagen al fondo */
-  opacity: 0.5; /* Hace la imagen más tenue */
+  position: relative;
+  z-index: 0;
 }
 
-h3 {
+.overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.4)
+  );
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.content-box {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 10%;
+  color: white;
+  max-width: 900px;
+}
+
+h2 {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #000000; /* Color del texto */
+  color: white; /* Color del texto */
 }
 
-#mainCard {
-  position: relative;
-  z-index: 1; /* Asegura que el contenido esté encima de la imagen */
-}
-
-.form-container {
-  background-color: white; /* Fondo blanco */
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px; /* Bordes redondeados */
-  padding: 2rem; /* Espaciado interno */
-}
 .form-label {
   font-family: "Poppins", sans-serif;
 }

@@ -33,19 +33,27 @@
       </div>
     </div>
   </div>
+  <div v-if="searchResults.length > 0" class="mt-5">
+    <h2 class="fw-bold mb-4 responsive-text text-center">
+      Resultados de la búsqueda
+    </h2>
+    <ProductList :products="searchResults" />
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import inventory from "@/assets/inventory.json";
+import ProductList from "@/components/ProductList.vue";
 
 const searchQuery = ref("");
 const products = ref(inventory);
 const suggestions = ref([]);
+const searchResults = ref([]);
 const showSuggestions = ref(true);
 
 function buscar() {
-  console.log("Buscando productos:", searchQuery.value);
+  searchResults.value = suggestions.value;
 }
 
 function filterProducts() {
@@ -72,7 +80,6 @@ function toggleSuggestions() {
 
 function selectSuggestion(index) {
   searchQuery.value = suggestions.value[index].name;
-  console.log("Producto seleccionado:", suggestions.value[index]);
   toggleSuggestions();
 }
 </script>
