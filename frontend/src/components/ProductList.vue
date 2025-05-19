@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits, onMounted } from "vue";
+import { ref, defineProps, defineEmits, onMounted, watch } from "vue";
 import ProductCard from "./ProductCard.vue";
 import axios from "axios";
 
@@ -70,6 +70,17 @@ onMounted(() => {
     getProducts();
   }
 });
+
+watch(
+  () => props.inventory,
+  (newInventory) => {
+    if (newInventory.length > 0) {
+      products.value = newInventory;
+      show.value = props.limite;
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <style lang="scss" scoped>
