@@ -6,17 +6,18 @@
           Buscador de productos
         </h2>
 
-        <div class="mb-4 input-wrapper">
+        <form class="mb-4 input-wrapper" @submit.prevent="buscar">
           <input
-            v-model="searchQuery"
+            v-model.trim="searchQuery"
             type="text"
             id="search"
             placeholder="Buscar productos..."
+            autocomplete="off"
           />
-          <button type="button" @click="buscar" class="search-btn">
+          <button type="submit" class="search-btn">
             <i class="pi pi-search"></i>
           </button>
-        </div>
+        </form>
         <ul v-if="validateShowSuggestions()" class="suggestions-list">
           <li
             v-for="(product, index) in suggestions.slice(0, 7)"
@@ -69,7 +70,9 @@ onMounted(() => {
 });
 
 function buscar() {
+  filterProducts();
   searchResults.value = suggestions.value;
+  showSuggestions.value = false;
 }
 
 function filterProducts() {
