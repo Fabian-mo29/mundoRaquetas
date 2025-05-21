@@ -22,9 +22,10 @@
 </template>
 
 <script setup>
-import inventory from "@/assets/inventory.json";
 import { ref, defineProps, defineEmits } from "vue";
 import ProductCard from "@/components/ProductCard.vue";
+import axios from "axios";
+import { onMounted } from "vue";
 
 const props = defineProps({
   limite: {
@@ -44,26 +45,27 @@ const props = defineProps({
 const show = ref(props.limite);
 const emit = defineEmits(["update:limite"]);
 
-const filteredProducts = ref(
-  inventory.filter((product) => {
-    if (
-      props.categoryType === "Palas" ||
-      props.categoryType === "Bolas" ||
-      props.categoryType === "Calzado"
-    ) {
-      return (
-        product.Categoría === props.categoryType ||
-        product.Categoría === "Unisex"
-      );
-    }
-    return product.Categoría === props.categoryType;
-  })
-);
+const filteredProducts = ref([]);
 
 function verMasProductos() {
   show.value = filteredProducts.value.length;
   emit("update:limite", filteredProducts.value.length);
 }
+
+function getProductsByCategory(category) {
+  axios
+    .get(`http://localhost:3000/api/categories/${category}`)
+    .then((response) => {
+      filteredProducts.value = response.data;
+    })
+    .catch((error) => {
+      console.error("Error fetching products by category:", error);
+    });
+}
+
+onMounted(() => {
+  getProductsByCategory(props.categoryType);
+});
 </script>
 
 <style lang="scss" scoped>
