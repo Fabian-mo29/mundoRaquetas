@@ -55,4 +55,5 @@ INSERT INTO Imagen (ProductoId, Name) VALUES
 ((SELECT Id FROM Productos WHERE Name = 'Babolat RPM Blast'), 'fundaPala.jpg'),
 ((SELECT Id FROM Productos WHERE Name = 'Luxilon ALU Power'), 'overgrip.jpg');
 
-SELECT * FROM Usuarios
+
+Select * from Productos;
