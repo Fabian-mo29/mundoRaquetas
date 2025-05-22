@@ -2,9 +2,9 @@ USE PADELTADB
 
 INSERT INTO Usuarios (Username, Nombre, Apellido1, Apellido2, Correo, Contrasena)
 VALUES 
-('juanp123', 'Juan', 'P�rez', 'Rodr�guez', 'juan.perez@example.com', 'clave123'),
-('anag92', 'Ana', 'G�mez', 'Sol�s', 'ana.gomez@example.com', 'gomez456'),
-('lmvargas', 'Luis', 'Mart�nez', 'Vargas', 'luis.martinez@example.com', 'luis789'),
+('juanp123', 'Juan', 'Pérez', 'Rodríguez', 'juan.perez@example.com', 'clave123'),
+('anag92', 'Ana', 'Gómez', 'Solís', 'ana.gomez@example.com', 'gomez456'),
+('lmvargas', 'Luis', 'Martínez', 'Vargas', 'luis.martinez@example.com', 'luis789'),
 ('crojas_a', 'Carla', 'Rojas', 'Alfaro', 'carla.rojas@example.com', 'carla000');
 
 SELECT * FROM Usuarios;
@@ -54,3 +54,5 @@ INSERT INTO Imagen (ProductoId, Name) VALUES
 ((SELECT Id FROM Productos WHERE Name = 'Overgrip Babolat VS'), 'overgrip.jpg'),
 ((SELECT Id FROM Productos WHERE Name = 'Babolat RPM Blast'), 'fundaPala.jpg'),
 ((SELECT Id FROM Productos WHERE Name = 'Luxilon ALU Power'), 'overgrip.jpg');
+
+SELECT * FROM Usuarios

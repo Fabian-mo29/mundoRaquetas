@@ -13,15 +13,15 @@
           <h2 class="text-center mb-4">Inicio de Sesión</h2>
 
           <div class="mb-3">
-            <label class="form-label" for="inputEmail">Email</label>
-            <input
-              class="form-control"
-              type="email"
-              id="inputEmail"
-              v-model="datosSesion.correo"
-              required
-              placeholder="correo@email.com"
-            />
+          <label class="form-label" for="inputUserOrEmail">Usuario o Email</label>
+          <input
+            class="form-control"
+            type="text"
+            id="inputUserOrEmail"
+            v-model="datosSesion.userOrEmail"
+            required
+            placeholder="usuario o correo@email.com"
+          />
           </div>
 
           <div class="mb-3">
@@ -35,11 +35,6 @@
               placeholder="contraseña"
             />
           </div>
-
-          <!-- <div class="mb-4 form-check">
-            <input class="form-check-input" type="checkbox" id="rememberMe" />
-            <label class="form-check-label" for="rememberMe">Recuérdame</label>
-          </div> -->
 
           <div class="d-flex justify-content-between">
             <p class="mb-4">
@@ -70,7 +65,7 @@ import { useRouter, RouterLink } from "vue-router";
 const router = useRouter();
 
 const datosSesion = ref({
-  correo: "",
+  userOrEmail: "",
   password: "",
 });
 
@@ -80,7 +75,7 @@ async function logIn() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: datosSesion.value.correo,
+        identificador: datosSesion.value.userOrEmail,
         password: datosSesion.value.password,
       }),
     });

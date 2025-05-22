@@ -16,6 +16,7 @@ import ProductSearchView from "@/views/ProductSearchView.vue";
 import ContactUsView from "@/views/ContactUsView.vue";
 import RequestWarrantyView from "@/views/RequestWarrantyView.vue";
 import TrackOrderView from "@/views/TrackOrderView.vue";
+import UserViewView from  "@/views/UserViewView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -115,6 +116,11 @@ const router = createRouter({
       path: "/trackOrder",
       name: "TrackOrder",
       component: TrackOrderView,
+    },
+    {
+      path: "/user",
+      name: "User",
+      component: UserViewView,
     },
   ],
 });

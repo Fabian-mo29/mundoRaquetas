@@ -71,8 +71,33 @@
 
       <!-- Acciones de usuario desktop -->
       <div class="d-none d-lg-flex user-actions">
-      <span class="me-3" style="color:#ffc107; font-weight:bold;">{{ username }}</span>
-      <UserActions />
+        <span class="me-3" style="color:#ffc107; font-weight:bold;">{{ username }}</span>
+        <div class="user-actions">
+          <RouterLink
+            v-if="username !== 'Invitado'"
+            to="/shoppingCart"
+            class="icon"
+          >
+            <i class="pi pi-cart-minus"></i>
+          </RouterLink>
+          <RouterLink to="/search" class="icon"
+            ><i class="pi pi-search"></i
+          ></RouterLink>
+          <RouterLink
+            :to="username !== 'Invitado' ? '/user' : '/logIn'"
+            class="icon"
+          >
+            <i class="pi pi-user"></i>
+          </RouterLink>
+          <button
+          v-if="username !== 'Invitado'"
+          @click="logout"
+          class="btn btn-sm btn-outline-warning ms-3 text-nowrap"
+          style="height: 2.2rem; min-width: 120px;"
+        >
+          Cerrar sesión
+        </button>
+        </div>
       </div>
     </div>
 
@@ -144,21 +169,48 @@
 
         <!-- Acciones de usuario móvil -->
         <div class="mt-4 d-flex flex-column align-items-center">
-        <span class="mb-2" style="color:#ffc107; font-weight:bold;">{{ username }}</span>
-        <UserActions />
-      </div>
+          <span class="mb-2" style="color:#ffc107; font-weight:bold;">{{ username }}</span>
+          <div class="user-actions">
+            <RouterLink
+              v-if="username !== 'Invitado'"
+              to="/shoppingCart"
+              class="icon"
+              @click="closeCanvas()"
+            >
+              <i class="pi pi-cart-minus"></i>
+            </RouterLink>
+            <RouterLink to="/search" class="icon"
+              ><i class="pi pi-search"></i
+            ></RouterLink>
+            <RouterLink
+              :to="username !== 'Invitado' ? '/user' : '/logIn'"
+              class="icon"
+              @click="closeCanvas()"
+            >
+              <i class="pi pi-user"></i>
+            </RouterLink>
+            <button
+            v-if="username !== 'Invitado'"
+            @click="logout"
+            class="btn btn-sm btn-outline-warning mt-2 text-nowrap mx-auto"
+            style="height: 2.2rem; min-width: 120px; display: block;"
+          >
+            Cerrar sesión
+          </button>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
 </template>
 
 <script setup>
-import UserActions from "./UserActions.vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import { Offcanvas } from "bootstrap";
 import { ref, onMounted } from "vue";
 
 const username = ref("Invitado");
+const router = useRouter();
 
 const loadUsername = () => {
   const user = sessionStorage.getItem("usuario");
@@ -181,6 +233,13 @@ const closeCanvas = () => {
     offcanvas.hide();
   }
 };
+
+function logout() {
+  sessionStorage.removeItem("usuario");
+  window.dispatchEvent(new Event("storage"));
+  username.value = "Invitado";
+  router.push("/");
+}
 
 onMounted(() => {
   loadUsername();
@@ -242,6 +301,23 @@ nav .nav-link.active {
 .user-actions {
   display: flex;
   align-items: center;
+  gap: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  max-width: 600px;
+  margin: 0%;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+.icon:hover {
+  color: #3498db;
+  transition: color 0.3s ease;
 }
 
 .offcanvas-header {

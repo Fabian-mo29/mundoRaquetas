@@ -19,4 +19,12 @@ function findUserByEmail(email, callback) {
   });
 }
 
-module.exports = { createUser, findUserByEmail };
+function findUserByUsername(username, callback) {
+  const query = `SELECT * FROM Usuarios WHERE Username = ?`;
+  sql.query(connectionString, query, [username], (err, rows) => {
+    if (err) return callback(err);
+    callback(null, rows && rows.length > 0 ? rows[0] : null);
+  });
+}
+
+module.exports = { createUser, findUserByEmail, findUserByUsername };
