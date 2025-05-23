@@ -13,15 +13,17 @@
           <h2 class="text-center mb-4">Inicio de Sesión</h2>
 
           <div class="mb-3">
-          <label class="form-label" for="inputUserOrEmail">Usuario o Email</label>
-          <input
-            class="form-control"
-            type="text"
-            id="inputUserOrEmail"
-            v-model="datosSesion.userOrEmail"
-            required
-            placeholder="usuario o correo@email.com"
-          />
+            <label class="form-label" for="inputUserOrEmail"
+              >Usuario o Email</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="inputUserOrEmail"
+              v-model="datosSesion.userOrEmail"
+              required
+              placeholder="usuario o correo@email.com"
+            />
           </div>
 
           <div class="mb-3">
@@ -84,9 +86,10 @@ async function logIn() {
 
     if (response.ok) {
       // Guarda la info de usuario en sessionStorage
-      sessionStorage.setItem("usuario", JSON.stringify(data.user));
+      sessionStorage.setItem("token", data.token);
+      console.log("Jwt " + data.token);
       // Dispara un evento personalizado para avisar al NavBar
-      window.dispatchEvent(new Event("storage"));
+      window.dispatchEvent(new CustomEvent("user-session"));
       router.push("/"); // Redirige al inicio
     } else {
       alert(data.message || "Error al iniciar sesión");

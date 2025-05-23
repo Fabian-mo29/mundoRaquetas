@@ -71,7 +71,9 @@
 
       <!-- Acciones de usuario desktop -->
       <div class="d-none d-lg-flex user-actions">
-        <span class="me-3" style="color:#ffc107; font-weight:bold;">{{ username }}</span>
+        <span class="me-3" style="color: #ffc107; font-weight: bold">{{
+          username
+        }}</span>
         <div class="user-actions">
           <RouterLink
             v-if="username !== 'Invitado'"
@@ -90,13 +92,13 @@
             <i class="pi pi-user"></i>
           </RouterLink>
           <button
-          v-if="username !== 'Invitado'"
-          @click="logout"
-          class="btn btn-sm btn-outline-warning ms-3 text-nowrap"
-          style="height: 2.2rem; min-width: 120px;"
-        >
-          Cerrar sesión
-        </button>
+            v-if="username !== 'Invitado'"
+            @click="logout"
+            class="btn btn-sm btn-outline-warning ms-3 text-nowrap"
+            style="height: 2.2rem; min-width: 120px"
+          >
+            Cerrar sesión
+          </button>
         </div>
       </div>
     </div>
@@ -169,7 +171,9 @@
 
         <!-- Acciones de usuario móvil -->
         <div class="mt-4 d-flex flex-column align-items-center">
-          <span class="mb-2" style="color:#ffc107; font-weight:bold;">{{ username }}</span>
+          <span class="mb-2" style="color: #ffc107; font-weight: bold">{{
+            username
+          }}</span>
           <div class="user-actions">
             <RouterLink
               v-if="username !== 'Invitado'"
@@ -190,13 +194,13 @@
               <i class="pi pi-user"></i>
             </RouterLink>
             <button
-            v-if="username !== 'Invitado'"
-            @click="logout"
-            class="btn btn-sm btn-outline-warning mt-2 text-nowrap mx-auto"
-            style="height: 2.2rem; min-width: 120px; display: block;"
-          >
-            Cerrar sesión
-          </button>
+              v-if="username !== 'Invitado'"
+              @click="logout"
+              class="btn btn-sm btn-outline-warning mt-2 text-nowrap mx-auto"
+              style="height: 2.2rem; min-width: 120px; display: block"
+            >
+              Cerrar sesión
+            </button>
           </div>
         </div>
       </div>
@@ -207,17 +211,18 @@
 <script setup>
 import { RouterLink, useRouter } from "vue-router";
 import { Offcanvas } from "bootstrap";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 const username = ref("Invitado");
 const router = useRouter();
 
 const loadUsername = () => {
-  const user = sessionStorage.getItem("usuario");
-  if (user) {
+  const token = sessionStorage.getItem("token");
+  if (token) {
     try {
-      const parsed = JSON.parse(user);
-      username.value = parsed.Username || "Invitado";
+      const base64Payload = token.split(".")[1]; // Obtener la parte del payload
+      const payload = JSON.parse(atob(base64Payload)); // Decodificar Base64
+      username.value = payload.username || "Invitado";
     } catch {
       username.value = "Invitado";
     }
@@ -225,6 +230,13 @@ const loadUsername = () => {
     username.value = "Invitado";
   }
 };
+
+function logout() {
+  sessionStorage.removeItem("token");
+  window.dispatchEvent(new CustomEvent("user-session"));
+  username.value = "Invitado";
+  router.push("/");
+}
 
 const closeCanvas = () => {
   const offcanvasElement = document.getElementById("mobile-menu");
@@ -234,16 +246,12 @@ const closeCanvas = () => {
   }
 };
 
-function logout() {
-  sessionStorage.removeItem("usuario");
-  window.dispatchEvent(new Event("storage"));
-  username.value = "Invitado";
-  router.push("/");
-}
-
 onMounted(() => {
-  loadUsername();
-  window.addEventListener("storage", loadUsername);
+  window.addEventListener("user-session", loadUsername);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("user-session", loadUsername);
 });
 </script>
 

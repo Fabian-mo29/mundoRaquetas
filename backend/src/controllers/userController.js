@@ -1,4 +1,5 @@
-const User = require('../models/userModel');
+const User = require("../models/userModel");
+const auth = require("../middleware/auth");
 
 function isValidUsername(username) {
   // 4-30 caracteres, solo letras, números y guion bajo
@@ -25,58 +26,104 @@ const registerUser = (req, res) => {
 
   // Validaciones
   if (!username || !nombre || !apellido1 || !apellido2 || !email || !password) {
-    return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
+    return res
+      .status(400)
+      .json({ message: "Todos los campos son obligatorios." });
   }
   if (!isValidUsername(username)) {
-    return res.status(400).json({ message: 'El nombre de usuario debe tener entre 4 y 30 caracteres y solo puede contener letras, números y guion bajo.' });
+    return res.status(400).json({
+      message:
+        "El nombre de usuario debe tener entre 4 y 30 caracteres y solo puede contener letras, números y guion bajo.",
+    });
   }
-  if (!isValidName(nombre) || !isValidName(apellido1) || !isValidName(apellido2)) {
-    return res.status(400).json({ message: 'Nombre y apellidos solo pueden contener letras y espacios (2-30 caracteres).' });
+  if (
+    !isValidName(nombre) ||
+    !isValidName(apellido1) ||
+    !isValidName(apellido2)
+  ) {
+    return res.status(400).json({
+      message:
+        "Nombre y apellidos solo pueden contener letras y espacios (2-30 caracteres).",
+    });
   }
   if (!isValidEmail(email)) {
-    return res.status(400).json({ message: 'El email no es válido.' });
+    return res.status(400).json({ message: "El email no es válido." });
   }
   if (!isValidPassword(password)) {
-    return res.status(400).json({ message: 'La contraseña debe tener al menos 6 caracteres.' });
+    return res
+      .status(400)
+      .json({ message: "La contraseña debe tener al menos 6 caracteres." });
   }
 
   User.findUserByEmail(email, (err, user) => {
-    if (err) return res.status(500).json({ message: 'Error en la base de datos.' });
-    if (user) return res.status(409).json({ message: 'El usuario ya existe.' });
+    if (err)
+      return res.status(500).json({ message: "Error en la base de datos." });
+    if (user) return res.status(409).json({ message: "El usuario ya existe." });
 
-    User.createUser(username, nombre, apellido1, apellido2, email, password, (err, result) => {
-      if (err) return res.status(500).json({ message: 'Error al registrar usuario.' });
-      res.status(201).json({ message: 'Usuario registrado correctamente.' });
-    });
+    User.createUser(
+      username,
+      nombre,
+      apellido1,
+      apellido2,
+      email,
+      password,
+      (err, result) => {
+        if (err)
+          return res
+            .status(500)
+            .json({ message: "Error al registrar usuario." });
+        res.status(201).json({ message: "Usuario registrado correctamente." });
+      }
+    );
   });
 };
 
 const loginUser = (req, res) => {
   const { identificador, password } = req.body;
   if (!identificador || !password) {
-    return res.status(400).json({ message: 'Email/usuario y contraseña son obligatorios.' });
+    return res
+      .status(400)
+      .json({ message: "Email/usuario y contraseña son obligatorios." });
   }
 
   // Si contiene '@' busca por email, si no por username
-  if (identificador.includes('@')) {
+  if (identificador.includes("@")) {
     User.findUserByEmail(identificador, (err, user) => {
-      if (err) return res.status(500).json({ message: 'Error en la base de datos.' });
-      if (!user) return res.status(404).json({ message: 'Usuario no encontrado.' });
+      if (err)
+        return res.status(500).json({ message: "Error en la base de datos." });
+      if (!user)
+        return res.status(404).json({ message: "Usuario no encontrado." });
       if (user.Contrasena !== password) {
-        return res.status(401).json({ message: 'Contraseña incorrecta.' });
+        return res.status(401).json({ message: "Contraseña incorrecta." });
       }
-      res.status(200).json({ message: 'Inicio de sesión exitoso.', user });
+      const token = auth.generateToken(user);
+      res.status(200).json({ message: "Inicio de sesión exitoso.", token });
     });
   } else {
     User.findUserByUsername(identificador, (err, user) => {
-      if (err) return res.status(500).json({ message: 'Error en la base de datos.' });
-      if (!user) return res.status(404).json({ message: 'Usuario no encontrado.' });
+      if (err)
+        return res.status(500).json({ message: "Error en la base de datos." });
+      if (!user)
+        return res.status(404).json({ message: "Usuario no encontrado." });
       if (user.Contrasena !== password) {
-        return res.status(401).json({ message: 'Contraseña incorrecta.' });
+        return res.status(401).json({ message: "Contraseña incorrecta." });
       }
-      res.status(200).json({ message: 'Inicio de sesión exitoso.', user });
+      const token = auth.generateToken(user);
+      res.status(200).json({ message: "Inicio de sesión exitoso.", token });
     });
   }
 };
 
-module.exports = { registerUser, loginUser };
+const getUserData = (req, res) => {
+  const username = req.params.username;
+  User.findUserByUsername(username, (err, user) => {
+    if (err) {
+      console.error("Error fetching user data: ", err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    console.log(user);
+    res.status(200).json(user);
+  });
+};
+
+module.exports = { registerUser, loginUser, getUserData };

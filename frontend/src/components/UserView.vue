@@ -39,7 +39,9 @@
           </div>
           <div v-else class="text-center">
             <p>No hay datos de usuario. Por favor, inicia sesión.</p>
-            <RouterLink to="/logIn" class="btn btn-primary mt-2">Iniciar Sesión</RouterLink>
+            <RouterLink to="/logIn" class="btn btn-primary mt-2"
+              >Iniciar Sesión</RouterLink
+            >
           </div>
         </div>
       </div>
@@ -50,25 +52,53 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRouter, RouterLink } from "vue-router";
+import axios from "axios";
 
 const usuario = ref(null);
 const router = useRouter();
 
 onMounted(() => {
-  const userStr = sessionStorage.getItem("usuario");
-  if (userStr) {
-    try {
-      usuario.value = JSON.parse(userStr);
-    } catch {
-      usuario.value = null;
+  const token = sessionStorage.getItem("token");
+  if (!token) {
+    usuario.value = null;
+    return;
+  }
+  try {
+    const base64Payload = token.split(".")[1];
+    const payload = JSON.parse(atob(base64Payload));
+    const username = payload.username;
+
+    if (username) {
+      getUserData(username, token).then((data) => {
+        usuario.value = data;
+      });
     }
+  } catch (error) {
+    usuario.value = null;
   }
 });
 
 function logout() {
-  sessionStorage.removeItem("usuario");
-  window.dispatchEvent(new Event("storage"));
+  sessionStorage.removeItem("token");
+  window.dispatchEvent(new CustomEvent("user-session"));
   router.push("/");
+}
+
+function getUserData(username, token) {
+  return axios
+    .get(`http://localhost:3000/api/users/${username}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      console.error("Error fetching users data", error);
+      return null;
+    });
 }
 </script>
 
@@ -124,7 +154,7 @@ h2 {
 .form-value {
   font-family: Noto Sans, sans-serif;
   font-size: 1rem;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
   padding: 0.5rem 1rem;
   color: white;

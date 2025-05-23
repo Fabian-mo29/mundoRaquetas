@@ -32,6 +32,42 @@ async function getActiveCart(userId) {
   });
 }
 
+function addToCart(product) {
+  let cartId = getActiveCart(userId);
+  if (!cartId) {
+    cartId = createCart(userId, (err, result) => {
+      if (err) {
+        return callback(err, null);
+      }
+    });
+  }
+  const query =
+    "INSERT INTO ProductosPorCarrito(CarritoId, ProductoId, Cantidad)\n" +
+    "VALUES (?, ?, ?)";
+  sql.query(
+    connectionString,
+    query,
+    [cartId, product.Id, product.Cantidad],
+    (err, result) => {
+      if (err) {
+        return callback(err, null);
+      }
+      return callback(null, result);
+    }
+  );
+}
+
+function createCart(userId, callback) {
+  const query = "INSERT INTO Carrito(UserId) VALUESN" + "(?)";
+  sql.query(connectionString, query, [userId], (err, result) => {
+    if (err) {
+      return callback(err, null);
+    }
+    return callback(null, result);
+  });
+}
+
 module.exports = {
   getCartByUserId,
+  addToCart,
 };
