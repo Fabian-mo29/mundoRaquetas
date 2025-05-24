@@ -38,7 +38,8 @@
           <h3>Nosotros</h3>
           <ul class="list-unstyled pt-2">
             <li class="py-1"></li>
-            <a href="#">Tiendas físicas</a>
+            <RouterLink active-class="active" to="/physicalStore" class="nav-link"
+              >Tienda física</RouterLink>
             <li class="py-1"></li>
             <a href="#">Blog</a>
           </ul>
