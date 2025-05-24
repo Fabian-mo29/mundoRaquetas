@@ -10,6 +10,7 @@ function verifyToken(req, res, next) {
   try {
     const payload = jwt.verify(token, secretKey);
     req.username = payload.username;
+    req.Id = payload.Id;
     next();
   } catch (error) {
     return res.status(403).json({ message: "Token not valid" });
