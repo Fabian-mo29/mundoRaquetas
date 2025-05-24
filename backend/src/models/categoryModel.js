@@ -10,7 +10,7 @@ function getProductsByCategory(category, callback) {
 
   let params = [];
   // Se hacen los filtros, si es por Ofertas o si es por cualquiera de las otras categorías
-  if (category === "Ofertas") {
+  if ((category === "Ofertas") || (category === "ofertas")) {
     query += " AND p.Discount > 0";
   } else {
     query += " AND p.Category = ?";

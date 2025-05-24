@@ -16,7 +16,8 @@ import ProductSearchView from "@/views/ProductSearchView.vue";
 import ContactUsView from "@/views/ContactUsView.vue";
 import RequestWarrantyView from "@/views/RequestWarrantyView.vue";
 import TrackOrderView from "@/views/TrackOrderView.vue";
-import UserViewView from  "@/views/UserViewView.vue";
+import UserViewView from "@/views/UserViewView.vue";
+import PhysicalStoreView from "@/views/PhysicalStoreView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -122,7 +123,19 @@ const router = createRouter({
       name: "User",
       component: UserViewView,
     },
+    {
+      path: "/physicalStore",
+      name: "PhysicalStore",
+      component: PhysicalStoreView,      
+    }
   ],
+  // Hace que las rutas se abran en la posicion superior y no en el lugar donde se quedó
+  scrollBehavior() {
+    return {
+      top: 0,
+      behavior: "smooth"
+    };
+  },
 });
 
 export default router;
