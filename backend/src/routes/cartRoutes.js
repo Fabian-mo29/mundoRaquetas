@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/auth");
 const cartController = require("../controllers/cartController");
-const verifyToken = require("../middleware/auth");
 
-// router.get("/", verifyToken, cartController.getUserCart);
-// router.post("/:product", verifyToken, cartController.addToCart);
+router.get("/", auth.verifyToken, cartController.getUserCart);
+router.post("/:product", auth.verifyToken, cartController.addToCart);
 
 module.exports = router;

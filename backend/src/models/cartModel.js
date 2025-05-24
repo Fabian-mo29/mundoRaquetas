@@ -32,12 +32,14 @@ async function getActiveCart(userId) {
   });
 }
 
-function addToCart(product) {
+function addToCart(userId, product) {
   let cartId = getActiveCart(userId);
   if (!cartId) {
     cartId = createCart(userId, (err, result) => {
       if (err) {
         return callback(err, null);
+      } else {
+        return result;
       }
     });
   }
