@@ -1,15 +1,11 @@
 <template>
   <!-- Carrusel de ofertas -->
   <div class="mt-5 sala-carousel-container">
-    <h2 class="mb-4">Ofertas del Día</h2>
+    <h2 class="fw-bold mb-4 mt-5">Ofertas del Día</h2>
     <div class="position-relative">
       <div class="sala-carousel-wrapper">
         <div class="sala-carousel-track" ref="ofertasTrack">
-          <div
-            class="sala-card"
-            v-for="oferta in ofertasDelDia"
-            :key="oferta.id"
-          >
+          <div class="sala-card" v-for="oferta in ofertasDelDia" :key="oferta.id">
             <div class="ratio-container">
               <img
                 :src="`/imagesProducts/${oferta.imagen}`"
@@ -21,7 +17,7 @@
             <div class="card-body">
               <div>
                 <h5 class="card-title">{{ oferta.nombre }}</h5>
-                <p class="card-text">{{ oferta.descripcion }}</p>
+                <p class="card-text">{{ descripcionTruncada(oferta.descripcion) }}</p>
               </div>
               <div class="button-container">
                 <p class="h5 mb-0 text-danger">
@@ -66,13 +62,41 @@ const startPos = ref(0);
 const currentTranslate = ref(0);
 const prevTranslate = ref(0);
 
+const descripcionTruncada = (descripcion) => {
+  if (descripcion.length > 50) {
+    return descripcion.substring(0, 50) + "...";
+  }
+  return descripcion;
+};
+
 const scrollToCard = (index) => {
   if (!ofertasTrack.value) return;
 
   const cardWidth = ofertasTrack.value.children[0]?.offsetWidth || 330;
   const gap = 20; // El mismo gap que tienes en el CSS
-  const scrollPosition = index * (cardWidth + gap);
 
+  const containerWidth = ofertasTrack.value.parentElement.offsetWidth;
+  const totalCardsWidth = ofertasDelDia.value.length * (cardWidth + gap);
+  
+  // Si estamos en la última card y ya es visible, reiniciar
+  if (index >= ofertasDelDia.value.length - 3.5) {
+    const currentScroll = -parseInt(ofertasTrack.value.style.transform.replace('translateX(', '').replace('px)', '') || 0);
+    const visibleWidth = containerWidth;
+    const remainingWidth = totalCardsWidth - currentScroll - visibleWidth;
+    
+    // Si la última card ya es visible (o casi visible)
+    if (remainingWidth <= cardWidth * 1.5) {
+       setTimeout(() => {
+        ofertasTrack.value.style.transition = 'transform 0.5s ease-out';
+        ofertasTrack.value.style.transform = 'translateX(0)';
+        currentIndex.value = 0;
+      }, 500); // Pequeña pausa antes de reiniciar
+      return;
+    }
+  }
+
+  const scrollPosition = index * (cardWidth + gap);
+  
   ofertasTrack.value.style.transition = "transform 0.5s ease-out";
   ofertasTrack.value.style.transform = `translateX(-${scrollPosition}px)`;
   currentIndex.value = index;
@@ -107,15 +131,12 @@ const duringDrag = (e) => {
 const endDrag = () => {
   isDragging.value = false;
   const movedBy = currentTranslate.value - prevTranslate.value;
-
+  
   // Si el movimiento fue significativo, cambiar de card
   if (Math.abs(movedBy) > 50) {
     if (movedBy > 0 && currentIndex.value > 0) {
       scrollToCard(currentIndex.value - 1);
-    } else if (
-      movedBy < 0 &&
-      currentIndex.value < ofertasDelDia.value.length - 1
-    ) {
+    } else if (movedBy < 0 && currentIndex.value < ofertasDelDia.value.length - 1) {
       scrollToCard(currentIndex.value + 1);
     }
   } else {
@@ -204,7 +225,6 @@ onUnmounted(() => {
 
 /* Estilos para el carrusel de ofertas */
 .sala-carousel-container {
-  color: #1a4456;
   padding: 0 50px;
 }
 
@@ -219,7 +239,7 @@ onUnmounted(() => {
   gap: 20px;
   padding: 10px 0;
   will-change: transform;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.5s ease-out;
   user-select: none;
 }
 
@@ -229,13 +249,13 @@ onUnmounted(() => {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   height: 450px;
 
   &:hover {
-    transform: translateY(-8px) scale(1.01);
+    transform: translateY(-5px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   }
 
@@ -268,8 +288,8 @@ onUnmounted(() => {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background: #1a4456;
   border: none;
   border-radius: 50%;
@@ -279,7 +299,6 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   opacity: 0.8;
-  font-size: 1.5rem;
 
   &:hover {
     opacity: 1;
@@ -294,12 +313,11 @@ onUnmounted(() => {
     right: 0;
   }
 
-  &-prev-icon::before {
-    mask-image: url("data:image/svg+xml,%3Csvg fill='white' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L6.707 7l4.647 4.646a.5.5 0 0 1-.708.708l-5-5a.5.5 0 0 1 0-.708l5-5a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
-  }
-
-  &-next-icon::before {
-    mask-image: url("data:image/svg+xml,%3Csvg fill='white' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 7 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  &-prev-icon,
+  &-next-icon {
+    background-size: 100% 100%;
+    width: 20px;
+    height: 20px;
   }
 }
 .img-ratio {

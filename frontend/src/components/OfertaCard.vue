@@ -47,8 +47,8 @@ defineProps({
 });
 
 const descripcionTruncada = (descripcion) => {
-  if (descripcion.length > 80) {
-    return descripcion.substring(0, 80) + "...";
+  if (descripcion.length > 50) {
+    return descripcion.substring(0, 50) + "...";
   }
   return descripcion;
 };

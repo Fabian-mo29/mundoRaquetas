@@ -1,19 +1,19 @@
 <template>
-  <div class="main-container margin-auto">
-    <h2 class="fw-bold mb-4 responsive-text">Ofertas del Día</h2>
+  <div class="main-container">
+    <h2 class="fw-bold mb-4 mt-5 responsive-text">Ofertas del Día</h2>
     <div id="grid" class="product-grid">
       <div
         v-for="(oferta, index) in ofertasDelDia.slice(0, show)"
         :key="index"
         class="card shadow"
       >
-        <OfertaCard :oferta="oferta" />
+        <OfertaCard :oferta="oferta" :limite="limite"/>
       </div>
       <button
         @click="verMasOfertas"
         v-if="show < ofertasDelDia.length"
         class="btn btn-success center-button"
-        style="background-color: #1A4456"
+        style="background-color: #2c3e50"
       >
         Ver más Ofertas
       </button>
@@ -23,13 +23,33 @@
 
 <script setup>
 import ofertas from "@/assets/ofertas.json";
-import { ref } from "vue";
+import { ref, defineProps, defineEmits} from "vue";
 import OfertaCard from "./OfertaCard.vue";
 
-const show = ref(8); // Mostrar 8 ofertas inicialmente
+const props = defineProps({
+  limite: {
+    type: Number,
+    default: 8,
+  },
+  categoryType: {
+    type: String,
+    required: true,
+  },
+  categoryHeader: {
+    type: String,
+    required: true,
+  },
+});
+
+const show = ref(props.limite);
+const emit = defineEmits(["update:limite"]);
+
+const filteredProducts = ref([]);
+
 
 function verMasOfertas() {
-  show.value = ofertasDelDia.value.length;
+  show.value = filteredProducts.value.length;
+  emit("update:limite", filteredProducts.value.length);
 }
 
 const ofertasDelDia = ref(ofertas);
@@ -37,9 +57,7 @@ const ofertasDelDia = ref(ofertas);
 
 <style lang="scss" scoped>
 h2 {
-  margin-left: 3%;
-  color: #1A4456;
-  font-family: "Poppins", sans-serif;
+  margin-left: 5%;
 }
 
 .main-container {
@@ -71,7 +89,6 @@ h2 {
 }
 
 .center-button {
-  font-family: "Poppins", sans-serif;
   grid-column: 1 / -1;
   justify-self: center;
   margin-top: 20px;
