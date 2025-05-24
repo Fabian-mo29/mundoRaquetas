@@ -1,7 +1,8 @@
 const cart = require("../models/cartModel");
+const auth = require("../middleware/auth");
 
 function getUserCart(req, res) {
-  const userId = "1234566543";
+  const userId = req.Id;
   cart.getCartByUserId(userId, (err, cart) => {
     if (err) {
       console.error("Error fetching cart:", err);
@@ -13,7 +14,8 @@ function getUserCart(req, res) {
 
 function addToCart(req, res) {
   const { product } = req.body;
-  cart.addToCart(product, (err, result) => {
+  const userId = req.Id;
+  cart.addToCart(userId, product, (err, result) => {
     if (err) {
       console.error("Error inserting product to cart:", err);
       return res.status(500).json({ message: "Internal server error" });
