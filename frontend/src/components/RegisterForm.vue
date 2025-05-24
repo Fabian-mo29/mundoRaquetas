@@ -139,6 +139,7 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
+import CryptoJS from "crypto-js";
 
 const router = useRouter();
 
@@ -176,11 +177,15 @@ async function Register() {
   serverError.value = "";
   success.value = "";
 
+  // Hashea la contraseña antes de enviarla
+  const formToSend = { ...form.value };
+  formToSend.password = CryptoJS.SHA256(formToSend.password).toString();
+
   try {
     const response = await fetch("http://localhost:3000/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form.value),
+      body: JSON.stringify(formToSend),
     });
     const data = await response.json();
     if (response.ok) {

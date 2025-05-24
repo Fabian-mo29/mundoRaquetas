@@ -57,3 +57,4 @@ INSERT INTO Imagen (ProductoId, Name) VALUES
 
 
 Select * from Productos;
+SELECT * FROM Usuarios;

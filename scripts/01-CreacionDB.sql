@@ -22,7 +22,7 @@ Nombre NVARCHAR(30),
 Apellido1 NVARCHAR(30),
 Apellido2 NVARCHAR(30),
 Correo VARCHAR(80) UNIQUE NOT NULL,
-Contrasena VARCHAR(30)
+Contrasena NVARCHAR(70)
 );
 
 CREATE TABLE Productos(

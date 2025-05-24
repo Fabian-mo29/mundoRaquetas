@@ -63,6 +63,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter, RouterLink } from "vue-router";
+import CryptoJS from "crypto-js";
 
 const router = useRouter();
 
@@ -73,12 +74,15 @@ const datosSesion = ref({
 
 async function logIn() {
   try {
+    // Hashea la contraseña antes de enviarla
+    const hashedPassword = CryptoJS.SHA256(datosSesion.value.password).toString();
+
     const response = await fetch("http://localhost:3000/api/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         identificador: datosSesion.value.userOrEmail,
-        password: datosSesion.value.password,
+        password: hashedPassword,
       }),
     });
 

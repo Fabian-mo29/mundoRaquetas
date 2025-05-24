@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "crypto-js": "^4.2.0",
     "dotenv": "^16.5.0",
     "msnodesqlv8": "^4.5.0",
     "mssql": "^11.0.1"
