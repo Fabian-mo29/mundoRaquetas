@@ -15,20 +15,20 @@
         >
           <div class="d-flex">
             <img
-              :src="'imagesProducts/' + item.image"
-              :alt="item.name"
+              :src="`/imagesProducts/${item.ImageName}`"
+              :alt="item.Name"
               class="product-img me-3"
             />
             <div>
-              <h5>{{ item.name }}</h5>
-              <p class="text-muted">{{ item.Descripcion }}</p>
+              <h5>{{ item.Name }}</h5>
+              <p class="text-muted">{{ item.Description }}</p>
               <input type="number" class="form-control fixed-input" value="1" />
             </div>
           </div>
           <div
             class="item-price-btn d-flex flex-column justify-content-between"
           >
-            <span>${{ item.precio }}</span>
+            <span>${{ item.Price }}</span>
             <button class="btn btn-sm btn-danger">Eliminar</button>
           </div>
         </div>
@@ -64,11 +64,32 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
-import { ref, computed } from "vue";
-import shoppingCart from "@/assets/shoppingCartExample.json";
+import { ref, computed, onMounted } from "vue";
+// import shoppingCart from "@/assets/shoppingCartExample.json";
+import axios from "axios";
 
 // Lista de los productos del carrito
-const cartItems = ref(shoppingCart);
+// const cartItems = ref(shoppingCart);
+const cartItems = ref([]);
+
+// Función para obtener los productos del carrito desde la API del cart, se necesita el token de sesión del usuario
+async function fetchCart() {
+  try {
+    const token = sessionStorage.getItem("token");
+    const response = await axios.get("http://localhost:3000/api/cart", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    cartItems.value = response.data;
+  } catch (error) {
+    console.error("Error fetching cart:", error);
+  }
+}
+
+onMounted(() => {
+  fetchCart();
+});
 
 // Se calcula el subtotal de los productos en el carrito
 const subtotal = computed(() =>
