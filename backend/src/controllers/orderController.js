@@ -2,7 +2,7 @@ const order = require("../models/orderModel");
 const cartModel = require("../models/cartModel");
 
 function createNewOrder(req, res) {
-  cartModel.getActiveCart(req.userId, (err, cartId) => {
+  cartModel.getActiveCart(req.Id, (err, cartId) => {
     if (err) {
       return res.status(500).json({ error: "Error: Unable to retrieve cart" });
     }
