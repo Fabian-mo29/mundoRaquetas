@@ -1,5 +1,4 @@
 const cart = require("../models/cartModel");
-const auth = require("../middleware/auth");
 
 function getUserCart(req, res) {
   const userId = req.Id;
