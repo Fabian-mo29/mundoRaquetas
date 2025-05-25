@@ -78,7 +78,19 @@ function getCartByUserId(userId, callback) {
   });
 }
 
+function getTotalPrice(cartId, callback) {
+  const query =
+    "SELECT SUM(p.Price * ppc.Cantidad) AS Total FROM ProductosPorCarrito ppc JOIN Productos p " +
+    "on p.Id = ppc.ProductoId WHERE ppc.CarritoId = ?;";
+  sql.query(connectionString, query, [cartId], (err, result) => {
+    if (err) return callback(err, null);
+    return callback(null, result[0].Total);
+  });
+}
+
 module.exports = {
   getCartByUserId,
+  getActiveCart,
   addToCart,
+  getTotalPrice,
 };
