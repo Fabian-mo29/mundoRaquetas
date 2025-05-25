@@ -1,71 +1,80 @@
 const { sql, connectionString } = require("../db");
 
-function getCartByUserId(userId, callback) {
-  const cartId = getActiveCart(userId);
+function getActiveCart(userId, callback) {
   const query =
-    "SELECT p.Name, p.Description, p.Price, p.Discount, p.Category\n" +
-    "FROM ProductosPorCarrito ppc JOIN Productos p on ppc.ProductoId\n" +
-    "=p.Id WHERE ppc.CarritoId = ?";
-  sql.query(connectionString, query, [cartId], (err, result) => {
+    "SELECT TOP 1 Id FROM Carrito WHERE UserId = ? AND Estado = 'Pendiente'";
+  sql.query(connectionString, query, [userId], (err, result) => {
     if (err) {
       return callback(err, null);
     }
-    return callback(null, result);
+    if (result.length > 0) {
+      return callback(null, result[0].Id);
+    } else {
+      return callback(err, null);
+    }
   });
 }
 
-async function getActiveCart(userId) {
-  const cartId =
-    "SELECT TOP 1 Id FROM Carrito Where UsuarioId = ? AND Estado = Pendiente";
-  return new Promise((resolve, reject) => {
-    sql.query(connectionString, cartId, [userId], (err, result) => {
-      if (err) {
-        console.error("Error fetching active cart:", err);
-        return reject(err);
+function createCart(userId, callback) {
+  const query = "INSERT INTO Carrito(UserId, Estado) VALUES (?, 'Pendiente')";
+  sql.query(connectionString, query, [userId], (err, result) => {
+    if (err) {
+      return callback(err, null);
+    }
+    const selectQuery =
+      "SELECT TOP 1 Id FROM Carrito WHERE UserId = ? AND Estado = 'Pendiente' ORDER BY Id DESC";
+    sql.query(connectionString, selectQuery, [userId], (err2, result2) => {
+      if (err2) {
+        return callback(err2, null);
       }
-      if (result.length > 0) {
-        resolve(result[0].Id);
-      } else {
-        resolve(null);
-      }
+      return callback(null, result2[0].Id);
     });
   });
 }
 
-function addToCart(userId, product) {
-  let cartId = getActiveCart(userId);
-  if (!cartId) {
-    cartId = createCart(userId, (err, result) => {
-      if (err) {
-        return callback(err, null);
-      } else {
-        return result;
-      }
-    });
-  }
+function addToCart(userId, product, callback) {
+  getActiveCart(userId, (err, cartId) => {
+    if (err) return callback(err, null);
+
+    if (cartId) {
+      insertProduct(cartId, product, callback);
+    } else {
+      createCart(userId, (err2, newCartId) => {
+        if (err2) return callback(err2, null);
+        insertProduct(newCartId, product, callback);
+      });
+    }
+  });
+}
+
+function insertProduct(cartId, product, callback) {
   const query =
-    "INSERT INTO ProductosPorCarrito(CarritoId, ProductoId, Cantidad)\n" +
-    "VALUES (?, ?, ?)";
+    "INSERT INTO ProductosPorCarrito (CarritoId, ProductoId, Cantidad) VALUES (?, ?, ?)";
   sql.query(
     connectionString,
     query,
     [cartId, product.Id, product.Cantidad],
     (err, result) => {
-      if (err) {
-        return callback(err, null);
-      }
+      if (err) return callback(err, null);
       return callback(null, result);
     }
   );
 }
 
-function createCart(userId, callback) {
-  const query = "INSERT INTO Carrito(UserId) VALUESN" + "(?)";
-  sql.query(connectionString, query, [userId], (err, result) => {
-    if (err) {
-      return callback(err, null);
-    }
-    return callback(null, result);
+function getCartByUserId(userId, callback) {
+  getActiveCart(userId, (err, cartId) => {
+    if (err) return callback(err, null);
+
+    const query =
+      "SELECT p.Name, p.Description, p.Price, p.Discount, p.Category " +
+      "FROM ProductosPorCarrito ppc " +
+      "JOIN Productos p ON ppc.ProductoId = p.Id " +
+      "WHERE ppc.CarritoId = ?";
+
+    sql.query(connectionString, query, [cartId], (err2, result) => {
+      if (err2) return callback(err2, null);
+      return callback(null, result);
+    });
   });
 }
 

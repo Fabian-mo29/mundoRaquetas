@@ -121,7 +121,6 @@ const getUserData = (req, res) => {
       console.error("Error fetching user data: ", err);
       return res.status(500).json({ message: "Internal server error" });
     }
-    console.log(user);
     res.status(200).json(user);
   });
 };

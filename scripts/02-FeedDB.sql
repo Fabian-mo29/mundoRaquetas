@@ -1,13 +1,6 @@
 USE PADELTADB
 
-INSERT INTO Usuarios (Username, Nombre, Apellido1, Apellido2, Correo, Contrasena)
-VALUES 
-('juanp123', 'Juan', 'Pérez', 'Rodríguez', 'juan.perez@example.com', 'clave123'),
-('anag92', 'Ana', 'Gómez', 'Solís', 'ana.gomez@example.com', 'gomez456'),
-('lmvargas', 'Luis', 'Martínez', 'Vargas', 'luis.martinez@example.com', 'luis789'),
-('crojas_a', 'Carla', 'Rojas', 'Alfaro', 'carla.rojas@example.com', 'carla000');
-
-SELECT * FROM Usuarios;
+-- Insertar Usuarios manualmente...
 
 INSERT INTO Productos (Name, Description, Price, Discount, Category, Active, Stock)
 VALUES
@@ -21,7 +14,6 @@ VALUES
 ('Asics Gel Padel Pro 5', 'Zapatillas de pádel de alta comodidad y soporte, ideales para jugadores que buscan estabilidad.', 80.99, 10, 'Calzado', 1, 100),
 ('K-Swiss Hypercourt Express', 'Zapatillas de pádel ligeras y resistentes, con una suela que proporciona un excelente agarre en el campo de juego.', 89.99, 10, 'Calzado', 1, 100),
 ('Head Padel Pro S', 'Pelotas de pádel de alta calidad, ideales para competiciones. Su durabilidad las hacen perfectas para cualquier nivel.', 4.49, 10, 'Bolas', 1, 100);
-SELECT * FROM Productos;
 
 INSERT INTO Productos (Name, Description, Price, Discount, Category, Active, Stock)
 VALUES
@@ -33,7 +25,6 @@ VALUES
 ('Overgrip Babolat VS', 'Overgrip fino y adherente que proporciona gran sensación al jugar.', 6.99, 0, 'Accesorios', 1, 100),
 ('Babolat RPM Blast', 'Cuerda de poliéster para jugadores que buscan efecto y durabilidad.', 18.99, 0, 'Accesorios', 1, 100),
 ('Luxilon ALU Power', 'Cuerda de alto rendimiento usada por profesionales. Gran control y potencia.', 19.99, 0, 'Accesorios', 1, 100);
-SELECT * FROM Productos order by CreatedAt desc;
 
 INSERT INTO Imagen (ProductoId, Name) VALUES
 ((SELECT Id FROM Productos WHERE Name = 'Wilson m23'), 'palaPadel.jpg'),
@@ -54,7 +45,3 @@ INSERT INTO Imagen (ProductoId, Name) VALUES
 ((SELECT Id FROM Productos WHERE Name = 'Overgrip Babolat VS'), 'overgrip.jpg'),
 ((SELECT Id FROM Productos WHERE Name = 'Babolat RPM Blast'), 'fundaPala.jpg'),
 ((SELECT Id FROM Productos WHERE Name = 'Luxilon ALU Power'), 'overgrip.jpg');
-
-
-Select * from Productos;
-SELECT * FROM Usuarios;

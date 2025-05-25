@@ -1,11 +1,23 @@
 const express = require("express");
 const cors = require("cors");
-const product = require("../src/models/productModel");
 
 const app = express();
 const apiRoutes = require("./routes/apiRoutes");
 
-app.use(cors());
+const allowedOrigins = ["http://localhost:8080"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("No permitido por CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api", apiRoutes);

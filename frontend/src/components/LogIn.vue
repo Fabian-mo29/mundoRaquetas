@@ -91,7 +91,6 @@ async function logIn() {
     if (response.ok) {
       // Guarda la info de usuario en sessionStorage
       sessionStorage.setItem("token", data.token);
-      console.log("Jwt " + data.token);
       // Dispara un evento personalizado para avisar al NavBar
       window.dispatchEvent(new CustomEvent("user-session"));
       router.push("/"); // Redirige al inicio

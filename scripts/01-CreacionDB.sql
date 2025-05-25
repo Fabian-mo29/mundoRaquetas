@@ -47,7 +47,7 @@ FOREIGN KEY (ProductoId) REFERENCES Productos(Id)
 CREATE TABLE Carrito(
 Id UNIQUEIDENTIFIER PRIMARY KEY not null DEFAULT NEWID(),
 UserId UNIQUEIDENTIFIER NOT NULL,
-Estado VARCHAR(15) DEFAULT 'Pendiente' CHECK (Estado in ('Pendiente', 'Pagado')),
+Estado VARCHAR(15) DEFAULT 'Pendiente' CHECK (Estado in ('Pendiente', 'Pagado', 'Deseos')),
 FOREIGN KEY (UserId) REFERENCES Usuarios(Id)
 );
 
