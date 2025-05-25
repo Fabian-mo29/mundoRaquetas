@@ -22,7 +22,7 @@
       <p class="card-price">
         <strong>${{ product.Price }}</strong>
       </p>
-      <RouterLink :to="'product/' + product.Id"
+      <RouterLink :to="`/product/${product.Id}`"
         ><button class="btn btn-success" style="background-color: #2c3e50">
           Comprar
         </button></RouterLink

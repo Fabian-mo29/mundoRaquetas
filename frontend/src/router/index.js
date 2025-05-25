@@ -18,6 +18,7 @@ import RequestWarrantyView from "@/views/RequestWarrantyView.vue";
 import TrackOrderView from "@/views/TrackOrderView.vue";
 import UserViewView from "@/views/UserViewView.vue";
 import PhysicalStoreView from "@/views/PhysicalStoreView.vue";
+import TermsAndConditionsView from "@/views/TermsAndConditionsView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -127,6 +128,11 @@ const router = createRouter({
       path: "/physicalStore",
       name: "PhysicalStore",
       component: PhysicalStoreView,      
+    },
+    {
+      path: "/termsAndConditions",
+      name: "TermsAndConditions",
+      component: TermsAndConditionsView,      
     }
   ],
   // Hace que las rutas se abran en la posicion superior y no en el lugar donde se quedó
