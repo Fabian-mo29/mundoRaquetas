@@ -23,7 +23,7 @@
     <p class="card-text">{{ descripcionTruncada(oferta.descripcion) }}</p>
     <div class="d-flex justify-content-between align-items-center">
       <div>
-        <p class="card-price">
+        <p class="h5 mb-0 text-danger">
           <strong>${{ oferta.precio }}</strong>
           <span class="descuento-oferta">{{ oferta.descuento }}</span>
         </p>
@@ -47,8 +47,8 @@ defineProps({
 });
 
 const descripcionTruncada = (descripcion) => {
-  if (descripcion.length > 50) {
-    return descripcion.substring(0, 50) + "...";
+  if (descripcion.length > 80) {
+    return descripcion.substring(0, 80) + "...";
   }
   return descripcion;
 };
@@ -83,7 +83,46 @@ const descripcionTruncada = (descripcion) => {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.sala-card {
+  min-width: 330px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .button-container {
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+  }
 }
 
 .offer-badge {
@@ -98,49 +137,56 @@ const descripcionTruncada = (descripcion) => {
   font-weight: bold;
 }
 
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  padding: 1rem;
-}
+.text-danger {
+  color: #1a4456 !important;
 
-.card-title {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.card-text {
-  font-family: "Noto Sans", sans-serif;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.card-price {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.25rem;
+  .precio-oferta {
+    color: #1a4456;
+  }
 
   .descuento-oferta {
     color: #dc3545;
     margin-left: 0.5rem;
     font-weight: bold;
-    font-size: 0.9rem;
   }
+}
+
+.btn {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #1a4456;
+  --bs-btn-border-color: #1a4456;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #122e3a;
+  --bs-btn-hover-border-color: #122e3a;
+  box-shadow: none;
+}
+
+.btn:hover {
+  background-color: #122e3a;
+  border-color: #122e3a;
+  color: #fff;
+}
+
+.originalprice-and-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .original-price {
   color: #6c757d;
   text-decoration: line-through;
-  font-size: 0.9rem;
+  font-size: 1em;
 }
 
-button {
-  margin-top: auto;
-  font-family: "Poppins", sans-serif;
+@media (max-width: 768px) {
+  .sala-card {
+    min-width: 280px;
+  }
+
+  .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 </style>

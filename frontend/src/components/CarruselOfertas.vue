@@ -51,9 +51,8 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import ofertas from "@/assets/ofertas.json";
+import axios from "axios";
 
-const ofertasDelDia = ref(ofertas);
 const ofertasTrack = ref(null);
 const currentIndex = ref(0);
 const autoScrollInterval = ref(null);
@@ -61,6 +60,28 @@ const isDragging = ref(false);
 const startPos = ref(0);
 const currentTranslate = ref(0);
 const prevTranslate = ref(0);
+
+const ofertasDelDia = ref([]);
+
+async function fetchOfertas() {
+  try {
+    const response = await axios.get("http://localhost:3000/api/products/");
+    ofertasDelDia.value = response.data
+    .filter(product => product.Discount > 0)
+    .map(product => ({
+      id: product.Id,
+      nombre: product.Name,
+      descripcion: product.Description,
+      precio: `${product.Price.toFixed(2)}`,
+      descuento: `(-${product.Discount}%)`,
+      precioOriginal: (product.Price / (1 - product.Discount/100)).toFixed(2),
+      imagen: product.ImageName || 'default-product.jpg'
+    }));
+  } catch (error) {
+    console.error("Error fetching offers:", error);
+    ofertasDelDia.value = [];
+  }
+}
 
 const descripcionTruncada = (descripcion) => {
   if (descripcion.length > 50) {
@@ -159,6 +180,7 @@ const startAutoScroll = () => {
 };
 
 onMounted(() => {
+  fetchOfertas();
   startAutoScroll();
 
   // Event listeners para drag
@@ -320,6 +342,7 @@ onUnmounted(() => {
     height: 20px;
   }
 }
+
 .img-ratio {
   position: absolute;
   top: 0;

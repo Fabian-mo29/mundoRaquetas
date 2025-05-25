@@ -3,18 +3,18 @@
     <div class="row">
       <div class="col-md-6 product-image-container">
         <img
-          :src="`/imagesProducts/${product.imagen}`"
+          :src="`/imagesProducts/${product.ImageName}`"
           class="img-fluid product-image"
-          :alt="'Imagen de ' + product.nombre"
+          :alt="'Imagen de ' + product.Name"
         />
       </div>
 
       <div class="col-md-6 product-info">
-        <h1 class="product-title">{{ product.nombre }}</h1>
-        <p class="product-description">{{ product.descripcion }}</p>
+        <h1 class="product-title">{{ product.Name }}</h1>
+        <p class="product-description">{{ product.Description }}</p>
         <div class="price-container">
           <p class="product-price">
-            <strong>{{ product.precio }}</strong>
+            <strong>{{ product.Price }}</strong>
             <span class="discount-badge" v-if="product.descuento">
               {{ product.descuento }}
             </span>
@@ -37,8 +37,9 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-import inventory from "@/assets/ofertas.json";
+import { defineProps, ref } from "vue";
+import axios from "axios";
+import { onMounted } from "vue";
 
 const props = defineProps({
   ofertaId: {
@@ -47,7 +48,22 @@ const props = defineProps({
   },
 });
 
-const product = inventory.find((item) => item.id === Number(props.ofertaId));
+const product = ref({});
+
+function getProducts() {
+  axios
+    .get("http://localhost:3000/api/products/" + props.productId)
+    .then((response) => {
+      product.value = response.data;
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
+    });
+}
+
+onMounted(() => {
+  getProducts();
+});
 </script>
 
 <style scoped>

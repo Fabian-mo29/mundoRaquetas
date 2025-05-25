@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <h2 class="fw-bold mb-4 mt-5 responsive-text">Ofertas del Día</h2>
-    <div id="grid" class="product-grid">
+    <div v-if="ofertasDelDia.length > 0" id="grid" class="product-grid">
       <div
         v-for="(oferta, index) in ofertasDelDia.slice(0, show)"
         :key="index"
@@ -18,13 +18,18 @@
         Ver más Ofertas
       </button>
     </div>
+    <div v-else>
+      <h2 class="fw-bold mb-4 responsive-text text-center">
+        No hay ofertas disponibles en este momento
+      </h2>
+    </div>
   </div>
 </template>
 
 <script setup>
-import ofertas from "@/assets/ofertas.json";
-import { ref, defineProps, defineEmits} from "vue";
+import { ref, defineProps, defineEmits, onMounted } from "vue";
 import OfertaCard from "./OfertaCard.vue";
+import axios from "axios";
 
 const props = defineProps({
   limite: {
@@ -43,16 +48,38 @@ const props = defineProps({
 
 const show = ref(props.limite);
 const emit = defineEmits(["update:limite"]);
+const ofertasDelDia = ref([]);
 
-const filteredProducts = ref([]);
-
-
-function verMasOfertas() {
-  show.value = filteredProducts.value.length;
-  emit("update:limite", filteredProducts.value.length);
+// Función para obtener ofertas desde la API
+async function fetchOfertas() {
+  try {
+    const response = await axios.get("http://localhost:3000/api/products/");
+    ofertasDelDia.value = response.data
+    .filter(product => product.Discount > 0)
+    .map(product => ({
+      id: product.Id,
+      nombre: product.Name,
+      descripcion: product.Description,
+      precio: `${product.Price.toFixed(2)}`,
+      descuento: `(-${product.Discount}%)`,
+      precioOriginal: (product.Price / (1 - product.Discount/100)).toFixed(2),
+      imagen: product.ImageName || 'default-product.jpg'
+    }));
+  } catch (error) {
+    console.error("Error fetching offers:", error);
+    ofertasDelDia.value = [];
+  }
 }
 
-const ofertasDelDia = ref(ofertas);
+function verMasOfertas() {
+  show.value = ofertasDelDia.value.length;
+  emit("update:limite", ofertasDelDia.value.length);
+}
+
+// Cargar ofertas al montar el componente
+onMounted(() => {
+  fetchOfertas();
+});
 </script>
 
 <style lang="scss" scoped>
