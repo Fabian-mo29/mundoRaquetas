@@ -8,7 +8,9 @@
           <h3>Políticas</h3>
           <ul class="list-unstyled pt-2">
             <li class="py-1"></li>
-            <a href="#">Términos y condiciones</a>
+            <RouterLink active-class="active" to="/termsAndConditions" class="nav-link"
+              >Términos y condiciones</RouterLink
+            >
             <li class="py-1"></li>
             <a href="#">Reembolsos</a>
             <li class="py-1"></li>
