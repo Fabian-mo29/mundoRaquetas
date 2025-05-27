@@ -29,7 +29,12 @@
             class="item-price-btn d-flex flex-column justify-content-between"
           >
             <span>${{ item.Price }}</span>
-            <button class="btn btn-sm btn-danger">Eliminar</button>
+            <button
+              @click="removeFromCart(item.Id)"
+              class="btn btn-sm btn-danger"
+            >
+              Eliminar
+            </button>
           </div>
         </div>
       </div>
@@ -115,6 +120,21 @@ async function createOrder() {
   } finally {
     console.log("Orden creada");
     router.push("/"); // Redirige al inicio
+  }
+}
+
+async function removeFromCart(idProduct) {
+  try {
+    const token = sessionStorage.getItem("token");
+    await axios.delete(`http://localhost:3000/api/cart/${idProduct}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.error("Error removing item from cart:", error);
+  } finally {
+    fetchCart();
   }
 }
 </script>
