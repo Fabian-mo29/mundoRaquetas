@@ -48,7 +48,7 @@ defineProps({
 
 const descripcionTruncada = (descripcion) => {
   if (descripcion.length > 80) {
-    return descripcion.substring(0, 80) + "...";
+    return descripcion.substring(0, 50) + "...";
   }
   return descripcion;
 };
@@ -83,7 +83,7 @@ const descripcionTruncada = (descripcion) => {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 
@@ -96,33 +96,24 @@ const descripcionTruncada = (descripcion) => {
   }
 }
 
-.sala-card {
-  min-width: 330px;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+.card-body {
   display: flex;
   flex-direction: column;
-  height: 450px;
+  justify-content: space-between;
+  height: 100%;
+}
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  }
+.card-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
 
-  .card-body {
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-
-    .button-container {
-      margin-top: auto;
-      padding-top: 1rem;
-    }
-  }
+.card-text {
+  font-family: Noto Sans, sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .offer-badge {
@@ -138,11 +129,7 @@ const descripcionTruncada = (descripcion) => {
 }
 
 .text-danger {
-  color: #1a4456 !important;
-
-  .precio-oferta {
-    color: #1a4456;
-  }
+  color: #000000 !important;
 
   .descuento-oferta {
     color: #dc3545;

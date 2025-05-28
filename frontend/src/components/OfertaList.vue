@@ -40,10 +40,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  categoryHeader: {
-    type: String,
-    required: true,
-  },
 });
 
 const show = ref(props.limite);
@@ -102,23 +98,15 @@ h2 {
   justify-items: center;
 }
 
-.card {
-  width: 100%;
-  height: 450px;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-}
-
 .center-button {
+  font-family: "Poppins", sans-serif;
   grid-column: 1 / -1;
   justify-self: center;
   margin-top: 20px;
+}
+
+h2 {
+  font-family: "Poppins", sans-serif;
 }
 
 @media (max-width: 768px) {

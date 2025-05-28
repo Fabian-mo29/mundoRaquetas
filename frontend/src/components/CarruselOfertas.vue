@@ -72,7 +72,7 @@ async function fetchOfertas() {
       id: product.Id,
       nombre: product.Name,
       descripcion: product.Description,
-      precio: `${product.Price.toFixed(2)}`,
+      precio: `$${product.Price.toFixed(2)}`,
       descuento: `(-${product.Discount}%)`,
       precioOriginal: (product.Price / (1 - product.Discount/100)).toFixed(2),
       imagen: product.ImageName || 'default-product.jpg'
@@ -354,11 +354,7 @@ onUnmounted(() => {
 }
 
 .text-danger {
-  color: #1a4456 !important;
-
-  .precio-oferta {
-    color: #1a4456;
-  }
+  color: #000000 !important;
 
   .descuento-oferta {
     color: #dc3545;
