@@ -1,7 +1,7 @@
 <template>
   <!-- Carrusel de ofertas -->
-  <div class="mt-5 sala-carousel-container">
-    <h2 class="fw-bold mb-4 mt-5">Ofertas del Día</h2>
+  <div class="sala-carousel-container margin-auto">
+    <h2 class="fw-bold mt-5 responsive-text">Ofertas del Día</h2>
     <div class="position-relative">
       <div class="sala-carousel-wrapper">
         <div class="sala-carousel-track" ref="ofertasTrack">
@@ -218,6 +218,10 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
+h2 {
+  margin-left: 3%;
+}
+
 .ratio-container {
   position: relative;
   width: 100%;
@@ -247,7 +251,10 @@ onUnmounted(() => {
 
 /* Estilos para el carrusel de ofertas */
 .sala-carousel-container {
-  padding: 0 50px;
+  width: calc(100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .sala-carousel-wrapper {
@@ -403,6 +410,12 @@ onUnmounted(() => {
   .col-md-4 {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .responsive-text {
+    text-align: center;
   }
 }
 </style>

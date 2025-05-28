@@ -85,21 +85,19 @@ h2 {
 
 .main-container {
   width: calc(100%);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 #grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 20px;
   justify-items: center;
 }
 
 .center-button {
-  font-family: "Poppins", sans-serif;
   grid-column: 1 / -1;
   justify-self: center;
   margin-top: 20px;
@@ -109,7 +107,24 @@ h2 {
   font-family: "Poppins", sans-serif;
 }
 
-@media (max-width: 768px) {
+/* Responsive design */
+@media (max-width: 1200px) {
+  #grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+  }
+}
+
+@media (max-width: 900px) {
+  #grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  #grid {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+  }
+  
   .responsive-text {
     text-align: center;
   }

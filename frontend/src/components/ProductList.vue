@@ -114,7 +114,23 @@ h2 {
   font-family: "Poppins", sans-serif;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  #grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  #grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  #grid {
+    grid-template-columns: 1fr;
+  }
+  
   .responsive-text {
     text-align: center;
   }
