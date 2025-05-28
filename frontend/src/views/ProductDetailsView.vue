@@ -18,6 +18,7 @@
       <button
         class="btn btn-success btn-add-to-cart"
         style="background-color: #2c3e50"
+        @click="addToCart"
       >
         Añadir al carrito
       </button>
@@ -48,6 +49,30 @@ function getProducts() {
     .catch((error) => {
       console.error("Error fetching products:", error);
     });
+}
+
+async function addToCart() {
+  try {
+    const token = sessionStorage.getItem("token");
+    await axios.post(
+      "http://localhost:3000/api/cart",
+      {
+        product: {
+          Id: product.value.Id,
+          Cantidad: 1,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    alert("Producto agregado al carrito");
+  } catch (error) {
+    alert("Error al agregar al carrito");
+    console.error(error);
+  }
 }
 
 onMounted(() => {

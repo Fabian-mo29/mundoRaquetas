@@ -15,21 +15,26 @@
         >
           <div class="d-flex">
             <img
-              :src="'imagesProducts/' + item.image"
-              :alt="item.name"
+              :src="`/imagesProducts/${item.ImageName}`"
+              :alt="item.Name"
               class="product-img me-3"
             />
             <div>
-              <h5>{{ item.name }}</h5>
-              <p class="text-muted">{{ item.Descripcion }}</p>
+              <h5>{{ item.Name }}</h5>
+              <p class="text-muted">{{ item.Description }}</p>
               <input type="number" class="form-control fixed-input" value="1" />
             </div>
           </div>
           <div
             class="item-price-btn d-flex flex-column justify-content-between"
           >
-            <span>${{ item.precio }}</span>
-            <button class="btn btn-sm btn-danger">Eliminar</button>
+            <span>${{ item.Price }}</span>
+            <button
+              @click="removeFromCart(item.Id)"
+              class="btn btn-sm btn-danger"
+            >
+              Eliminar
+            </button>
           </div>
         </div>
       </div>
@@ -52,7 +57,9 @@
               <span class="total-price">${{ total.toFixed(2) }}</span>
             </li>
           </ul>
-          <button class="btn btn-success w-100">Realizar compra</button>
+          <button @click="createOrder" class="btn btn-success w-100">
+            Realizar compra
+          </button>
         </div>
       </div>
     </div>
@@ -64,11 +71,33 @@
 
 <script setup>
 import { RouterLink } from "vue-router";
-import { ref, computed } from "vue";
-import shoppingCart from "@/assets/shoppingCartExample.json";
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+// import shoppingCart from "@/assets/shoppingCartExample.json";
+import axios from "axios";
 
 // Lista de los productos del carrito
-const cartItems = ref(shoppingCart);
+// const cartItems = ref(shoppingCart);
+const cartItems = ref([]);
+const router = useRouter();
+// Función para obtener los productos del carrito desde la API del cart, se necesita el token de sesión del usuario
+async function fetchCart() {
+  try {
+    const token = sessionStorage.getItem("token");
+    const response = await axios.get("http://localhost:3000/api/cart", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    cartItems.value = response.data;
+  } catch (error) {
+    console.error("Error fetching cart:", error);
+  }
+}
+
+onMounted(() => {
+  fetchCart();
+});
 
 // Se calcula el subtotal de los productos en el carrito
 const subtotal = computed(() =>
@@ -77,6 +106,37 @@ const subtotal = computed(() =>
 
 // Se calcula el total, ya incluye el costo de envío (5$)
 const total = computed(() => subtotal.value + 5);
+
+async function createOrder() {
+  try {
+    const token = sessionStorage.getItem("token");
+    await axios.post("http://localhost:3000/api/orders", null, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching cart:", error);
+  } finally {
+    console.log("Orden creada");
+    router.push("/"); // Redirige al inicio
+  }
+}
+
+async function removeFromCart(idProduct) {
+  try {
+    const token = sessionStorage.getItem("token");
+    await axios.delete(`http://localhost:3000/api/cart/${idProduct}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.error("Error removing item from cart:", error);
+  } finally {
+    fetchCart();
+  }
+}
 </script>
 
 <style lang="scss" scoped>

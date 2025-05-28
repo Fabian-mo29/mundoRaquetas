@@ -23,7 +23,30 @@ function addToCart(req, res) {
   });
 }
 
+function removeFromCart(req, res) {
+  const userId = req.Id;
+  const { idProduct } = req.params;
+  cart.getActiveCart(userId, (err, cartId) => {
+    if (err) {
+      console.error("Error fetching active cart:", err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (!cartId) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    cart.removeProductFromCart(cartId, idProduct, (err2, result) => {
+      if (err2) {
+        console.error("Error removing product from cart:", err2);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      return res.status(200).json(result);
+    });
+  });
+}
+
 module.exports = {
   getUserCart,
   addToCart,
+  removeFromCart,
 };
