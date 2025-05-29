@@ -123,8 +123,8 @@
           <!-- Botón -->
           <button
             type="submit"
-            class="btn btn-success"
-            style="width: 100%; background-color: #2c3e50"
+            class="btn btn-outline-warning w-100 mt-2"
+            style="width: 100%"
           >
             Confirmar pago
           </button>
@@ -217,7 +217,10 @@ async function completePayment() {
     } else {
       mapBackendError(response.data.message || "Error al completar el pago.");
     }
+    alert("Pago completado con éxito");
   } catch (error) {
+    alert("Error al completar el pago");
+    console.error(error);
     serverError.value = "Error de conexión con el servidor.";
   }
 }
@@ -302,7 +305,6 @@ button {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   font-weight: bold;
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
+  border-radius: 5px;
 }
 </style>
