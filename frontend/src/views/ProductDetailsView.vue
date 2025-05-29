@@ -78,7 +78,7 @@ async function addToCart() {
       {
         product: {
           Id: product.value.Id,
-          Cantidad: 1,
+          Cantidad: cantidad.value,
         },
       },
       {

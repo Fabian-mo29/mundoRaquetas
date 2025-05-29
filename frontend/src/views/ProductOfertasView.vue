@@ -24,6 +24,18 @@
           </p>
         </div>
 
+        <div>
+          <label for="cantidad">Cantidad:</label>
+          <input
+            type="number"
+            class="form-control fixed-input mb-4"
+            style="max-width: 100px"
+            min="1"
+            :max="product.Stock"
+            v-model="cantidad"
+          />
+        </div>
+
         <!-- Botón de añadir al carrito -->
         <button
           class="btn btn-success btn-add-to-cart"
@@ -51,25 +63,30 @@ const product = ref({
   precio: "",
   descuento: "",
   precioOriginal: "",
-  imagen: ""
+  imagen: "",
 });
+
+const cantidad = ref(1);
 
 async function fetchProduct() {
   try {
     const productId = route.params.id || route.params.ofertaId;
-    const response = await axios.get(`http://localhost:3000/api/products/${productId}`);
+    const response = await axios.get(
+      `http://localhost:3000/api/products/${productId}`
+    );
     const productData = response.data;
-    
+
     product.value = {
       id: productData.Id,
       nombre: productData.Name,
       descripcion: productData.Description,
       precio: `$${productData.Price.toFixed(2)}`,
       descuento: productData.Discount > 0 ? `(-${productData.Discount}%)` : "",
-      precioOriginal: productData.Discount > 0 
-        ? (productData.Price / (1 - productData.Discount/100)).toFixed(2)
-        : "",
-      imagen: productData.ImageName || 'default-product.jpg'
+      precioOriginal:
+        productData.Discount > 0
+          ? (productData.Price / (1 - productData.Discount / 100)).toFixed(2)
+          : "",
+      imagen: productData.ImageName || "default-product.jpg",
     };
   } catch (error) {
     console.error("Error fetching product:", error);
@@ -84,7 +101,7 @@ async function addToCart() {
       {
         product: {
           Id: product.value.id,
-          Cantidad: 1,
+          Cantidad: cantidad.value,
         },
       },
       {
