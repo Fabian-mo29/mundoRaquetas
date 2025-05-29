@@ -65,10 +65,10 @@ function createPaymentInfo(paymentInfo, callback) {
 
 function getActiveOrders(userId, callback) {
   const query =
-    "SELECT o.Id, o.NumeroOrden, o.Fecha, o.PrecioBruto, o.PrecioNeto, COUNT(o.Id) as CantidadProductos FROM ProductosPorCarrito ppc " +
+    "SELECT o.Id, o.NumeroOrden, o.Fecha, o.FechaEstimadaLlegada, o.PrecioBruto, o.PrecioNeto, COUNT(o.Id) as CantidadProductos FROM ProductosPorCarrito ppc " +
     "JOIN Carrito c on c.Id = ppc.CarritoId JOIN Ordenes o on o.CarritoId = c.Id " +
     "WHERE o.Estado = 'Pendiente' AND c.UserId = ? " +
-    "GROUP BY o.Id, o.NumeroOrden, o.Fecha, o.PrecioBruto, o.PrecioNeto;";
+    "GROUP BY o.Id, o.NumeroOrden, o.Fecha, o.FechaEstimadaLlegada, o.PrecioBruto, o.PrecioNeto;";
   sql.query(connectionString, query, [userId], (err, results) => {
     if (err) {
       return callback(err, null);
