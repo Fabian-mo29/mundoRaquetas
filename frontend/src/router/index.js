@@ -19,6 +19,7 @@ import TrackOrderView from "@/views/TrackOrderView.vue";
 import UserViewView from "@/views/UserViewView.vue";
 import PhysicalStoreView from "@/views/PhysicalStoreView.vue";
 import TermsAndConditionsView from "@/views/TermsAndConditionsView.vue";
+import CheckoutView from "@/views/CheckoutView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -100,11 +101,6 @@ const router = createRouter({
       component: ProductSearchView,
     },
     {
-      path: "/:pathMatch(.*)*",
-      name: "NotFound",
-      component: NotFoundView,
-    },
-    {
       path: "/contactUs",
       name: "ContactUs",
       component: ContactUsView,
@@ -127,19 +123,29 @@ const router = createRouter({
     {
       path: "/physicalStore",
       name: "PhysicalStore",
-      component: PhysicalStoreView,      
+      component: PhysicalStoreView,
     },
     {
       path: "/termsAndConditions",
       name: "TermsAndConditions",
-      component: TermsAndConditionsView,      
-    }
+      component: TermsAndConditionsView,
+    },
+    {
+      path: "/shoppingCart/checkout",
+      name: "Checkout",
+      component: CheckoutView,
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: NotFoundView,
+    },
   ],
   // Hace que las rutas se abran en la posicion superior y no en el lugar donde se quedó
   scrollBehavior() {
     return {
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     };
   },
 });

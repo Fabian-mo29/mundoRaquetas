@@ -6,7 +6,7 @@
       <!-- Productos del Shopping Cart -->
       <div class="col-lg-8">
         <h3 class="mb-5">Tu carrito de compras</h3>
-        
+
         <!-- Mensaje si el carrito está vacío -->
         <!-- <div v-if="cartItems.length === 0" class="alert alert-info">
           Tu carrito está vacío y no tiene productos. Compra algunos artículos para comenzar.
@@ -62,9 +62,9 @@
               <span class="total-price">${{ total.toFixed(2) }}</span>
             </li>
           </ul>
-          <button @click="createOrder" class="btn btn-success w-100">
+          <RouterLink to="/shoppingCart/checkout" class="btn btn-success w-100">
             Realizar compra
-          </button>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -77,12 +77,10 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { ref, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
 import axios from "axios";
 
 // Lista de los productos del carrito
 const cartItems = ref([]);
-const router = useRouter();
 
 // const total = ref(0);
 const subtotal = ref(0);
@@ -125,23 +123,6 @@ onMounted(() => {
 
 // Se calcula el total, ya incluye el costo de envío (5$) este puede ser modificado en el futuro
 const total = computed(() => subtotal.value + shippingCost);
-
-// Función para crear una orden, se necesita el token de sesión del usuario
-async function createOrder() {
-  try {
-    const token = sessionStorage.getItem("token");
-    await axios.post("http://localhost:3000/api/orders", null, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  } catch (error) {
-    console.error("Error fetching cart:", error);
-  } finally {
-    console.log("Orden creada");
-    router.push("/"); // Redirige al inicio
-  }
-}
 
 // Función para eliminar un producto del carrito, se necesita el token de sesión del usuario
 async function removeFromCart(idProduct) {
