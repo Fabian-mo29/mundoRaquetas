@@ -82,8 +82,11 @@
           >
             <i class="pi pi-cart-minus"></i>
           </RouterLink>
-          <RouterLink to="/search" class="icon"
-            ><i class="pi pi-search"></i
+          <RouterLink
+            to="/search"
+            class="icon"
+            >
+              <i class="pi pi-search"></i
           ></RouterLink>
           <RouterLink
             :to="username !== 'Invitado' ? '/user' : '/logIn'"
@@ -183,8 +186,12 @@
             >
               <i class="pi pi-cart-minus"></i>
             </RouterLink>
-            <RouterLink to="/search" class="icon"
-              ><i class="pi pi-search"></i
+            <RouterLink
+              to="/search"
+              class="icon"
+              @click="closeCanvas()"
+            >
+              <i class="pi pi-search"></i
             ></RouterLink>
             <RouterLink
               :to="username !== 'Invitado' ? '/user' : '/logIn'"
