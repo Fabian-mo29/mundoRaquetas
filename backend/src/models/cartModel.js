@@ -95,7 +95,7 @@ function getCartByUserId(userId, callback) {
     if (err) return callback(err, null);
 
     const query =
-      "SELECT p.Id, p.Name, p.Description, p.Price, p.Discount, p.Category, i.Name AS ImageName " +
+      "SELECT p.Id, p.Name, p.Description, p.Price, p.Discount, p.Category, i.Name AS ImageName, ppc.Cantidad " +
       "FROM ProductosPorCarrito ppc " +
       "JOIN Productos p ON ppc.ProductoId = p.Id " +
       "JOIN Imagen i on i.ProductoId = p.Id " +

@@ -27,7 +27,7 @@
             <div>
               <h5>{{ item.Name }}</h5>
               <p class="text-muted">{{ item.Description }}</p>
-              <input type="number" class="form-control fixed-input" value="1" />
+              <div class="form-value">{{ "Cantidad: " + item.Cantidad }}</div>
             </div>
           </div>
           <div
@@ -56,6 +56,10 @@
             <li class="d-flex justify-content-between">
               <span>Costos de envío:</span>
               <span>$5.00</span>
+            </li>
+            <li class="d-flex justify-content-between">
+              <span>Impuestos:</span>
+              <span>13%</span>
             </li>
             <li class="d-flex justify-content-between">
               <span class="total-price">Total:</span>
@@ -122,7 +126,9 @@ onMounted(() => {
 });
 
 // Se calcula el total, ya incluye el costo de envío (5$) este puede ser modificado en el futuro
-const total = computed(() => subtotal.value + shippingCost);
+const total = computed(
+  () => subtotal.value + subtotal.value * 0.13 + shippingCost
+);
 
 // Función para eliminar un producto del carrito, se necesita el token de sesión del usuario
 async function removeFromCart(idProduct) {

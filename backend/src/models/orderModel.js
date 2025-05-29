@@ -11,7 +11,6 @@ function createNewOrder(
     if (err) {
       return callback(err, null);
     }
-    console.log("Payment information created with ID:", paymentInfoId);
     const query =
       "INSERT INTO Ordenes (CarritoId, PrecioBruto, PrecioNeto, InformacionPagoId) " +
       "VALUES (?, ?, ?, ?)";

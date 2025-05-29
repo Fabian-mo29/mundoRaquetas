@@ -1,33 +1,45 @@
 <template>
   <div class="container mt-5 product-detail">
     <div class="row">
-    <div class="col-md-6 product-image-container">
-      <img
-        :src="`/imagesProducts/${product.ImageName}`"
-        class="img-fluid product-image"
-        :alt="'Imagen de ' + product.Name"
-      />
-    </div>
-
-    <div class="col-md-6 product-info">
-      <h1 class="product-title">{{ product.Name }}</h1>
-      <p class="product-description">{{ product.Description }}</p>
-      <div class="price-container">
-        <p class="product-price">
-          <strong>${{ product.Price }}</strong>
-        </p>
+      <div class="col-md-6 product-image-container">
+        <img
+          :src="`/imagesProducts/${product.ImageName}`"
+          class="img-fluid product-image"
+          :alt="'Imagen de ' + product.Name"
+        />
       </div>
 
-      <!-- Botón añador al carrito-->
-      <button
-        class="btn btn-success btn-add-to-cart"
-        style="background-color: #2c3e50"
-        @click="addToCart"
-      >
-        Añadir al carrito
-      </button>
+      <div class="col-md-6 product-info">
+        <h1 class="product-title">{{ product.Name }}</h1>
+        <p class="product-description">{{ product.Description }}</p>
+        <div class="price-container">
+          <p class="product-price">
+            <strong>${{ product.Price }}</strong>
+          </p>
+        </div>
+
+        <div>
+          <label for="cantidad">Cantidad:</label>
+          <input
+            type="number"
+            class="form-control fixed-input mb-4"
+            style="max-width: 100px"
+            min="1"
+            :max="product.Stock"
+            v-model="cantidad"
+          />
+        </div>
+
+        <!-- Botón añador al carrito-->
+        <button
+          class="btn btn-success btn-add-to-cart"
+          style="background-color: #2c3e50"
+          @click="addToCart"
+        >
+          Añadir al carrito
+        </button>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -42,6 +54,8 @@ const props = defineProps({
     required: true,
   },
 });
+
+const cantidad = ref(1);
 
 const product = ref({});
 
@@ -114,7 +128,6 @@ onMounted(() => {
   background-color: #28a745;
   border: none;
 }
-
 
 .btn-add-to-cart:hover {
   background-color: #218838;
