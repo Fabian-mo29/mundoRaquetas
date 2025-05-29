@@ -6,6 +6,11 @@
       <!-- Productos del Shopping Cart -->
       <div class="col-lg-8">
         <h3 class="mb-5">Tu carrito de compras</h3>
+        
+        <!-- Mensaje si el carrito está vacío -->
+        <!-- <div v-if="cartItems.length === 0" class="alert alert-info">
+          Tu carrito está vacío y no tiene productos. Compra algunos artículos para comenzar.
+        </div> -->
 
         <!-- Se muestran los productos que estén en el carrito del perfil del cliente (De momento es un json de ejemplo) -->
         <div
@@ -46,7 +51,7 @@
           <ul class="list-unstyled">
             <li class="d-flex justify-content-between">
               <span>Subtotal:</span>
-              <span>${{ subtotal.toFixed(2) }}</span>
+              <span>${{ subtotal }}</span>
             </li>
             <li class="d-flex justify-content-between">
               <span>Costos de envío:</span>
@@ -73,13 +78,16 @@
 import { RouterLink } from "vue-router";
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-// import shoppingCart from "@/assets/shoppingCartExample.json";
 import axios from "axios";
 
 // Lista de los productos del carrito
-// const cartItems = ref(shoppingCart);
 const cartItems = ref([]);
 const router = useRouter();
+
+// const total = ref(0);
+const subtotal = ref(0);
+const shippingCost = 5;
+
 // Función para obtener los productos del carrito desde la API del cart, se necesita el token de sesión del usuario
 async function fetchCart() {
   try {
@@ -95,18 +103,30 @@ async function fetchCart() {
   }
 }
 
+// Función para obtener el subtotal de los productos en el carrito, se necesita el token de sesión del usuario
+async function subTotalPrice() {
+  try {
+    const token = sessionStorage.getItem("token");
+    const response = await axios.get("http://localhost:3000/api/cart/total", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    subtotal.value = response.data;
+  } catch (error) {
+    console.error("Error getting total price of the cart:", error);
+  }
+}
+
 onMounted(() => {
   fetchCart();
+  subTotalPrice();
 });
 
-// Se calcula el subtotal de los productos en el carrito
-const subtotal = computed(() =>
-  cartItems.value.reduce((sum, item) => sum + parseFloat(item.precio), 0)
-);
+// Se calcula el total, ya incluye el costo de envío (5$) este puede ser modificado en el futuro
+const total = computed(() => subtotal.value + shippingCost);
 
-// Se calcula el total, ya incluye el costo de envío (5$)
-const total = computed(() => subtotal.value + 5);
-
+// Función para crear una orden, se necesita el token de sesión del usuario
 async function createOrder() {
   try {
     const token = sessionStorage.getItem("token");
@@ -123,6 +143,7 @@ async function createOrder() {
   }
 }
 
+// Función para eliminar un producto del carrito, se necesita el token de sesión del usuario
 async function removeFromCart(idProduct) {
   try {
     const token = sessionStorage.getItem("token");
@@ -135,6 +156,7 @@ async function removeFromCart(idProduct) {
     console.error("Error removing item from cart:", error);
   } finally {
     fetchCart();
+    subTotalPrice();
   }
 }
 </script>

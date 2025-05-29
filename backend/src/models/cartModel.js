@@ -48,15 +48,44 @@ function addToCart(userId, product, callback) {
 }
 
 function insertProduct(cartId, product, callback) {
-  const query =
-    "INSERT INTO ProductosPorCarrito (CarritoId, ProductoId, Cantidad) VALUES (?, ?, ?)";
+  // Se verifica si el producto ya está agregado en el carrito
+  const checkQuery =
+    "SELECT Cantidad FROM ProductosPorCarrito WHERE CarritoId = ? AND ProductoId = ?";
   sql.query(
     connectionString,
-    query,
-    [cartId, product.Id, product.Cantidad],
+    checkQuery,
+    [cartId, product.Id],
     (err, result) => {
       if (err) return callback(err, null);
-      return callback(null, result);
+
+      if (result.length > 0) {
+        // Si el producto ya está en el carrito, se suma la cantidad
+        const newCantidad = result[0].Cantidad + product.Cantidad;
+        const updateQuery =
+          "UPDATE ProductosPorCarrito SET Cantidad = ? WHERE CarritoId = ? AND ProductoId = ?";
+        sql.query(
+          connectionString,
+          updateQuery,
+          [newCantidad, cartId, product.Id],
+          (err2, result2) => {
+            if (err2) return callback(err2, null);
+            return callback(null, result2);
+          }
+        );
+      } else {
+        // Si no existe el producto, hace un insert normal
+        const insertQuery =
+          "INSERT INTO ProductosPorCarrito (CarritoId, ProductoId, Cantidad) VALUES (?, ?, ?)";
+        sql.query(
+          connectionString,
+          insertQuery,
+          [cartId, product.Id, product.Cantidad],
+          (err3, result3) => {
+            if (err3) return callback(err3, null);
+            return callback(null, result3);
+          }
+        );
+      }
     }
   );
 }
