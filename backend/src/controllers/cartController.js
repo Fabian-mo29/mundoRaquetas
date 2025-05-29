@@ -45,8 +45,30 @@ function removeFromCart(req, res) {
   });
 }
 
+function getTotalPrice(req, res) {
+  const userId = req.Id;
+  cart.getActiveCart(userId, (err, cartId) => {
+    if (err) {
+      console.error("Error fetching active cart:", err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (!cartId) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    cart.getTotalPrice(cartId, (err2, result) => {
+      if (err2) {
+        console.error("Error calculating total price of the cart:", err2);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      return res.status(200).json(result);
+    });
+  });
+}
+
 module.exports = {
   getUserCart,
   addToCart,
   removeFromCart,
+  getTotalPrice,
 };
