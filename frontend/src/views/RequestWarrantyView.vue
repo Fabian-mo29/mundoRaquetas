@@ -9,144 +9,149 @@
     rel="stylesheet"
   />
   <!-- Ejemplo obtenido de: https://bootstrapbrain.com/demo/components/contacts/contact-6/#! -->
-  <section class="chas py-3 py-md-5 py-xl-8 bg-image">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div
-            class="card border border-dark rounded shadow-sm overflow-hidden"
-          >
-            <div class="card-body p-0">
-              <div class="row gy-3 gy-md-4 gy-lg-0">
-                <!-- Información sobre garantía -->
-                <div
-                  class="col-12 col-lg-6 bsb-overlay background-position-center background-size-cover"
-                  style="
-                    --bsb-overlay-opacity: 0.7;
-                    background-color: transparent;
-                  "
-                >
-                  <div
-                    class="warrantyInfo-card-color row align-items-lg-center justify-content-center h-100"
-                  >
-                    <div class="col-11 col-xl-10">
-                      <div class="contact-info-wrapper py-4 py-xl-5">
-                        <h2 class="primary-font h1 mb-3 text-light">
-                          Solicitud de garantía
-                        </h2>
-                        <p
-                          class="secondary-font lead fs-4 text-light opacity-75 mb-4 mb-xxl-5"
-                        >
-                          Para nosotros es importante que estés satisfecho con
-                          tu compra. Si tienes algún problema con algún
-                          producto, no dudes en llenar este formulario para
-                          llevar a cabo el proceso de garantía.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Formulario para solicitar garantía -->
-                <div class="form-card-color col-12 col-lg-6">
-                  <div class="row align-items-lg-center h-100">
-                    <div class="col-12">
-                      <form action="#!">
-                        <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
-                          <div class="col-12">
-                            <label
-                              for="productName"
-                              class="form-label secondary-font"
-                              >Nombre del producto
-                              <span class="text-danger">*</span></label
+  <div class="bg-image">
+    <div class="overlay">
+      <div class="chas py-3 py-md-5 py-xl-8">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div
+                class="card rounded shadow-sm overflow-hidden"
+                 style="background-color: transparent"
+              >
+                <div class="card-body p-0">
+                  <div class="row gy-3 gy-md-4 gy-lg-0">
+                    <!-- Información sobre garantía -->
+                    <div
+                      class="col-12 col-lg-6 bsb-overlay background-position-center background-size-cover"
+                      style="
+                        --bsb-overlay-opacity: 0.7;
+                        background-color: transparent;
+                      "
+                    >
+                      <div
+                        class="warrantyInfo-card-color row align-items-lg-center justify-content-center h-100"
+                      >
+                        <div class="col-11 col-xl-10">
+                          <div class="contact-info-wrapper py-4 py-xl-5">
+                            <h2 class="primary-font h1 mb-3 text-light">
+                              Solicitud de garantía
+                            </h2>
+                            <p
+                              class="secondary-font lead fs-4 text-light opacity-75 mb-4 mb-xxl-5"
                             >
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="productName"
-                              name="productName"
-                              value=""
-                              required
-                            />
-                          </div>
-                          <div class="col-12 col-md-6">
-                            <label
-                              for="purchaseDate"
-                              class="form-label secondary-font"
-                              >Fecha de compra
-                              <span class="text-danger">*</span></label
-                            >
-                            <div class="input-group">
-                              <input
-                                type="date"
-                                class="form-control"
-                                id="purchaseDate"
-                                name="purchaseDate"
-                                value=""
-                                required
-                              />
-                            </div>
-                          </div>
-                          <div class="col-12 col-md-6">
-                            <label
-                              for="receiptID"
-                              class="form-label secondary-font"
-                              >Número de recibo</label
-                            >
-                            <div class="input-group">
-                              <input
-                                type="number"
-                                class="form-control"
-                                id="receiptID"
-                                name="receiptID"
-                                value=""
-                              />
-                            </div>
-                          </div>
-                          <div class="col-12">
-                            <label
-                              for="productImageDefect"
-                              class="form-label secondary-font"
-                              >Imagen del producto defectuoso
-                              <span class="text-danger">*</span></label
-                            >
-                            <input
-                              type="file"
-                              accept="image/*"
-                              class="form-control"
-                              id="productImageDefect"
-                              name="productImageDefect"
-                              value=""
-                              required
-                            />
-                          </div>
-                          <div class="col-12">
-                            <label
-                              for="problemDescription"
-                              class="form-label secondary-font"
-                              >Descripción del problema
-                              <span class="text-danger">*</span></label
-                            >
-                            <textarea
-                              class="form-control"
-                              id="problemDescription"
-                              name="problemDescription"
-                              rows="3"
-                              required
-                            ></textarea>
-                          </div>
-                          <div class="col-12">
-                            <div class="d-grid">
-                              <!-- Se puede hacer que una vez hecho un mensaje, este pueda ser enviado automáticamente al correo. -->
-                              <button
-                                class="button-color secondary-font btn btn-primary btn-lg"
-                                type="reset"
-                              >
-                                Enviar mensaje
-                              </button>
-                            </div>
+                              Para nosotros es importante que estés satisfecho
+                              con tu compra. Si tienes algún problema con algún
+                              producto, no dudes en llenar este formulario para
+                              llevar a cabo el proceso de garantía.
+                            </p>
                           </div>
                         </div>
-                      </form>
+                      </div>
+                    </div>
+                    <!-- Formulario para solicitar garantía -->
+                    <div class="form-card-color col-12 col-lg-6">
+                      <div class="row align-items-lg-center h-100">
+                        <div class="col-12">
+                          <form action="#!">
+                            <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
+                              <div class="col-12">
+                                <label
+                                  for="productName"
+                                  class="form-label secondary-font"
+                                  >Nombre del producto
+                                  <span class="text-danger">*</span></label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="productName"
+                                  name="productName"
+                                  value=""
+                                  required
+                                />
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <label
+                                  for="purchaseDate"
+                                  class="form-label secondary-font"
+                                  >Fecha de compra
+                                  <span class="text-danger">*</span></label
+                                >
+                                <div class="input-group">
+                                  <input
+                                    type="date"
+                                    class="form-control"
+                                    id="purchaseDate"
+                                    name="purchaseDate"
+                                    value=""
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-12 col-md-6">
+                                <label
+                                  for="receiptID"
+                                  class="form-label secondary-font"
+                                  >Número de recibo</label
+                                >
+                                <div class="input-group">
+                                  <input
+                                    type="number"
+                                    class="form-control"
+                                    id="receiptID"
+                                    name="receiptID"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-12">
+                                <label
+                                  for="productImageDefect"
+                                  class="form-label secondary-font"
+                                  >Imagen del producto defectuoso
+                                  <span class="text-danger">*</span></label
+                                >
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  class="form-control"
+                                  id="productImageDefect"
+                                  name="productImageDefect"
+                                  value=""
+                                  required
+                                />
+                              </div>
+                              <div class="col-12">
+                                <label
+                                  for="problemDescription"
+                                  class="form-label secondary-font"
+                                  >Descripción del problema
+                                  <span class="text-danger">*</span></label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="problemDescription"
+                                  name="problemDescription"
+                                  rows="3"
+                                  required
+                                ></textarea>
+                              </div>
+                              <div class="col-12">
+                                <div class="d-grid">
+                                  <!-- Se puede hacer que una vez hecho un mensaje, este pueda ser enviado automáticamente al correo. -->
+                                  <button
+                                    class="button-color secondary-font btn btn-primary btn-lg"
+                                    type="reset"
+                                  >
+                                    Enviar mensaje
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -156,7 +161,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
   <head>
     <link
       rel="stylesheet"
@@ -192,6 +197,19 @@
   height: 100%;
   position: relative;
   z-index: 0;
+}
+
+.overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.4)
+  );
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 /* Estilos para poner el color de los contenedores y botón */

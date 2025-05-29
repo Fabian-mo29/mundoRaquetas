@@ -74,7 +74,10 @@
             </li>
             <li>
               Si deseas revisar tus pedidos anteriores, puedes hacerlo en la
-              sección de <a href="/trackOrder">Seguimiento de órdenes</a>
+              sección de
+              <a href="/trackOrder" style="color: #ffc107"
+                >Seguimiento de órdenes</a
+              >
             </li>
           </ul>
 
@@ -121,12 +124,13 @@
             </li>
           </ul>
 
-          <h3>5. Devoluciones y garantías</h3>
+          <h3>5. Reembolsos y garantías</h3>
           <ul>
             <li>
-              Para información más detallada sobre devoluciones, consulta
-              nuestra
-              <a href="/returnsPolicy">Política de Devoluciones</a>.
+              Para información más detallada sobre reembolsos, consulta nuestra
+              <a href="/refunds" style="color: #ffc107"
+                >Política de Devoluciones</a
+              >.
             </li>
             <li>
               Derecho de desistimiento: 14 días naturales desde la recepción del
@@ -150,7 +154,9 @@
           <ul>
             <li>
               Todos los datos personales se tratarán conforme a nuestra
-              <a href="/privacyPolicy">Política de Privacidad.</a>
+              <a href="/privacyPolicy" style="color: #ffc107"
+                >Política de Privacidad.</a
+              >
             </li>
             <li>
               Los datos proporcionados solo se utilizarán para procesar el
@@ -167,7 +173,7 @@
             <li>
               Para cualquier consulta sobre estos términos o sobre tu pedido,
               puedes visitar nuestro apartado de
-              <a href="/contactUs">Contacto</a><br />
+              <a href="/contactUs" style="color: #ffc107">Contacto</a><br />
               De igual manera, puedes contactarnos a través de los siguientes
               medios:
               <ul>

@@ -20,6 +20,10 @@ import UserViewView from "@/views/UserViewView.vue";
 import PhysicalStoreView from "@/views/PhysicalStoreView.vue";
 import TermsAndConditionsView from "@/views/TermsAndConditionsView.vue";
 import CheckoutView from "@/views/CheckoutView.vue";
+import RefundsView from "@/views/RefundsView.vue";
+import PrivacyPolicyView from "@/views/PrivacyPolicyView.vue";
+import BuyingGuideView from "@/views/BuyingGuideView.vue";
+import WarrantyView from "@/views/WarrantyView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -134,6 +138,26 @@ const router = createRouter({
       path: "/shoppingCart/checkout",
       name: "Checkout",
       component: CheckoutView,
+    },
+    {
+      path: "/refunds",
+      name: "Refunds",
+      component: RefundsView,
+    },
+    {
+      path: "/privacyPolicy",
+      name: "PrivacyPolicy",
+      component: PrivacyPolicyView,
+    },
+    {
+      path: "/buyingGuide",
+      name: "BuyingGuide",
+      component: BuyingGuideView,
+    },
+    {
+      path: "/warranty",
+      name: "Warranty",
+      component: WarrantyView,
     },
     {
       path: "/:pathMatch(.*)*",

@@ -8,15 +8,25 @@
           <h3>Políticas</h3>
           <ul class="list-unstyled pt-2">
             <li class="py-1"></li>
-            <RouterLink active-class="active" to="/termsAndConditions" class="nav-link"
+            <RouterLink
+              active-class="active"
+              to="/termsAndConditions"
+              class="nav-link"
               >Términos y condiciones</RouterLink
             >
             <li class="py-1"></li>
-            <a href="#">Reembolsos</a>
+            <RouterLink active-class="active" to="/refunds" class="nav-link"
+              >Reembolsos</RouterLink
+            >
             <li class="py-1"></li>
-            <a href="#">Privacidad</a>
-            <li class="py-1"></li>
-            <a href="#">Cookies</a>
+            <RouterLink
+              active-class="active"
+              to="/privacyPolicy"
+              class="nav-link"
+              >Privacidad</RouterLink
+            >
+            <!-- <li class="py-1"></li>
+            <a href="#">Cookies</a> -->
           </ul>
         </div>
         <div class="col">
@@ -40,8 +50,12 @@
           <h3>Nosotros</h3>
           <ul class="list-unstyled pt-2">
             <li class="py-1"></li>
-            <RouterLink active-class="active" to="/physicalStore" class="nav-link"
-              >Tienda física</RouterLink>
+            <RouterLink
+              active-class="active"
+              to="/physicalStore"
+              class="nav-link"
+              >Tienda física</RouterLink
+            >
             <li class="py-1"></li>
             <a href="#">Blog</a>
           </ul>
@@ -50,9 +64,13 @@
           <h3>Recursos</h3>
           <ul class="list-unstyled pt-2">
             <li class="py-1"></li>
-            <a href="#">Guía para comprar</a>
+            <RouterLink active-class="active" to="/buyingGuide" class="nav-link"
+              >Guía para comprar</RouterLink
+            >
             <li class="py-1"></li>
-            <a href="#">Garantías</a>
+            <RouterLink active-class="active" to="/warranty" class="nav-link"
+              >Garantías</RouterLink
+            >
           </ul>
         </div>
         <div class="col-6 col-lg-3 text-lg-end">
@@ -103,7 +121,7 @@ a:hover {
 
 /* Estilo para el color de los iconos de redes sociales al pasar el mouse*/
 .social-media i:hover {
-  color: #3498db;
+  color: #ffc107;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
