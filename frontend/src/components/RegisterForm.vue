@@ -1,4 +1,13 @@
 <template>
+  <!-- Se exportan las fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
   <div class="bg-image">
     <div class="overlay">
       <div
