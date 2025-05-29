@@ -59,6 +59,16 @@ FOREIGN KEY (CarritoId) REFERENCES Carrito(Id),
 FOREIGN KEY (ProductoId) REFERENCES Productos(Id)
 );
 
+CREATE TABLE InformacionPago (
+	Id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT NEWID(),
+	Provincia VARCHAR(20) NOT NULL,
+	Canton VARCHAR(20) NOT NULL,
+	InformacionUbicacion VARCHAR(200) NOT NULL,
+	NumeroTarjeta NVARCHAR(256) NOT NULL,      -- Encriptado como texto
+    FechaVencimiento NVARCHAR(100) NOT NULL,   -- Encriptado
+    NumeroSeguridad NVARCHAR(100) NOT NULL,    -- Encriptado
+);
+
 CREATE TABLE Ordenes(
 Id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT NEWID(),
 NumeroOrden INT IDENTITY(1000, 2) NOT NULL, 
@@ -73,13 +83,4 @@ FOREIGN KEY (CarritoId) REFERENCES Carrito(Id),
 FOREIGN KEY (InformacionPagoId) REFERENCES InformacionPago(Id)
 );
 
-CREATE TABLE InformacionPago (
-	Id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT NEWID(),
-	Provincia VARCHAR(20) NOT NULL,
-	Canton VARCHAR(20) NOT NULL,
-	InformacionUbicacion VARCHAR(200) NOT NULL,
-	NumeroTarjeta NVARCHAR(256) NOT NULL,      -- Encriptado como texto
-    FechaVencimiento NVARCHAR(100) NOT NULL,   -- Encriptado
-    NumeroSeguridad NVARCHAR(100) NOT NULL,    -- Encriptado
-);
 
