@@ -6,6 +6,8 @@
         v-for="(product, index) in products.slice(0, show)"
         :key="index"
         class="card shadow"
+        data-aos="fade-up"
+        :data-aos-delay="index * 100"
       >
         <ProductCard :product="product" :limite="limite" />
       </div>
@@ -86,6 +88,7 @@ watch(
 <style lang="scss" scoped>
 h2 {
   margin-left: 3%;
+  color: #2c3e50;
 }
 
 .main-container {

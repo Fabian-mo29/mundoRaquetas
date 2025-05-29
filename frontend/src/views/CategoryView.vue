@@ -6,6 +6,8 @@
         v-for="(product, index) in filteredProducts.slice(0, show)"
         :key="index"
         class="card shadow"
+        data-aos="fade-up"
+        :data-aos-delay="index * 100"
       >
         <ProductCard :product="product" :limite="limite" />
       </div>
@@ -71,6 +73,8 @@ onMounted(() => {
 <style lang="scss" scoped>
 h2 {
   margin-left: 5%;
+  color: #2c3e50;
+  font-family: "Poppins", sans-serif;
 }
 
 .main-container {

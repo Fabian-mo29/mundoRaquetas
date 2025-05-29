@@ -112,15 +112,14 @@
           <div class="d-flex justify-content-between">
             <p class="mb-4">
               Si ya tiene una cuenta
-              <RouterLink to="/login" class="text-primary"
+              <RouterLink to="/login" class="link-warning"
                 >Inicie sesión aquí</RouterLink
               >
             </p>
           </div>
           <button
             type="submit"
-            class="btn btn-success"
-            style="width: 100%; background-color: #2c3e50"
+            class="btn btn-outline-warning w-100 mt-2"
           >
             Registrarse
           </button>
@@ -200,6 +199,18 @@ async function Register() {
 }
 </script>
 <style lang="scss" scoped>
+
+.link-warning {
+  color: #ffc107 !important;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.link-warning:hover {
+  color: #ffea70 !important;
+}
+
 .bg-image {
   background-image: url("@/assets/canchaPadel.jpg");
   background-size: cover;
@@ -274,11 +285,26 @@ p {
   font-size: 1rem;
 }
 
-button {
+.btn {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   font-weight: bold;
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-warning {
+  border-width: 2px;
+  border-color: #ffc107 !important;
+  color: #ffc107 !important;
+  background-color: transparent;
+}
+
+.btn-outline-warning:hover,
+.btn-outline-warning:focus,
+.btn-outline-warning:active {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+  border-color: #ffc107 !important;
 }
 </style>

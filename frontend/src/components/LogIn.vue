@@ -41,19 +41,18 @@
           <div class="d-flex justify-content-between">
             <p class="mb-4">
               Si no tiene una cuenta
-              <RouterLink to="/register" class="text-primary"
+              <RouterLink to="/register" class="link-warning"
                 >Regístrese aquí</RouterLink
               >
             </p>
           </div>
 
           <button
-            type="submit"
-            class="btn btn-success"
-            style="width: 100%; background-color: #2c3e50"
-          >
-            Iniciar Sesión
-          </button>
+          type="submit"
+          class="btn btn-outline-warning w-100 mt-2"
+        >
+          Iniciar Sesión
+        </button>
         </form>
       </div>
     </div>
@@ -104,6 +103,18 @@ async function logIn() {
 </script>
 
 <style lang="scss" scoped>
+
+.link-warning {
+  color: #ffc107 !important;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.link-warning:hover {
+  color: #ffea70 !important;
+}
+
 .bg-image {
   background-image: url("@/assets/canchaPadel.jpg");
   background-size: cover;
@@ -182,7 +193,6 @@ button {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   font-weight: bold;
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
+  border-radius: 5px;
 }
 </style>

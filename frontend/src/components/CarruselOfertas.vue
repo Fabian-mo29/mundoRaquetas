@@ -1,11 +1,22 @@
 <template>
   <!-- Carrusel de ofertas -->
   <div class="sala-carousel-container margin-auto">
-    <h2 class="fw-bold mt-5 responsive-text">Ofertas del Día</h2>
+    <div class="title-animated-container mt-5 mb-4">
+      <span class="title-animated-text">Ofertas del Día</span>
+      <span class="padel-ball"></span>
+    </div>
     <div class="position-relative">
       <div class="sala-carousel-wrapper">
-        <div class="sala-carousel-track" ref="ofertasTrack">
-          <div class="sala-card" v-for="oferta in ofertasDelDia" :key="oferta.id">
+        <div
+          class="sala-carousel-track"
+          ref="ofertasTrack"
+          @transitionend="handleTransitionEnd"
+        >
+          <div
+            class="sala-card"
+            v-for="(oferta, idx) in loopedOfertas"
+            :key="idx + '-' + oferta.id"
+          >
             <div class="ratio-container">
               <img
                 :src="`/imagesProducts/${oferta.imagen}`"
@@ -17,7 +28,9 @@
             <div class="card-body">
               <div>
                 <h5 class="card-title">{{ oferta.nombre }}</h5>
-                <p class="card-text">{{ descripcionTruncada(oferta.descripcion) }}</p>
+                <p class="card-text">
+                  {{ descripcionTruncada(oferta.descripcion) }}
+                </p>
               </div>
               <div class="button-container">
                 <p class="h5 mb-0 text-danger">
@@ -50,7 +63,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed, nextTick } from "vue";
 import axios from "axios";
 
 const ofertasTrack = ref(null);
@@ -63,20 +76,48 @@ const prevTranslate = ref(0);
 
 const ofertasDelDia = ref([]);
 
+const getCardsPerView = () => {
+  if (!ofertasTrack.value) return 1;
+  const containerWidth = ofertasTrack.value.parentElement.offsetWidth;
+  const cardWidth = ofertasTrack.value.children[0]?.offsetWidth || 330;
+  const gap = 20;
+  return Math.floor(containerWidth / (cardWidth + gap)) || 1;
+};
+
+const cardsPerView = ref(1);
+
+const loopedOfertas = computed(() => {
+  if (ofertasDelDia.value.length === 0) return [];
+  const n = cardsPerView.value;
+  return [
+    ...ofertasDelDia.value.slice(-n),
+    ...ofertasDelDia.value,
+    ...ofertasDelDia.value.slice(0, n),
+  ];
+});
+
+const realCards = computed(() => ofertasDelDia.value.length);
+
 async function fetchOfertas() {
   try {
     const response = await axios.get("http://localhost:3000/api/products/");
     ofertasDelDia.value = response.data
-    .filter(product => product.Discount > 0)
-    .map(product => ({
-      id: product.Id,
-      nombre: product.Name,
-      descripcion: product.Description,
-      precio: `$${product.Price.toFixed(2)}`,
-      descuento: `(-${product.Discount}%)`,
-      precioOriginal: (product.Price / (1 - product.Discount/100)).toFixed(2),
-      imagen: product.ImageName || 'default-product.jpg'
-    }));
+      .filter((product) => product.Discount > 0)
+      .map((product) => ({
+        id: product.Id,
+        nombre: product.Name,
+        descripcion: product.Description,
+        precio: `$${product.Price.toFixed(2)}`,
+        descuento: `(-${product.Discount}%)`,
+        precioOriginal: (product.Price / (1 - product.Discount / 100)).toFixed(
+          2
+        ),
+        imagen: product.ImageName || "default-product.jpg",
+      }));
+    await nextTick();
+    cardsPerView.value = getCardsPerView();
+    // Inicializa el carrusel en la posición real
+    scrollToCard(cardsPerView.value, true);
   } catch (error) {
     console.error("Error fetching offers:", error);
     ofertasDelDia.value = [];
@@ -90,48 +131,31 @@ const descripcionTruncada = (descripcion) => {
   return descripcion;
 };
 
-const scrollToCard = (index) => {
+const scrollToCard = (index, instant = false) => {
   if (!ofertasTrack.value) return;
 
   const cardWidth = ofertasTrack.value.children[0]?.offsetWidth || 330;
-  const gap = 20; // El mismo gap que tienes en el CSS
-
-  const containerWidth = ofertasTrack.value.parentElement.offsetWidth;
-  const totalCardsWidth = ofertasDelDia.value.length * (cardWidth + gap);
-  
-  // Si estamos en la última card y ya es visible, reiniciar
-  if (index >= ofertasDelDia.value.length - 3.5) {
-    const currentScroll = -parseInt(ofertasTrack.value.style.transform.replace('translateX(', '').replace('px)', '') || 0);
-    const visibleWidth = containerWidth;
-    const remainingWidth = totalCardsWidth - currentScroll - visibleWidth;
-    
-    // Si la última card ya es visible (o casi visible)
-    if (remainingWidth <= cardWidth * 1.5) {
-       setTimeout(() => {
-        ofertasTrack.value.style.transition = 'transform 0.5s ease-out';
-        ofertasTrack.value.style.transform = 'translateX(0)';
-        currentIndex.value = 0;
-      }, 500); // Pequeña pausa antes de reiniciar
-      return;
-    }
-  }
-
+  const gap = 20;
   const scrollPosition = index * (cardWidth + gap);
-  
-  ofertasTrack.value.style.transition = "transform 0.5s ease-out";
+
+  ofertasTrack.value.style.transition = instant
+    ? "none"
+    : "transform 0.5s ease-out";
   ofertasTrack.value.style.transform = `translateX(-${scrollPosition}px)`;
   currentIndex.value = index;
 };
 
 const scrollOfertas = (direction) => {
-  const newIndex = currentIndex.value + direction;
+  scrollToCard(currentIndex.value + direction);
+};
 
-  // Validar límites
-  if (newIndex < 0 || newIndex >= ofertasDelDia.value.length) {
-    return;
+const handleTransitionEnd = () => {
+  // Si estamos en clones, saltar instantáneamente al real
+  if (currentIndex.value >= realCards.value + cardsPerView.value) {
+    scrollToCard(cardsPerView.value, true);
+  } else if (currentIndex.value < cardsPerView.value) {
+    scrollToCard(realCards.value + cardsPerView.value - 1, true);
   }
-
-  scrollToCard(newIndex);
 };
 
 // Touch/desktop drag events
@@ -152,13 +176,12 @@ const duringDrag = (e) => {
 const endDrag = () => {
   isDragging.value = false;
   const movedBy = currentTranslate.value - prevTranslate.value;
-  
-  // Si el movimiento fue significativo, cambiar de card
+
   if (Math.abs(movedBy) > 50) {
-    if (movedBy > 0 && currentIndex.value > 0) {
-      scrollToCard(currentIndex.value - 1);
-    } else if (movedBy < 0 && currentIndex.value < ofertasDelDia.value.length - 1) {
-      scrollToCard(currentIndex.value + 1);
+    if (movedBy > 0) {
+      scrollOfertas(-1);
+    } else if (movedBy < 0) {
+      scrollOfertas(1);
     }
   } else {
     scrollToCard(currentIndex.value);
@@ -173,8 +196,7 @@ const getPositionX = (e) => {
 const startAutoScroll = () => {
   autoScrollInterval.value = setInterval(() => {
     if (!isDragging.value) {
-      const nextIndex = (currentIndex.value + 1) % ofertasDelDia.value.length;
-      scrollToCard(nextIndex);
+      scrollOfertas(1);
     }
   }, 3000);
 };
@@ -196,6 +218,7 @@ onMounted(() => {
     window.addEventListener("mouseup", endDrag);
     window.addEventListener("touchend", endDrag);
   }
+  window.addEventListener("resize", updateCardsPerView);
 });
 
 onUnmounted(() => {
@@ -214,7 +237,14 @@ onUnmounted(() => {
     window.removeEventListener("mouseup", endDrag);
     window.removeEventListener("touchend", endDrag);
   }
+  window.removeEventListener("resize", updateCardsPerView);
 });
+
+function updateCardsPerView() {
+  cardsPerView.value = getCardsPerView();
+  // Reajusta el scroll para mantener la posición
+  scrollToCard(currentIndex.value, true);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -268,7 +298,7 @@ h2 {
   gap: 20px;
   padding: 10px 0;
   will-change: transform;
-    transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-out;
   user-select: none;
 }
 
@@ -416,6 +446,60 @@ h2 {
 @media (max-width: 600px) {
   .responsive-text {
     text-align: center;
+  }
+}
+// Texto animado con bola de pádel
+.title-animated-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 3%;
+  margin-bottom: 2rem;
+}
+
+.title-animated-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  position: relative;
+  z-index: 2; // El texto está por encima
+  color: #1a4456;
+}
+
+.padel-ball {
+  position: absolute;
+  top: 55%;
+  left: -40px;
+  width: 32px;
+  height: 32px;
+  background: radial-gradient(circle at 30% 30%, #aaeb14 60%, #c7e86c 100%);
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px #aaeb14;
+  z-index: 1; // Bola por detrás del texto
+  opacity: 0.5; // Más sutil
+  animation: ball-move-behind 2.2s linear infinite;
+}
+
+@keyframes ball-move-behind {
+  0% {
+    left: -40px;
+    transform: translateY(-50%) scale(1) rotate(-10deg);
+    opacity: 0.3;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  50% {
+    left: 250px;
+    transform: translateY(-40%) scale(1.1) rotate(10deg);
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -40px;
+    transform: translateY(-50%) scale(1) rotate(-10deg);
+    opacity: 0.3;
   }
 }
 </style>

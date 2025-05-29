@@ -6,6 +6,8 @@
         v-for="(oferta, index) in ofertasDelDia.slice(0, show)"
         :key="index"
         class="card shadow"
+        data-aos="fade-up"
+        :data-aos-delay="index * 100"
       >
         <OfertaCard :oferta="oferta" :limite="limite"/>
       </div>
@@ -105,6 +107,7 @@ h2 {
 
 h2 {
   font-family: "Poppins", sans-serif;
+  color: #2c3e50;
 }
 
 /* Responsive design */
