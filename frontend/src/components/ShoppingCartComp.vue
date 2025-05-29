@@ -8,9 +8,14 @@
         <h3 class="mb-5">Tu carrito de compras</h3>
 
         <!-- Mensaje si el carrito está vacío -->
-        <!-- <div v-if="cartItems.length === 0" class="alert alert-info">
-          Tu carrito está vacío y no tiene productos. Compra algunos artículos para comenzar.
-        </div> -->
+        <div v-if="cartItems.length === 0" class="alert alert-info">
+          Tu carrito está vacío y no tiene productos. Compra algunos artículos
+          para comenzar. <br />
+          Puedes dirigirte a la
+          <a href="/" style="color: #ffc107; text-decoration: none"
+            >página principal</a
+          >
+        </div>
 
         <!-- Se muestran los productos que estén en el carrito del perfil del cliente (De momento es un json de ejemplo) -->
         <div
