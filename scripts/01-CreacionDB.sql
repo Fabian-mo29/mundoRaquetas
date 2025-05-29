@@ -60,13 +60,26 @@ FOREIGN KEY (ProductoId) REFERENCES Productos(Id)
 );
 
 CREATE TABLE Ordenes(
-Id UNIQUEIDENTIFIER PRIMARY KEY not null DEFAULT NEWID(),
+Id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT NEWID(),
+NumeroOrden INT IDENTITY(1000, 2) NOT NULL, 
 CarritoId UNIQUEIDENTIFIER NOT NULL,
 Estado VARCHAR(15) DEFAULT 'Pendiente',
 Fecha DATETIME DEFAULT GETDATE(),
 PrecioBruto DECIMAL(10, 2) NOT NULL,
 PrecioNeto DECIMAL(10, 2) NOT NULL,
+InformacionPagoId UNIQUEIDENTIFIER NOT NULL,
 CHECK (Estado in ('Pendiente', 'Entregado', 'Cancelado')),
-FOREIGN KEY (CarritoId) REFERENCES Carrito(Id)
+FOREIGN KEY (CarritoId) REFERENCES Carrito(Id),
+FOREIGN KEY (InformacionPagoId) REFERENCES InformacionPago(Id)
+);
+
+CREATE TABLE InformacionPago (
+	Id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT NEWID(),
+	Provincia VARCHAR(20) NOT NULL,
+	Canton VARCHAR(20) NOT NULL,
+	InformacionUbicacion VARCHAR(200) NOT NULL,
+	NumeroTarjeta NVARCHAR(256) NOT NULL,      -- Encriptado como texto
+    FechaVencimiento NVARCHAR(100) NOT NULL,   -- Encriptado
+    NumeroSeguridad NVARCHAR(100) NOT NULL,    -- Encriptado
 );
 
