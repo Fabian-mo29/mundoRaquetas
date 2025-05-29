@@ -282,8 +282,8 @@ h2 {
 /* Estilos para el carrusel de ofertas */
 .sala-carousel-container {
   width: calc(100%);
-  min-height: 100vh;
   display: flex;
+  min-height: 20vh;
   flex-direction: column;
 }
 
