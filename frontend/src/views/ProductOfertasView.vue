@@ -87,6 +87,7 @@ async function fetchProduct() {
           ? (productData.Price / (1 - productData.Discount / 100)).toFixed(2)
           : "",
       imagen: productData.ImageName || "default-product.jpg",
+      Stock: productData.Stock || 0,
     };
   } catch (error) {
     console.error("Error fetching product:", error);

@@ -50,7 +50,7 @@
       </div>
 
       <!-- Resumen del carrito -->
-      <div class="col-lg-4">
+      <div v-if="cartItems.length > 0" class="col-lg-4">
         <div class="cart-summary">
           <h4>Productos del carrito</h4>
           <ul class="list-unstyled">

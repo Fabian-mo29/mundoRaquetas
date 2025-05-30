@@ -56,8 +56,8 @@
               class="nav-link"
               >Tienda física</RouterLink
             >
-            <li class="py-1"></li>
-            <a href="#">Blog</a>
+            <!-- <li class="py-1"></li>
+            <a href="#">Blog</a> -->
           </ul>
         </div>
         <div class="col">
