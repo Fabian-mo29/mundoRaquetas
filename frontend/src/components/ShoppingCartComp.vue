@@ -1,4 +1,13 @@
 <template>
+  <!-- Se exportan las fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
   <!-- Código inspirado en ejemplo de "bootstrapexamples.com" -->
   <!-- Fuente: https://bootstrapexamples.com/@valeria/bootstrap-5-shopping-cart-design -->
   <div class="container mt-5">
@@ -243,5 +252,12 @@ span {
 button {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
+}
+
+.alert-info {
+  background-color: #2c3e50;
+  color: white;
+  font-family: Noto Sans, sans-serif;
+  font-size: larger;
 }
 </style>
