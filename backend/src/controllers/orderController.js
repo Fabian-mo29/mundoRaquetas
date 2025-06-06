@@ -80,7 +80,7 @@ function createNewOrder(req, res) {
       .json({ error: "Error: Unable to hash payment information" });
   }
 
-  cartModel.getActiveCart(req.Id, (err, cartId) => {
+  cartModel.getActiveCart(req.Id, "Pendiente", (err, cartId) => {
     if (err) {
       return res.status(500).json({ error: "Error: Unable to retrieve cart" });
     }

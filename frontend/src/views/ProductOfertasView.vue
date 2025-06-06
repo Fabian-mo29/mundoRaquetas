@@ -36,14 +36,15 @@
           />
         </div>
 
-        <!-- Botón de añadir al carrito -->
-        <button
-          class="btn btn-success btn-add-to-cart"
-          style="background-color: #2c3e50"
-          @click="addToCart"
-        >
-          Añadir al carrito
-        </button>
+        <div class="button-group">
+          <button class="btn btn-add-to-cart" @click="addToCart">
+            Añadir al carrito
+          </button>
+
+          <button class="btn btn-add-to-wishlist" @click="addToWishlist">
+            Agregar a wishlist
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -118,6 +119,30 @@ async function addToCart() {
   }
 }
 
+async function addToWishlist() {
+  try {
+    const token = sessionStorage.getItem("token");
+    await axios.post(
+      "http://localhost:3000/api/cart/wishlist",
+      {
+        product: {
+          Id: product.value.Id,
+          Cantidad: cantidad.value,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    alert("Producto agregado al wishlist");
+  } catch (error) {
+    alert("Error al agregar al wishlist");
+    console.error(error);
+  }
+}
+
 onMounted(() => {
   fetchProduct();
 });
@@ -188,18 +213,41 @@ onMounted(() => {
   color: #777;
 }
 
-.btn-add-to-cart {
-  padding: 12px 35px;
-  font-size: 1.1rem;
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-add-to-cart,
+.btn-add-to-wishlist {
+  flex: 1 1 200px;
+  padding: 12px 30px;
+  font-size: 1rem;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 8px;
   transition: all 0.3s ease;
-  background-color: #28a745;
   border: none;
+  color: #fff;
+}
+
+.btn-add-to-cart {
+  background-color: #2c3e50;
 }
 
 .btn-add-to-cart:hover {
-  background-color: #218838;
+  background-color: #2c3e50;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-add-to-wishlist {
+  background-color: #3498db;
+}
+
+.btn-add-to-wishlist:hover {
+  background-color: #3498db;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }

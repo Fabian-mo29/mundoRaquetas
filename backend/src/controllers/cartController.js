@@ -2,7 +2,7 @@ const cart = require("../models/cartModel");
 
 function getUserCart(req, res) {
   const userId = req.Id;
-  cart.getCartByUserId(userId, (err, cart) => {
+  cart.getCartByUserId(userId, "Pendiente", (err, cart) => {
     if (err) {
       console.error("Error fetching cart:", err);
       return res.status(500).json({ message: "Internal server error" });
@@ -14,9 +14,21 @@ function getUserCart(req, res) {
 function addToCart(req, res) {
   const { product } = req.body;
   const userId = req.Id;
-  cart.addToCart(userId, product, (err, result) => {
+  cart.addToCart(userId, product, "Pendiente", (err, result) => {
     if (err) {
       console.error("Error inserting product to cart:", err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    return res.status(200).json(result);
+  });
+}
+
+function addToWishlist(req, res) {
+  const { product } = req.body;
+  const userId = req.Id;
+  cart.addToCart(userId, product, "Deseos", (err, result) => {
+    if (err) {
+      console.error("Error inserting product to wishlist:", err);
       return res.status(500).json({ message: "Internal server error" });
     }
     return res.status(200).json(result);
@@ -26,7 +38,7 @@ function addToCart(req, res) {
 function removeFromCart(req, res) {
   const userId = req.Id;
   const { idProduct } = req.params;
-  cart.getActiveCart(userId, (err, cartId) => {
+  cart.getActiveCart(userId, "Pendiente", (err, cartId) => {
     if (err) {
       console.error("Error fetching active cart:", err);
       return res.status(500).json({ message: "Internal server error" });
@@ -47,7 +59,7 @@ function removeFromCart(req, res) {
 
 function getTotalPrice(req, res) {
   const userId = req.Id;
-  cart.getActiveCart(userId, (err, cartId) => {
+  cart.getActiveCart(userId, "Pendiente", (err, cartId) => {
     if (err) {
       console.error("Error fetching active cart:", err);
       return res.status(500).json({ message: "Internal server error" });
@@ -69,6 +81,7 @@ function getTotalPrice(req, res) {
 module.exports = {
   getUserCart,
   addToCart,
+  addToWishlist,
   removeFromCart,
   getTotalPrice,
 };

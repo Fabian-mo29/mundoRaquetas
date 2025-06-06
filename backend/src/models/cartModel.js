@@ -1,9 +1,8 @@
 const { sql, connectionString } = require("../db");
 
-function getActiveCart(userId, callback) {
-  const query =
-    "SELECT TOP 1 Id FROM Carrito WHERE UserId = ? AND Estado = 'Pendiente'";
-  sql.query(connectionString, query, [userId], (err, result) => {
+function getActiveCart(userId, status, callback) {
+  const query = "SELECT TOP 1 Id FROM Carrito WHERE UserId = ? AND Estado = ?";
+  sql.query(connectionString, query, [userId, status], (err, result) => {
     if (err) {
       return callback(err, null);
     }
@@ -15,31 +14,24 @@ function getActiveCart(userId, callback) {
   });
 }
 
-function createCart(userId, callback) {
-  const query = "INSERT INTO Carrito(UserId, Estado) VALUES (?, 'Pendiente')";
-  sql.query(connectionString, query, [userId], (err, result) => {
+function createCart(userId, status, callback) {
+  const query = "INSERT INTO Carrito(UserId, Estado) VALUES (?, ?)";
+  sql.query(connectionString, query, [userId, status], (err, result) => {
     if (err) {
       return callback(err, null);
     }
-    const selectQuery =
-      "SELECT TOP 1 Id FROM Carrito WHERE UserId = ? AND Estado = 'Pendiente' ORDER BY Id DESC";
-    sql.query(connectionString, selectQuery, [userId], (err2, result2) => {
-      if (err2) {
-        return callback(err2, null);
-      }
-      return callback(null, result2[0].Id);
-    });
+    return callback(null, result[0].Id);
   });
 }
 
-function addToCart(userId, product, callback) {
-  getActiveCart(userId, (err, cartId) => {
+function addToCart(userId, product, status, callback) {
+  getActiveCart(userId, status, (err, cartId) => {
     if (err) return callback(err, null);
 
     if (cartId) {
       insertProduct(cartId, product, callback);
     } else {
-      createCart(userId, (err2, newCartId) => {
+      createCart(userId, status, (err2, newCartId) => {
         if (err2) return callback(err2, null);
         insertProduct(newCartId, product, callback);
       });
@@ -90,8 +82,8 @@ function insertProduct(cartId, product, callback) {
   );
 }
 
-function getCartByUserId(userId, callback) {
-  getActiveCart(userId, (err, cartId) => {
+function getCartByUserId(userId, status, callback) {
+  getActiveCart(userId, status, (err, cartId) => {
     if (err) return callback(err, null);
 
     const query =
