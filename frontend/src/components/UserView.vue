@@ -1,42 +1,73 @@
 <template>
   <div class="bg-image">
     <div class="overlay">
-      <div
-        id="mainCard"
-        class="d-flex justify-content-center align-items-center content-box my-5 py-4"
-      >
-        <div class="form-container" style="width: 100%; max-width: 400px">
+      <div id="mainCard" class="content-box my-5 p-4">
+        <div class="form-container text-white">
           <h2 class="text-center mb-4">Mi Perfil</h2>
+
           <div v-if="usuario">
-            <div class="mb-3">
-              <label class="form-label">Usuario:</label>
-              <div class="form-value">{{ usuario.Username }}</div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Usuario:</label>
+                <div class="form-value">{{ usuario.Username }}</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Nombre:</label>
+                <div class="form-value">{{ usuario.Nombre }}</div>
+              </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Nombre:</label>
-              <div class="form-value">{{ usuario.Nombre }}</div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Primer Apellido:</label>
+                <div class="form-value">{{ usuario.Apellido1 }}</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Segundo Apellido:</label>
+                <div class="form-value">{{ usuario.Apellido2 }}</div>
+              </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Primer Apellido:</label>
-              <div class="form-value">{{ usuario.Apellido1 }}</div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Segundo Apellido:</label>
-              <div class="form-value">{{ usuario.Apellido2 }}</div>
-            </div>
+
             <div class="mb-3">
               <label class="form-label">Correo:</label>
               <div class="form-value">{{ usuario.Correo }}</div>
             </div>
-            <div class="mb-3">
-              <button
-                class="btn btn-outline-warning w-100 mt-2"
-                @click="logout"
-              >
-                Cerrar sesión
-              </button>
+
+            <div class="row g-2 mt-4">
+              <div class="col-md-6">
+                <button
+                  class="btn btn-primary w-100"
+                  style="background-color: #2c3e50; border: none"
+                  @click="goToHistory"
+                >
+                  Historial de Compras
+                </button>
+              </div>
+              <div class="col-md-6">
+                <RouterLink
+                  to="wishlist"
+                  class="btn btn-info w-100"
+                  style="background-color: #3498db; border: none"
+                >
+                  Ver Wishlist
+                </RouterLink>
+              </div>
+              <div class="col-md-12">
+                <button class="btn btn-secondary w-100" @click="goToPayment">
+                  Modificar Información de Pago
+                </button>
+              </div>
+              <div class="col-md-12">
+                <button
+                  class="btn btn-outline-warning w-100 mt-3"
+                  @click="logout"
+                >
+                  Cerrar sesión
+                </button>
+              </div>
             </div>
           </div>
+
           <div v-else class="text-center">
             <p>No hay datos de usuario. Por favor, inicia sesión.</p>
             <RouterLink to="/logIn" class="btn btn-primary mt-2"
@@ -162,7 +193,8 @@ h2 {
 button {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 10px;
 }
 </style>
