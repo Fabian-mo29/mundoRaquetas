@@ -63,6 +63,20 @@ function createPaymentInfo(paymentInfo, callback) {
   );
 }
 
+function getAllUserOrders(userId, callback) {
+  const query =
+    "SELECT o.Id, o.NumeroOrden, o.Fecha, o.FechaEstimadaLlegada, o.PrecioBruto, o.PrecioNeto, COUNT(o.Id) as CantidadProductos FROM ProductosPorCarrito ppc " +
+    "JOIN Carrito c on c.Id = ppc.CarritoId JOIN Ordenes o on o.CarritoId = c.Id " +
+    "WHERE c.UserId = ? " +
+    "GROUP BY o.Id, o.NumeroOrden, o.Fecha, o.FechaEstimadaLlegada, o.PrecioBruto, o.PrecioNeto;";
+  sql.query(connectionString, query, [userId], (err, result) => {
+    if (err) {
+      return callback(err, null);
+    }
+    return callback(null, result);
+  });
+}
+
 function getActiveOrders(userId, callback) {
   const query =
     "SELECT o.Id, o.NumeroOrden, o.Fecha, o.FechaEstimadaLlegada, o.PrecioBruto, o.PrecioNeto, COUNT(o.Id) as CantidadProductos FROM ProductosPorCarrito ppc " +
@@ -79,5 +93,6 @@ function getActiveOrders(userId, callback) {
 
 module.exports = {
   createNewOrder,
+  getAllUserOrders,
   getActiveOrders,
 };
