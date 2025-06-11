@@ -23,18 +23,6 @@ function addToCart(req, res) {
   });
 }
 
-function addToWishlist(req, res) {
-  const { product } = req.body;
-  const userId = req.Id;
-  cart.addToCart(userId, product, "Deseos", (err, result) => {
-    if (err) {
-      console.error("Error inserting product to wishlist:", err);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    return res.status(200).json(result);
-  });
-}
-
 function removeFromCart(req, res) {
   const userId = req.Id;
   const { idProduct } = req.params;
@@ -78,10 +66,34 @@ function getTotalPrice(req, res) {
   });
 }
 
+function addToWishlist(req, res) {
+  const { product } = req.body;
+  const userId = req.Id;
+  cart.addToCart(userId, product, "Deseos", (err, result) => {
+    if (err) {
+      console.error("Error inserting product to wishlist:", err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    return res.status(200).json(result);
+  });
+}
+
+function getWishlist(req, res) {
+  const userId = req.Id;
+  cart.getCartByUserId(userId, "Deseos", (err, cart) => {
+    if (err) {
+      console.error("Error fetching :", err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    res.status(200).json(cart);
+  });
+}
+
 module.exports = {
   getUserCart,
   addToCart,
   addToWishlist,
   removeFromCart,
   getTotalPrice,
+  getWishlist,
 };

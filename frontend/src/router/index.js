@@ -24,6 +24,7 @@ import RefundsView from "@/views/RefundsView.vue";
 import PrivacyPolicyView from "@/views/PrivacyPolicyView.vue";
 import BuyingGuideView from "@/views/BuyingGuideView.vue";
 import WarrantyView from "@/views/WarrantyView.vue";
+import WishlistView from "@/views/WishlistView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -158,6 +159,11 @@ const router = createRouter({
       path: "/warranty",
       name: "Warranty",
       component: WarrantyView,
+    },
+    {
+      path: "/wishlist",
+      name: "Wishlist",
+      component: WishlistView,
     },
     {
       path: "/:pathMatch(.*)*",

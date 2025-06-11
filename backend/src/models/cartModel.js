@@ -4,22 +4,22 @@ function getActiveCart(userId, status, callback) {
   const query = "SELECT TOP 1 Id FROM Carrito WHERE UserId = ? AND Estado = ?";
   sql.query(connectionString, query, [userId, status], (err, result) => {
     if (err) {
-      return callback(err, null);
+      console.error("Error en getActiveCart:", err);
+      return callback(null, null);
     }
     if (result.length > 0) {
       return callback(null, result[0].Id);
     } else {
-      return callback(err, null);
+      return callback(null, null);
     }
   });
 }
 
 function createCart(userId, status, callback) {
-  const query = "INSERT INTO Carrito(UserId, Estado) VALUES (?, ?)";
+  const query =
+    "INSERT INTO Carrito(UserId, Estado) OUTPUT INSERTED.Id VALUES (?, ?)";
   sql.query(connectionString, query, [userId, status], (err, result) => {
-    if (err) {
-      return callback(err, null);
-    }
+    if (err) return callback(err, null);
     return callback(null, result[0].Id);
   });
 }
@@ -85,7 +85,6 @@ function insertProduct(cartId, product, callback) {
 function getCartByUserId(userId, status, callback) {
   getActiveCart(userId, status, (err, cartId) => {
     if (err) return callback(err, null);
-
     const query =
       "SELECT p.Id, p.Name, p.Description, p.Price, p.Discount, p.Category, i.Name AS ImageName, ppc.Cantidad " +
       "FROM ProductosPorCarrito ppc " +
