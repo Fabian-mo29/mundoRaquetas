@@ -154,7 +154,7 @@ function hashPaymentInfo(paymentInfo) {
 }
 
 function getOrderProducts(req, res) {
-  cartModel.getCartByOrderId(req.Id, req.orderId, (err, result) => {
+  cartModel.getCartByOrderId(req.Id, req.params.orderId, (err, result) => {
     if (err) {
       return res
         .status(500)

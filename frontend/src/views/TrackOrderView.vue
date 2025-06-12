@@ -32,6 +32,7 @@
           <p>
             <strong>Precio Neto:</strong> ${{ order.PrecioNeto.toFixed(2) }}
           </p>
+          <RouterLink :to="'../order/' + order.Id">Productos</RouterLink>
         </div>
       </div>
     </div>
@@ -46,6 +47,7 @@ const orders = ref([]);
 
 onMounted(() => {
   getActiveOrders();
+  // getAllOrders();
 });
 
 async function getActiveOrders() {
@@ -64,6 +66,20 @@ async function getActiveOrders() {
     console.error("Error fetching orders:", error);
   }
 }
+
+// async function getAllOrders() {
+//   try {
+//     const token = sessionStorage.getItem("token");
+//     const response = await axios.get("http://localhost:3000/api/orders", {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+//     orders.value = response.data;
+//   } catch (error) {
+//     console.error("Error fetching orders:", error);
+//   }
+// }
 
 function formatDate(dateString) {
   if (!dateString) return "Fecha inválida";
