@@ -25,6 +25,7 @@ import PrivacyPolicyView from "@/views/PrivacyPolicyView.vue";
 import BuyingGuideView from "@/views/BuyingGuideView.vue";
 import WarrantyView from "@/views/WarrantyView.vue";
 import WishlistView from "@/views/WishlistView.vue";
+import OrderProductsView from "@/views/OrderProductsView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -164,6 +165,11 @@ const router = createRouter({
       path: "/wishlist",
       name: "Wishlist",
       component: WishlistView,
+    },
+    {
+      path: "/order/:Id",
+      name: "OrderProducts",
+      component: OrderProductsView,
     },
     {
       path: "/:pathMatch(.*)*",

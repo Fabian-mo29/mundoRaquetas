@@ -118,6 +118,17 @@ function createNewOrder(req, res) {
   });
 }
 
+function getAllUserOrders(req, res) {
+  order.getAllUserOrders(req.Id, (err, orders) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ error: "Error: Unable to retrieve orders" });
+    }
+    return res.status(200).json(orders);
+  });
+}
+
 function getActiveOrders(req, res) {
   order.getActiveOrders(req.Id, (err, orders) => {
     if (err) {
@@ -142,7 +153,20 @@ function hashPaymentInfo(paymentInfo) {
   };
 }
 
+function getOrderProducts(req, res) {
+  cartModel.getCartByOrderId(req.Id, req.params.orderId, (err, result) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ error: "Error: unable to fetch products from order" });
+    }
+    res.status(200).json(result);
+  });
+}
+
 module.exports = {
   createNewOrder,
+  getAllUserOrders,
   getActiveOrders,
+  getOrderProducts,
 };

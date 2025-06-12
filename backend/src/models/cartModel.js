@@ -99,6 +99,23 @@ function getCartByUserId(userId, status, callback) {
   });
 }
 
+function getCartByOrderId(userId, orderId, callback) {
+  const query =
+    "SELECT p.Id, p.Name, p.Description, p.Price, p.Discount, p.Category, i.Name AS ImageName, ppc.Cantidad " +
+    "FROM ProductosPorCarrito ppc " +
+    "JOIN Productos p ON ppc.ProductoId = p.Id " +
+    "JOIN Imagen i ON i.ProductoId = p.Id " +
+    "JOIN Ordenes o ON o.CarritoId = ppc.CarritoId " +
+    "JOIN Carrito c ON c.Id = ppc.CarritoId " +
+    "WHERE c.UserId = ? AND o.Id = ?";
+  sql.query(connectionString, query, [userId, orderId], (err, result) => {
+    if (err) {
+      return callback(err, null);
+    }
+    return callback(null, result);
+  });
+}
+
 function getTotalPrice(cartId, callback) {
   const query =
     "SELECT SUM(p.Price * ppc.Cantidad) AS Total FROM ProductosPorCarrito ppc JOIN Productos p " +
@@ -124,4 +141,5 @@ module.exports = {
   addToCart,
   getTotalPrice,
   removeProductFromCart,
+  getCartByOrderId,
 };
