@@ -1,0 +1,13 @@
+[
+    {    
+        "BankName" : "Banco Nacional de costa Rica",
+        "Brand" : "VISA",
+        "Bin" : "493823"
+    },
+    {
+       "BankName" : "Banco de Costa Rica",
+       "Brand" : "VISA",
+       "Bin" : "498454"
+    
+    }
+]
