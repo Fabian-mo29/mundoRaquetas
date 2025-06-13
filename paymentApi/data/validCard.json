@@ -1,13 +1,1337 @@
 [
-    {    
-        "BankName" : "Banco Nacional de costa Rica",
-        "Brand" : "VISA",
-        "Bin" : "493823"
+    {
+      "bank": "AVAL CARD (COSTA RICA), S.A.",
+      "brand": "VISA",
+      "bin": "400943"
     },
     {
-       "BankName" : "Banco de Costa Rica",
-       "Brand" : "VISA",
-       "Bin" : "498454"
-    
-    }
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "401630"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "401631"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "401632"
+    },
+    {
+      "bank": "BANCO DEL ISTMO (COSTA RICA), S.A.",
+      "brand": "VISA",
+      "bin": "401681"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "401682"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "402560"
+    },
+    {
+      "bank": "BANCO NACIONAL DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "402667"
+    },
+    {
+      "bank": "VALES INTERCONTINENTALES, S.A.",
+      "brand": "VISA",
+      "bin": "402751"
+    },
+    {
+      "bank": "BANCO CUSCATLAN DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "403816"
+    },
+    {
+      "bank": "BANCO CUSCATLAN DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "403817"
+    },
+    {
+      "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "403818"
+    },
+    {
+      "bank": "----",
+      "brand": "VISA",
+      "bin": "404901"
+    },
+    {
+      "bank": "----",
+      "brand": "VISA",
+      "bin": "405104"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "405705"
+    },
+    {
+      "bank": "BANCA PROMERICA, S.A.",
+      "brand": "VISA",
+      "bin": "407287"
+    },
+    {
+      "bank": "BANCA PROMERICA, S.A.",
+      "brand": "VISA",
+      "bin": "407550"
+    },
+    {
+      "bank": "BANCO INTERFIN, S.A.",
+      "brand": "VISA",
+      "bin": "407557"
+    },
+    {
+      "bank": "PROSIX, S.A.",
+      "brand": "VISA",
+      "bin": "409605"
+    },
+    {
+      "bank": "BANCO DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "409627"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "409707"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "409731"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "409962"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "410346"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "410347"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "410348"
+    },
+    {
+      "bank": "BANCO DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "410372"
+    },
+    {
+      "bank": "TARJETAS BCT, S.A.",
+      "brand": "VISA",
+      "bin": "410443"
+    },
+    {
+      "bank": "BANCO NACIONAL DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "410864"
+    },
+    {
+      "bank": "BANCO NACIONAL DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "410865"
+    },
+    {
+      "bank": "BANCO NACIONAL DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "411061"
+    },
+    {
+      "bank": "AVAL CARD (COSTA RICA), S.A.",
+      "brand": "VISA",
+      "bin": "411604"
+    },
+    {
+      "bank": "SCOTIABANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "411608"
+    },
+    {
+      "bank": "BANCO HSBC (COSTA RICA), S.A.",
+      "brand": "VISA",
+      "bin": "411757"
+    },
+    {
+      "bank": "----",
+      "brand": "VISA",
+      "bin": "412799"
+    },
+    {
+      "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "413107"
+    },
+    {
+      "bank": "----",
+      "brand": "VISA",
+      "bin": "413890"
+    },
+    {
+      "bank": "----",
+      "brand": "VISA",
+      "bin": "413891"
+    },
+    {
+      "bank": "----",
+      "brand": "VISA",
+      "bin": "413892"
+    },
+    {
+      "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "414290"
+    },
+    {
+      "bank": "----",
+      "brand": "VISA",
+      "bin": "414454"
+    },
+    {
+      "bank": "BANCO DE COSTA RICA",
+      "brand": "VISA",
+"bin": "415276"
+    },
+    {
+      "bank": "BANCO DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "415277"
+    },
+    {
+      "bank": "BANCO DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "415278"
+    },
+    {
+      "bank": "BANCO CATHAY DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "415581"
+    },
+    {
+      "bank": "BANCO CATHAY DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "415582"
+    },
+    {
+      "bank": "BANCO CATHAY DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "415583"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "416828"
+    },
+    {
+      "bank": "----",
+      "brand": "VISA",
+      "bin": "419882"
+    },
+    {
+      "bank": "----",
+      "brand": "VISA",
+      "bin": "419884"
+    },
+    {
+      "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "420550"
+    },
+    {
+      "bank": "BANCA PROMERICA, S.A.",
+      "brand": "VISA",
+      "bin": "421387"
+    },
+    {
+      "bank": "BANCA PROMERICA, S.A.",
+      "brand": "VISA",
+      "bin": "421415"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "421547"
+    },
+    {
+      "bank": "BANCO LAFISE, S.A.",
+      "brand": "VISA",
+      "bin": "421816"
+    },
+    {
+      "bank": "BANCO LAFISE, S.A.",
+      "brand": "VISA",
+      "bin": "423697"
+    },
+    {
+      "bank": "SCOTIABANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "424101"
+    },
+    {
+      "bank": "SCOTIABANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "424102"
+    },
+    {
+      "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "425482"
+    },
+    {
+      "bank": "BANCO HSBC (COSTA RICA), S.A.",
+      "brand": "VISA",
+      "bin": "425484"
+    },
+    {
+      "bank": "BANCO BANEX, S.A.",
+      "brand": "VISA",
+      "bin": "425485"
+    },
+    {
+      "bank": "BANCO HSBC (COSTA RICA), S.A.",
+      "brand": "VISA",
+      "bin": "425486"
+    },
+    {
+      "bank": "INVERSIONES FEDEBAN, S.A.",
+      "brand": "VISA",
+      "bin": "425957"
+    },
+    {
+      "bank": "BANCO CATHAY DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "426074"
+    },
+    {
+      "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "428207"
+    },
+    {
+      "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "428292"
+    },
+    {
+      "bank": "BANCO LAFISE, S.A.",
+      "brand": "VISA",
+      "bin": "431884"
+    },
+    {
+      "bank": "BANCO LAFISE, S.A.",
+      "brand": "VISA",
+      "bin": "431885"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "432087"
+    },
+    {
+      "bank": "ATH COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "432088"
+    },
+    {
+      "bank": "BANCO DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "432394"
+    },
+    {
+      "bank": "BANEX INVERSIONES, S.A.",
+      "brand": "VISA",
+      "bin": "433191"
+    },
+    {
+      "bank": "AVAL CARD (COSTA RICA), S.A.",
+      "brand": "VISA",
+      "bin": "433406"
+    },
+    {
+      "bank": "BANCO LAFISE, S.A.",
+      "brand": "VISA",
+      "bin": "433584"
+    },
+    {
+      "bank": "BANCO LAFISE, S.A.",
+      "brand": "VISA",
+      "bin": "433585"
+    },
+    {
+      "bank": "BANCO LAFISE, S.A.",
+      "brand": "VISA",
+      "bin": "433586"
+    },
+    {
+      "bank": "BANCA PROMERICA, S.A.",
+      "brand": "VISA",
+      "bin": "434094"
+    },
+    {
+      "bank": "BANCA PROMERICA, S.A.",
+      "brand": "VISA",
+      "bin": "434096"
+    },
+    {
+      "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "434097"
+    },
+    {
+      "bank": "BANCO HSBC (COSTA RICA), S.A.",
+      "brand": "VISA",
+      "bin": "434679"
+    },
+    {
+      "bank": "BICSACARD, S.A.",
+      "brand": "VISA",
+      "bin": "435773"
+    },
+    {
+      "bank": "BANCO UNO, S.A.",
+      "brand": "VISA",
+      "bin": "438078"
+    },
+    {
+      "bank": "BANCO DE COSTA RICA",
+      "brand": "VISA",
+      "bin": "438098"
+    },
+    {
+"bank": "VALES INTERCONTINENTALES, S.A.",
+      "brand": "VISA",
+      "bin": "438167"
+    },
+    {
+      "bank": "BANCO BANTEC CQ, S.A.",
+      "brand": "VISA",
+      "bin": "438400"
+    },
+    {
+      "bank": "BANCO UNO, S.A.",
+      "brand": "VISA",
+      "bin": "439168"
+    },
+    {
+      "bank": "CITITARJETAS DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "439170"
+    },
+    {
+      "bank": "TARJETAS BCT, S.A.",
+      "brand": "VISA",
+      "bin": "441175"
+    },
+    {
+      "bank": "SCOTIABANK DE COSTA RICA, S.A.",
+      "brand": "VISA",
+      "bin": "441178"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441576"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441577"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441578"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441579"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441580"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441581"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441582"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441583"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441585"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441586"
+    },
+    {
+      "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+      "brand": "VISA",
+      "bin": "441587"
+    },
+    {
+    "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "483963"
+  },
+  {
+    "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "483964"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "484710"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "484711"
+  },
+  {
+    "bank": "BANCO ELCA, S.A.",
+    "brand": "VISA",
+    "bin": "486405"
+  },
+  {
+    "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "487270"
+  },
+  {
+    "bank": "BANCO CREDITO AGRICOLA DE CARTAGO",
+    "brand": "VISA",
+    "bin": "489245"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "489935"
+  },
+  {
+    "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "489942"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "491261"
+  },
+  {
+    "bank": "PROCARD DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "491297"
+  },
+  {
+    "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "491299"
+  },
+  {
+    "bank": "AVAL CARD (COSTA RICA), S.A.",
+    "brand": "VISA",
+    "bin": "491550"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "492408"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "492409"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "492465"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "492467"
+  },
+  {
+    "bank": "BANCO INTERFIN, S.A.",
+    "brand": "VISA",
+    "bin": "493140"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "493144"
+  },
+  {
+    "bank": "CITITARJETAS DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "493190"
+  },
+  {
+    "bank": "AVAL CARD (COSTA RICA), S.A.",
+    "brand": "VISA",
+    "bin": "493191"
+  },
+  {
+    "bank": "CITITARJETAS DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "493199"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "493743"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "493744"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "493745"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "493823"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "498454"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "498455"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "498456"
+  },
+  {
+    "bank": "BANCO HSBC (COSTA RICA), S.A.",
+    "brand": "VISA",
+    "bin": "498463"
+  },
+  {
+    "bank": "BANCO BANEX, S.A.",
+    "brand": "VISA",
+    "bin": "498464"
+  },
+  {
+    "bank": "BANCO HSBC (COSTA RICA), S.A.",
+    "brand": "VISA",
+    "bin": "498465"
+  },
+  {
+    "bank": "CITIBANK INTERNATIONAL",
+    "brand": "VISA",
+    "bin": "498507"
+  },
+  {
+    "bank": "VALES INTERCONTINENTALES, S.A.",
+    "brand": "VISA",
+    "bin": "499839"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "510209"
+  },
+  {
+    "bank": "SCOTIABANK EL SALVADOR, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "513695"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "514006"
+  },
+  {
+    "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "514944"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "516327"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "516681"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "517871"
+  },
+  {
+    "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "518140"
+  },
+  {
+    "bank": "CREDOMATIC INTERNATIONAL, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "518146"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518203"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518207"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518209"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518211"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518216"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518219"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518227"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518230"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518232"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518233"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518234"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518235"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518236"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518237"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518239"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518241"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518242"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518256"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518257"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518258"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518259"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518260"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518263"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518264"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518265"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518268"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518269"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518281"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518297"
+  },
+  {
+    "bank": "BANCO HSBC (COSTA RICA), S.A.",
+    "brand": "MASTERCARD",
+    "bin": "518693"
+  },
+  {
+    "bank": "BANCO HSBC (COSTA RICA), S.A.",
+    "brand": "MASTERCARD",
+    "bin": "518716"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "519995"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "520026"
+  },
+  {
+    "bank": "CREDOMATIC INTERNATIONAL, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "520055"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "524308"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "524316"
+  },
+  {
+    "bank": "CREST, S.A.",
+    "brand": "VISA",
+    "bin": "451360"
+  },
+  {
+    "bank": "BANCO BANEX, S.A.",
+    "brand": "VISA",
+    "bin": "451125"
+  },
+  {
+    "bank": "AVAL CARD (COSTA RICA), S.A.",
+    "brand": "VISA",
+    "bin": "451117"
+  },
+  {
+    "bank": "AVAL CARD (COSTA RICA), S.A.",
+    "brand": "VISA",
+    "bin": "451116"
+  },
+  {
+    "bank": "VALES INTERCONTINENTALES, S.A.",
+    "brand": "VISA",
+    "bin": "450998"
+  },
+  {
+    "bank": "VALES INTERCONTINENTALES, S.A.",
+    "brand": "VISA",
+    "bin": "450983"
+  },
+  {
+    "bank": "BANCO BANEX, S.A.",
+    "brand": "VISA",
+    "bin": "476563"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "476038"
+  },
+  {
+    "bank": "CREDOMATIC",
+    "brand": "AMERICAN EXPRESS",
+    "bin": "377713"
+  },
+  {
+    "bank": "CREDOMATIC",
+    "brand": "AMERICAN EXPRESS",
+    "bin": "377712"
+  },
+  {
+    "bank": "CREDOMATIC (BANCO SAN JOSE)",
+    "brand": "AMERICAN EXPRESS",
+    "bin": "377711"
+  },
+  {
+    "bank": "BANCO CUSCATLAN DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "449195"
+  },
+  {
+    "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "449194"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518541"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518439"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518214"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "473214"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "473213"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "517784"
+  },
+  {
+    "bank": "BANCO CREDITO AGRICOLA DE CARTAGO",
+    "brand": "VISA",
+    "bin": "456701"
+  },
+  {
+    "bank": "BANCO CREDITO AGRICOLA DE CARTAGO",
+    "brand": "VISA",
+    "bin": "456700"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "448705"
+  },
+  {
+    "bank": "CITITARJETAS DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "448442"
+  },
+  {
+    "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "420551"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "493824"
+  },
+  {
+    "bank": "CITITARJETAS DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "493189"
+  },
+  {
+    "bank": "SCOTIABANK DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "493142"
+  },
+  {
+    "bank": "SCOTIABANK DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "493141"
+  },
+  {
+    "bank": "VALES INTERCONTINENTALES, S.A.",
+    "brand": "VISA",
+    "bin": "492151"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "402561"
+  },
+  {
+    "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "491298"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518251"
+  },
+  {
+    "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "421909"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "478793"
+  },
+  {
+    "bank": "CREDOMATIC INTERNATIONAL, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "545962"
+  },
+  {
+    "bank": "BAC SAN JOSE",
+    "brand": "MASTERCARD",
+    "bin": "530394"
+  },
+  {
+    "bank": "BANCO UNO, S.A.",
+    "brand": "VISA",
+    "bin": "409963"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518240"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "416829"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "416826"
+  },
+  {
+    "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "454738"
+  },
+  {
+    "bank": "CREDOMATIC INTERNATIONAL",
+    "brand": "MASTERCARD",
+    "bin": "530318"
+  },
+  {
+    "bank": "BAC SAN JOSE",
+    "brand": "MASTERCARD",
+    "bin": "530322"
+  },
+  {
+    "bank": "BANCO LAFISE, S.A.",
+    "brand": "VISA",
+    "bin": "418929"
+  },
+  {
+    "bank": "BANCO CUSCATLAN DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "454406"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "478791"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "476578"
+  },
+  {
+    "bank": "TARJETAS BFA, S.A.",
+    "brand": "VISA",
+    "bin": "448765"
+  },
+  {
+    "bank": "BANCO BANEX, S.A.",
+    "brand": "VISA",
+    "bin": "468510"
+  },
+  {
+    "bank": "VALES INTERCONTINENTALES, S.A.",
+    "brand": "VISA",
+    "bin": "438921"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518266"
+  },
+  {
+    "bank": "VALES INTERCONTINENTALES, S.A.",
+    "brand": "VISA",
+    "bin": "499840"
+  },
+  {
+    "bank": "BANCO NACIONAL DE COSTA RICA",
+    "brand": "MASTERCARD",
+    "bin": "518279"
+  },
+  {
+    "bank": "SCOTIABANK DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "493143"
+  },
+  {
+    "bank": "BAC SAN JOSE",
+    "brand": "MASTERCARD",
+    "bin": "530356"
+  },
+  {
+    "bank": "BANCO CUSCATLAN DE COSTA RICA, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "518139"
+  },
+  {
+    "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "421386"
+  },
+  {
+    "bank": "BANCO LAFISE, S.A.",
+    "brand": "VISA",
+    "bin": "418930"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "432395"
+  },
+  {
+    "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "530045"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "478789"
+  },
+  {
+    "bank": "CREDOMATIC INTERNATIONAL, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "530310"
+  },
+  {
+    "bank": "BAC SAN JOSE",
+    "brand": "MASTERCARD",
+    "bin": "530377"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "441752"
+  },
+  {
+    "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "454736"
+  },
+  {
+    "bank": "BAC SAN JOSE",
+    "brand": "MASTERCARD",
+    "bin": "530344"
+  },
+  {
+    "bank": "BAC SAN JOSE",
+    "brand": "MASTERCARD",
+    "bin": "530362"
+  },
+  {
+    "bank": "CREDOMATIC INTERNATIONAL, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "530315"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "441584"
+  },
+  {
+    "bank": "BANCO BANEX, S.A.",
+    "brand": "VISA",
+    "bin": "455736"
+  },
+  {
+    "bank": "ATH COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "421548"
+  },
+  {
+    "bank": "CREDOMATIC INTERNATIONAL, S.A.",
+    "brand": "MASTERCARD",
+    "bin": "548621"
+  },
+  {
+    "bank": "INVERSIONES ITSMICAS BANCRECEN, S.A.",
+    "brand": "VISA",
+    "bin": "451124"
+  },
+  {
+    "bank": "BANCO CITIBANK DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "454726"
+  },
+  {
+    "bank": "BANCO CUSCATLAN DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "454707"
+  },
+  {
+    "bank": "BANCO CREDITO AGRICOLA DE CARTAGO",
+    "brand": "VISA",
+    "bin": "454692"
+  },
+  {
+    "bank": "BANCO PROMERICA DE COSTA RICA, S.A.",
+    "brand": "VISA",
+    "bin": "489943"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "489937"
+  },
+  {
+    "bank": "BANCO IMPROSA, S.A.",
+    "brand": "VISA",
+    "bin": "401607"
+  },
+  {
+    "bank": "BANCO DE COSTA RICA",
+    "brand": "VISA",
+    "bin": "414282"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "441757"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "441756"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "441755"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "441751"
+  },
+  {
+    "bank": "BANCO POPULAR Y DE DESARROLLO COMUNAL",
+    "brand": "VISA",
+    "bin": "441748"
+  },
+  {
+    "bank": "AVAL CARD (COSTA RICA), S.A.",
+    "brand": "VISA",
+    "bin": "451711"
+  },
+  {
+    "bank": "AVAL CARD (COSTA RICA), S.A.",
+    "brand": "VISA",
+    "bin": "451709"
+  },
+  {
+    "bank": "AVAL CARD (COSTA RICA), S.A.",
+    "brand": "VISA",
+    "bin": "451708"
+  }
 ]
