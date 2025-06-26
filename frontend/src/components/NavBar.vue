@@ -224,7 +224,7 @@ const username = ref("Invitado");
 const router = useRouter();
 
 const loadUsername = () => {
-  const token = sessionStorage.getItem("token");
+  const token = sessionStorage.getItem("token"); 
   if (token) {
     try {
       const base64Payload = token.split(".")[1]; // Obtener la parte del payload
@@ -254,6 +254,7 @@ const closeCanvas = () => {
 };
 
 onMounted(() => {
+  loadUsername(); // cargar usuario al montar
   window.addEventListener("user-session", loadUsername);
 });
 
