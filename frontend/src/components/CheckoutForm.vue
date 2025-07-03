@@ -271,7 +271,7 @@ async function fetchSavedCards() {
   try {
     loadingCards.value = true;
     const response = await axios.get(
-      "http://localhost:3000/api/orders/payment-methods/saved",
+      "https://localhost:3000/api/orders/payment-methods/saved",
       {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,

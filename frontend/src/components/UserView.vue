@@ -112,7 +112,7 @@ function logout() {
 
 function getUserData(username, token) {
   return axios
-    .get(`http://localhost:3000/api/users/${username}`, {
+    .get(`https://localhost:3000/api/users/${username}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
