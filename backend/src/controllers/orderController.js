@@ -1,6 +1,7 @@
 const order = require("../models/orderModel");
 const cartModel = require("../models/cartModel");
 const CryptoJS = require("crypto-js");
+const { sql, connectionString } = require('../db'); 
 
 function isValidOrderInfo(paymentInfo) {
   const {
@@ -112,6 +113,7 @@ function createNewOrder(req, res) {
           return res
             .status(200)
             .json({ message: "Order created successfully", orderId });
+            paymentInfoId: paymentInfo.Id 
         }
       );
     });
@@ -164,9 +166,138 @@ function getOrderProducts(req, res) {
   });
 }
 
+function getSavedPaymentMethods(req, res) {
+  const userId = req.Id;
+  const query = `
+    SELECT 
+      ip.Id, 
+      ip.NumeroTarjeta, 
+      ip.FechaVencimiento, 
+      ip.NombreTitular, 
+      ip.Alias,
+      ip.Provincia,
+      ip.Canton,
+      ip.InformacionUbicacion,
+      CONCAT(
+        SUBSTRING(ip.FechaVencimiento, 1, 2), 
+        '/', 
+        SUBSTRING(ip.FechaVencimiento, 3, 2)
+      ) AS FechaVencimientoFormateada
+    FROM InformacionPago ip
+    JOIN TarjetasGuardadas tg ON tg.InformacionPagoId = ip.Id
+    WHERE tg.UserId = ? AND tg.Activa = 1
+  `;
+  
+  sql.query(connectionString, query, [userId], (err, results) => {
+    if (err) {
+      console.error('Error fetching saved payment methods:', err);
+      return res.status(500).json({ error: 'Error al obtener las tarjetas guardadas' });
+    }
+    
+    // Enmascarar los números de tarjeta para mostrar solo los últimos 4 dígitos
+    const maskedResults = results.map(card => ({
+      ...card,
+      MaskedNumber: card.NumeroTarjeta.replace(/.(?=.{4})/g, '*')
+    }));
+    
+    res.status(200).json(maskedResults);
+  });
+}
+
+function savePaymentMethod(req, res) {
+  const userId = req.Id;
+  const { paymentInfo, saveForFuture, alias } = req.body;
+  
+  if (!paymentInfo || saveForFuture === undefined) {
+    return res.status(400).json({ error: 'Datos incompletos' });
+  }
+  
+  const validation = isValidOrderInfo(paymentInfo);
+  if (!validation.valid) {
+    return res.status(400).json({ error: validation.message });
+  }
+  
+  const hashedInfo = hashPaymentInfo(paymentInfo);
+  
+  // Primero creamos la información de pago
+  const query = `
+    INSERT INTO InformacionPago 
+    (Provincia, Canton, InformacionUbicacion, NumeroTarjeta, FechaVencimiento, NumeroSeguridad, NombreTitular, Alias)
+    OUTPUT INSERTED.Id
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+  
+  const params = [
+    hashedInfo.paymentInfo.provincia,
+    hashedInfo.paymentInfo.canton,
+    hashedInfo.paymentInfo.infoUbicacion,
+    hashedInfo.paymentInfo.cardNumber,
+    hashedInfo.paymentInfo.expiryDate,
+    hashedInfo.paymentInfo.securityCode,
+    paymentInfo.cardHolder || 'Titular no especificado',
+    alias || 'Mi tarjeta'
+  ];
+  
+  sql.query(connectionString, query, params, (err, result) => {
+    if (err) {
+      console.error('Error saving payment info:', err);
+      return res.status(500).json({ error: 'Error al guardar la información de pago' });
+    }
+    
+    const paymentInfoId = result[0].Id;
+    
+    if (saveForFuture) {
+      // Guardar la tarjeta para futuros pagos
+      const saveQuery = `
+        INSERT INTO TarjetasGuardadas (UserId, InformacionPagoId, Activa)
+        VALUES (?, ?, 1)
+      `;
+      
+      sql.query(connectionString, saveQuery, [userId, paymentInfoId], (err) => {
+        if (err) {
+          console.error('Error saving card for future:', err);
+          return res.status(500).json({ error: 'Error al guardar la tarjeta para futuros pagos' });
+        }
+        
+        // Solo después de guardar la tarjeta, creamos la orden
+        createNewOrder(req, res);
+      });
+    } else {
+      // Si no se guarda para futuro, solo creamos la orden
+      createNewOrder(req, res);
+    }
+  });
+}
+
+function deleteSavedPaymentMethod(req, res) {
+  const userId = req.Id;
+  const { cardId } = req.params;
+  
+  const query = `
+    DELETE FROM TarjetasGuardadas 
+    WHERE UserId = ? AND InformacionPagoId = ?
+  `;
+  
+  sql.query(connectionString, query, [userId, cardId], (err, result) => {
+    if (err) {
+      console.error('Error deleting payment method:', err);
+      return res.status(500).json({ error: 'Error al eliminar la tarjeta guardada' });
+    }
+    
+    if (result.rowsAffected === 0) {
+      return res.status(404).json({ error: 'Tarjeta no encontrada o no pertenece al usuario' });
+    }
+    
+    res.status(200).json({ message: 'Tarjeta eliminada correctamente' });
+  });
+}
+
 module.exports = {
   createNewOrder,
   getAllUserOrders,
   getActiveOrders,
   getOrderProducts,
+  getSavedPaymentMethods,
+  savePaymentMethod,
+  deleteSavedPaymentMethod
 };

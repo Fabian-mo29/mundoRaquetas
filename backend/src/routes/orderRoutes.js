@@ -1,11 +1,12 @@
-const express = require("express");
+// En tu archivo de rutas (orderRoutes.js o similar)
+const express = require('express');
 const router = express.Router();
-const auth = require("../middleware/auth");
-const orderController = require("../controllers/orderController");
+const orderController = require('../controllers/orderController');
+const auth = require('../middleware/auth');
 
-router.post("/", auth.verifyToken, orderController.createNewOrder);
-router.get("", auth.verifyToken, orderController.getAllUserOrders);
-router.get("/active", auth.verifyToken, orderController.getActiveOrders);
-router.get("/:orderId", auth.verifyToken, orderController.getOrderProducts);
+// Rutas para tarjetas
+router.get('/payment-methods/saved', auth.verifyToken, orderController.getSavedPaymentMethods);
+router.post('/payment-methods/save', auth.verifyToken, orderController.savePaymentMethod);
+router.delete('/payment-methods/:cardId', auth.verifyToken, orderController.deleteSavedPaymentMethod);
 
 module.exports = router;
