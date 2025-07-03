@@ -11,6 +11,33 @@
         >
           <h2 class="text-center mb-4">Confirmar datos de pago</h2>
 
+          <!-- Mostrar tarjetas guardadas si existen -->
+          <div v-if="savedCards.length > 0" class="mb-4">
+            <h5 class="text-white mb-3">Tarjetas Guardadas</h5>
+            <div 
+              v-for="card in savedCards" 
+              :key="card.Id"
+              class="card saved-card mb-2 p-3"
+              @click="selectCard(card)"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <strong>{{ card.Alias }}</strong>
+                  <p class="mb-0">Terminada en {{ card.MaskedNumber.slice(-4) }}</p>
+                  <small>Vence {{ card.FechaVencimiento }}</small>
+                </div>
+                <button 
+                  type="button" 
+                  class="btn btn-sm btn-outline-danger"
+                  @click.stop="deleteCard(card.Id)"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </div>
+            <hr class="bg-light">
+          </div>
+
           <!-- Número de Tarjeta -->
           <div class="mb-3">
             <label class="form-label" for="inputCardNumber"
@@ -27,6 +54,21 @@
             <div v-if="errors.cardNumber" class="text-danger">
               {{ errors.cardNumber }}
             </div>
+          </div>
+          
+          <!-- Nombre del Titular -->
+          <div class="mb-3">
+            <label class="form-label" for="inputCardHolder"
+              >Nombre del Titular</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="inputCardHolder"
+              v-model="form.cardHolder"
+              required
+              placeholder="Como aparece en la tarjeta"
+            />
           </div>
 
           <!-- Fecha de Vencimiento -->
@@ -62,6 +104,30 @@
             />
             <div v-if="errors.securityCode" class="text-danger">
               {{ errors.securityCode }}
+            </div>
+          </div>
+          
+          <!-- Opción para guardar tarjeta -->
+          <div v-if="showSaveCardOption || savedCards.length === 0" class="mb-3 form-check">
+            <input 
+              type="checkbox" 
+              class="form-check-input" 
+              id="saveForFuture"
+              v-model="form.saveForFuture"
+            >
+            <label class="form-check-label" for="saveForFuture">
+              Guardar esta tarjeta para futuros pagos
+            </label>
+            
+            <div v-if="form.saveForFuture" class="mt-2">
+              <label class="form-label" for="cardAlias">Alias/Nombre para la tarjeta</label>
+              <input
+                class="form-control"
+                type="text"
+                id="cardAlias"
+                v-model="form.alias"
+                placeholder="Ej: Tarjeta Principal"
+              />
             </div>
           </div>
 
@@ -128,12 +194,19 @@
           >
             Confirmar pago
           </button>
-
-          <div v-if="serverError" class="text-danger mt-3 text-center">
+          
+          <div v-if="loadingCards" class="text-center py-3">
+            <div class="spinner-border text-light" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
+          </div>
+          <div v-if="serverError" class="alert alert-danger mt-3">
             {{ serverError }}
           </div>
-          <div v-if="success" class="text-success mt-3 text-center">
+
+          <div v-if="success" class="alert alert-success mt-3">
             {{ success }}
+            <div class="spinner-border spinner-border-sm ms-2" v-if="success.includes('Redirigiendo')"></div>
           </div>
         </form>
       </div>
@@ -142,7 +215,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 
@@ -155,26 +228,88 @@ const form = ref({
   provincia: "",
   canton: "",
   infoUbicacion: "",
+  cardHolder: "",
+  saveForFuture: false,
+  alias: ""
 });
 
 const errors = ref({});
 const serverError = ref("");
 const success = ref("");
+const savedCards = ref([]);
+const loadingCards = ref(true);
+const showSaveCardOption = ref(false);
 
-// Mapea los mensajes del backend a los campos del formulario
-function mapBackendError(message) {
-  if (message.includes("usuario")) errors.value.username = message;
-  else if (message.includes("Nombre de usuario"))
-    errors.value.username = message;
-  else if (message.includes("Nombre y apellidos")) {
-    errors.value.nombre = message;
-    errors.value.apellido1 = message;
-    errors.value.apellido2 = message;
-  } else if (message.includes("email") || message.includes("Email"))
-    errors.value.email = message;
-  else if (message.includes("contraseña") || message.includes("Contraseña"))
-    errors.value.password = message;
-  else serverError.value = message;
+// Cargar tarjetas guardadas al montar el componente
+onMounted(async () => {
+  await fetchSavedCards();
+});
+
+async function fetchSavedCards() {
+  try {
+    loadingCards.value = true;
+    const response = await axios.get(
+      "http://localhost:3000/api/orders/payment-methods/saved", 
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`
+        }
+      }
+    );
+    
+    // Formatear los datos para mejor visualización
+    savedCards.value = response.data.map(card => ({
+      ...card,
+      // Mostrar fecha en formato MM/AA si no está formateada
+      FechaVencimiento: card.FechaVencimiento.includes('/') 
+        ? card.FechaVencimiento 
+        : `${card.FechaVencimiento.slice(0,2)}/${card.FechaVencimiento.slice(2)}`
+    }));
+    
+  } catch (error) {
+    console.error("Error al cargar tarjetas:", error);
+    serverError.value = "No se pudieron cargar las tarjetas guardadas";
+  } finally {
+    loadingCards.value = false;
+  }
+}
+
+function selectCard(card) {
+  form.value.cardNumber = card.MaskedNumber; // Esto muestra los últimos 4 dígitos
+  form.value.expiryDate = card.FechaVencimiento;
+  form.value.cardHolder = card.NombreTitular;
+  // No podemos mostrar el CVV por seguridad (no debería estar almacenado)
+  form.value.securityCode = ''; // Dejamos vacío para que el usuario lo ingrese
+  form.value.provincia = card.Provincia || '';
+  form.value.canton = card.Canton || '';
+  form.value.infoUbicacion = card.InformacionUbicacion || '';
+  
+  showSaveCardOption.value = false;
+}
+
+async function deleteCard(cardId) {
+  if (!confirm("¿Estás seguro de eliminar esta tarjeta?")) return;
+  
+  try {
+    const response = await axios.delete(
+      `http://localhost:3000/api/orders/payment-methods/${cardId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`
+        }
+      }
+    );
+    
+    if (response.status === 200) {
+      success.value = "Tarjeta eliminada correctamente";
+      // Actualizar la lista de tarjetas
+      await fetchSavedCards();
+    }
+  } catch (error) {
+    console.error("Error al eliminar tarjeta:", error);
+    serverError.value = error.response?.data?.error || 
+                       "Error al eliminar la tarjeta";
+  }
 }
 
 async function completePayment() {
@@ -182,51 +317,94 @@ async function completePayment() {
   serverError.value = "";
   success.value = "";
 
-  if (!form.value.cardNumber) {
-    errors.value.cardNumber = "El número de tarjeta es obligatorio.";
-  }
-  if (!form.value.expiryDate) {
-    errors.value.expiryDate = "La fecha de vencimiento es obligatoria.";
-  }
-  if (!form.value.securityCode) {
-    errors.value.securityCode = "El código de seguridad es obligatorio.";
-  }
-  if (!form.value.provincia) {
-    errors.value.provincia = "La provincia es obligatoria.";
-  }
-  if (!form.value.canton) {
-    errors.value.canton = "El cantón es obligatorio.";
-  }
-  if (!form.value.infoUbicacion) {
-    errors.value.infoUbicacion = "Las otras señas son obligatorias.";
-  }
+  // Validaciones mejoradas
+  const validations = {
+    cardNumber: !form.value.cardNumber && "El número de tarjeta es obligatorio.",
+    expiryDate: !form.value.expiryDate && "La fecha de vencimiento es obligatoria.",
+    securityCode: !form.value.securityCode && "El código de seguridad es obligatorio.",
+    provincia: !form.value.provincia && "La provincia es obligatoria.",
+    canton: !form.value.canton && "El cantón es obligatorio.",
+    infoUbicacion: !form.value.infoUbicacion && "Las otras señas son obligatorias.",
+    cardHolder: !form.value.cardHolder && "El nombre del titular es obligatorio."
+  };
+
+  Object.keys(validations).forEach(key => {
+    if (validations[key]) errors.value[key] = validations[key];
+  });
+
+  if (Object.keys(errors.value).length > 0) return;
 
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/orders",
-      { paymentInfo: form.value },
+      "http://localhost:3000/api/orders/payment-methods/save",
+      {
+        paymentInfo: {
+          cardNumber: form.value.cardNumber.replace(/\s/g, ''), // Elimina espacios
+          expiryDate: form.value.expiryDate,
+          securityCode: form.value.securityCode,
+          provincia: form.value.provincia,
+          canton: form.value.canton,
+          infoUbicacion: form.value.infoUbicacion,
+          cardHolder: form.value.cardHolder
+        },
+        saveForFuture: form.value.saveForFuture,
+        alias: form.value.alias || `Tarjeta ${form.value.cardNumber.slice(-4)}`
+      },
       {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`
+        }
       }
     );
+    
     if (response.status === 200) {
-      success.value = "Pago completado correctamente. Redirigiendo...";
-      setTimeout(() => router.push("/"), 1500);
-    } else {
-      mapBackendError(response.data.message || "Error al completar el pago.");
+      success.value = response.data.message || "Pago completado correctamente";
+      // Recargar tarjetas guardadas después de guardar una nueva
+      await fetchSavedCards();
+      // Redirigir después de 2 segundos
+      setTimeout(() => router.push("/"), 2000);
     }
-    alert("Pago completado con éxito");
   } catch (error) {
-    alert("Error al completar el pago");
-    console.error(error);
-    serverError.value = "Error de conexión con el servidor.";
+    console.error("Error en el pago:", error);
+    serverError.value = error.response?.data?.error || 
+                       error.response?.data?.message || 
+                       "Error al procesar el pago";
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.alert {
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.saved-card {
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+}
+
+.form-control {
+  &:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+  }
+}
+
+.saved-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.saved-card:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .bg-image {
   background-image: url("@/assets/canchaPadel.jpg");
   background-size: cover;
