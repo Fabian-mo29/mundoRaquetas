@@ -26,6 +26,7 @@ import BuyingGuideView from "@/views/BuyingGuideView.vue";
 import WarrantyView from "@/views/WarrantyView.vue";
 import WishlistView from "@/views/WishlistView.vue";
 import OrderProductsView from "@/views/OrderProductsView.vue";
+import PaymentMethodsView from "@/views/PaymentMethodsView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -176,6 +177,18 @@ const router = createRouter({
       name: "NotFound",
       component: NotFoundView,
     },
+    {
+      path: '/user/payment-methods',
+      name: 'PaymentMethods',
+      component: PaymentMethodsView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/shoppingCart/checkout',
+      name: 'Checkout',
+      component: CheckoutView,
+      meta: { requiresAuth: true }
+    }
   ],
   // Hace que las rutas se abran en la posicion superior y no en el lugar donde se quedó
   scrollBehavior() {
