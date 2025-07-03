@@ -1,0 +1,1 @@
+ALTER TABLE Imagen ADD Principal BIT DEFAULT 1 NOT NULL;

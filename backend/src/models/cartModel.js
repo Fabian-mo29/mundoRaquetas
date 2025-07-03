@@ -90,7 +90,7 @@ function getCartByUserId(userId, status, callback) {
       "FROM ProductosPorCarrito ppc " +
       "JOIN Productos p ON ppc.ProductoId = p.Id " +
       "JOIN Imagen i on i.ProductoId = p.Id " +
-      "WHERE ppc.CarritoId = ?";
+      "WHERE ppc.CarritoId = ? AND i.Principal = 1";
 
     sql.query(connectionString, query, [cartId], (err2, result) => {
       if (err2) return callback(err2, null);
@@ -107,7 +107,7 @@ function getCartByOrderId(userId, orderId, callback) {
     "JOIN Imagen i ON i.ProductoId = p.Id " +
     "JOIN Ordenes o ON o.CarritoId = ppc.CarritoId " +
     "JOIN Carrito c ON c.Id = ppc.CarritoId " +
-    "WHERE c.UserId = ? AND o.Id = ?";
+    "WHERE c.UserId = ? AND o.Id = ? AND i.Principal = 1";
   sql.query(connectionString, query, [userId, orderId], (err, result) => {
     if (err) {
       return callback(err, null);

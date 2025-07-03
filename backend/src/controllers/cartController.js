@@ -69,6 +69,7 @@ function getTotalPrice(req, res) {
 function addToWishlist(req, res) {
   const { product } = req.body;
   const userId = req.Id;
+
   cart.addToCart(userId, product, "Deseos", (err, result) => {
     if (err) {
       console.error("Error inserting product to wishlist:", err);

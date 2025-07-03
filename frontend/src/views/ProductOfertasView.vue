@@ -126,7 +126,7 @@ async function addToWishlist() {
       "http://localhost:3000/api/cart/wishlist",
       {
         product: {
-          Id: product.value.Id,
+          Id: product.value.id,
           Cantidad: cantidad.value,
         },
       },
