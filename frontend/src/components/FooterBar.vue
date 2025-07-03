@@ -37,10 +37,6 @@
               >Solicitar garantía</RouterLink
             >
             <li class="py-1"></li>
-            <RouterLink active-class="active" to="/trackOrder" class="nav-link"
-              >Seguir orden</RouterLink
-            >
-            <li class="py-1"></li>
             <RouterLink active-class="active" to="/contactUs" class="nav-link"
               >Contáctanos</RouterLink
             >

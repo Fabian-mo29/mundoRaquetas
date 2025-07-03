@@ -32,7 +32,14 @@
           <p>
             <strong>Precio Neto:</strong> ${{ order.PrecioNeto.toFixed(2) }}
           </p>
-          <RouterLink :to="'../order/' + order.Id">Productos</RouterLink>
+          <div class="col-md-12">
+            <RouterLink
+              class="btn btn-outline-info w-100 mt-3"
+              :to="'../order/' + order.Id"
+            >
+              Productos
+            </RouterLink>
+          </div>
         </div>
       </div>
     </div>

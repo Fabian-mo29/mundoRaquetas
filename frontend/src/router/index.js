@@ -15,7 +15,6 @@ import CategoryDiscountsView from "@/views/CategoryDiscountsView.vue";
 import ProductSearchView from "@/views/ProductSearchView.vue";
 import ContactUsView from "@/views/ContactUsView.vue";
 import RequestWarrantyView from "@/views/RequestWarrantyView.vue";
-import TrackOrderView from "@/views/TrackOrderView.vue";
 import UserViewView from "@/views/UserViewView.vue";
 import PhysicalStoreView from "@/views/PhysicalStoreView.vue";
 import TermsAndConditionsView from "@/views/TermsAndConditionsView.vue";
@@ -27,6 +26,7 @@ import WarrantyView from "@/views/WarrantyView.vue";
 import WishlistView from "@/views/WishlistView.vue";
 import OrderProductsView from "@/views/OrderProductsView.vue";
 import PaymentMethodsView from "@/views/PaymentMethodsView.vue";
+import UserOrdersView from "@/views/UserOrdersView.vue";
 
 const router = createRouter({
   history: createWebHistory("/"),
@@ -118,9 +118,9 @@ const router = createRouter({
       component: RequestWarrantyView,
     },
     {
-      path: "/trackOrder",
-      name: "TrackOrder",
-      component: TrackOrderView,
+      path: "/userOrders",
+      name: "UserOrders",
+      component: UserOrdersView,
     },
     {
       path: "/user",
@@ -178,17 +178,17 @@ const router = createRouter({
       component: NotFoundView,
     },
     {
-      path: '/user/payment-methods',
-      name: 'PaymentMethods',
+      path: "/user/payment-methods",
+      name: "PaymentMethods",
       component: PaymentMethodsView,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true },
     },
     {
-      path: '/shoppingCart/checkout',
-      name: 'Checkout',
+      path: "/shoppingCart/checkout",
+      name: "Checkout",
       component: CheckoutView,
-      meta: { requiresAuth: true }
-    }
+      meta: { requiresAuth: true },
+    },
   ],
   // Hace que las rutas se abran en la posicion superior y no en el lugar donde se quedó
   scrollBehavior() {

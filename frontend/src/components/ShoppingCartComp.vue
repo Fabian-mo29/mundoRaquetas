@@ -87,7 +87,12 @@
       </div>
     </div>
     <RouterLink to="/"
-      ><button class="btn btn-success mt-1 mb-4">Regresar</button></RouterLink
+      ><button
+        class="btn btn-info mt-1 mb-4"
+        style="background: #2c3e50; color: white"
+      >
+        Regresar
+      </button></RouterLink
     >
   </div>
 </template>
