@@ -1,9 +1,11 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 const order = require("../models/orderModel");
 const cartModel = require("../models/cartModel");
 const CryptoJS = require("crypto-js");
 const { sql, connectionString } = require("../db");
 
-const PAYMENT_API_URL = "http://localhost:5000/api";
+const PAYMENT_API_URL = "https://localhost:5000/api";
 
 function isValidOrderInfo(paymentInfo) {
   const {
