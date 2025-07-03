@@ -35,13 +35,13 @@
 
             <div class="row g-2 mt-4">
               <div class="col-md-6">
-                <button
+                <RouterLink
+                  to="userOrders"
                   class="btn btn-primary w-100"
                   style="background-color: #2c3e50; border: none"
-                  @click="goToHistory"
                 >
                   Historial de Compras
-                </button>
+                </RouterLink>
               </div>
               <div class="col-md-6">
                 <RouterLink
