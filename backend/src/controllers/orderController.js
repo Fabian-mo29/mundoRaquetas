@@ -1,7 +1,9 @@
 const order = require("../models/orderModel");
 const cartModel = require("../models/cartModel");
 const CryptoJS = require("crypto-js");
-const { sql, connectionString } = require('../db'); 
+const { sql, connectionString } = require("../db");
+
+const PAYMENT_API_URL = "http://localhost:5000/api";
 
 function isValidOrderInfo(paymentInfo) {
   const {
@@ -59,10 +61,30 @@ function isValidOrderInfo(paymentInfo) {
   return { valid: true };
 }
 
-function createNewOrder(req, res) {
+function isPaymentInfoValid(paymentInfo) {
+  return fetch(`${PAYMENT_API_URL}/validate`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      CardNumber: paymentInfo.cardNumber,
+      ExpirationDate: paymentInfo.expiryDate,
+      Cvv: paymentInfo.securityCode,
+      Currency: paymentInfo.moneda || "Colones",
+    }),
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      throw err;
+    });
+}
+
+async function createNewOrder(req, res) {
   if (!req.Id) {
     return res.status(400).json({ error: "Error: User ID is required" });
   }
+
   if (!req.body.paymentInfo) {
     return res
       .status(400)
@@ -74,7 +96,24 @@ function createNewOrder(req, res) {
     return res.status(400).json({ error: validation.message });
   }
 
-  const paymentInfo = hashPaymentInfo(req.body.paymentInfo).paymentInfo;
+  let binValidation;
+  try {
+    binValidation = await isPaymentInfoValid(req.body.paymentInfo);
+  } catch (error) {
+    console.error("Error validating payment info:", error);
+    return res
+      .status(500)
+      .json({ error: "Error: Could not validate payment information" });
+  }
+
+  if (!binValidation.valid) {
+    return res.status(400).json({
+      error: `Error: Invalid payment information ${binValidation.message}`,
+    });
+  }
+
+  const hashed = hashPaymentInfo(req.body.paymentInfo);
+  const paymentInfo = hashed.paymentInfo;
   if (!paymentInfo) {
     return res
       .status(500)
@@ -85,35 +124,39 @@ function createNewOrder(req, res) {
     if (err) {
       return res.status(500).json({ error: "Error: Unable to retrieve cart" });
     }
-    cartModel.getTotalPrice(cartId, (err, precioBruto) => {
-      if (err) {
+
+    cartModel.getTotalPrice(cartId, (err2, precioBruto) => {
+      if (err2) {
         return res
           .status(500)
           .json({ error: "Error: Unable to retrieve cart price" });
       }
+
       if (precioBruto === 0) {
         return res
           .status(400)
           .json({ error: "Error: Cart is empty, cannot create order" });
       }
+
       const IVA = 0.13;
       const TRANSPORTE = 5;
       const precioNeto = precioBruto + precioBruto * IVA + TRANSPORTE;
+
       order.createNewOrder(
         cartId,
         precioBruto,
         precioNeto,
         paymentInfo,
-        (err, orderId) => {
-          if (err) {
+        (err3, orderId) => {
+          if (err3) {
             return res
               .status(500)
               .json({ error: "Error: Unable to create order" });
           }
+
           return res
             .status(200)
             .json({ message: "Order created successfully", orderId });
-            paymentInfoId: paymentInfo.Id 
         }
       );
     });
@@ -183,22 +226,26 @@ function getSavedPaymentMethods(req, res) {
     JOIN TarjetasGuardadas tg ON tg.InformacionPagoId = ip.Id
     WHERE tg.UserId = ? AND tg.Activa = 1
   `;
-  
+
   sql.query(connectionString, query, [userId], (err, results) => {
     if (err) {
-      console.error('Error fetching saved payment methods:', err);
-      return res.status(500).json({ error: 'Error al obtener las tarjetas guardadas' });
+      console.error("Error fetching saved payment methods:", err);
+      return res
+        .status(500)
+        .json({ error: "Error al obtener las tarjetas guardadas" });
     }
-    
+
     // Enmascarar los números de tarjeta para mostrar solo los últimos 4 dígitos
-    const maskedResults = results.map(card => ({
-       ...card,
+    const maskedResults = results.map((card) => ({
+      ...card,
       MaskedNumber: `**** **** **** ${card.NumeroTarjeta.slice(-4)}`,
-      FechaVencimiento: card.FechaVencimiento.includes('/')
+      FechaVencimiento: card.FechaVencimiento.includes("/")
         ? card.FechaVencimiento
-        : `${card.FechaVencimiento.slice(0,2)}/${card.FechaVencimiento.slice(2)}`
+        : `${card.FechaVencimiento.slice(0, 2)}/${card.FechaVencimiento.slice(
+            2
+          )}`,
     }));
-    
+
     res.status(200).json(maskedResults);
   });
 }
@@ -206,18 +253,18 @@ function getSavedPaymentMethods(req, res) {
 function savePaymentMethod(req, res) {
   const userId = req.Id;
   const { paymentInfo, saveForFuture, alias } = req.body;
-  
+
   if (!paymentInfo || saveForFuture === undefined) {
-    return res.status(400).json({ error: 'Datos incompletos' });
+    return res.status(400).json({ error: "Datos incompletos" });
   }
-  
+
   const validation = isValidOrderInfo(paymentInfo);
   if (!validation.valid) {
     return res.status(400).json({ error: validation.message });
   }
-  
+
   const hashedInfo = hashPaymentInfo(paymentInfo);
-  
+
   // Primero creamos la información de pago
   const query = `
     INSERT INTO InformacionPago 
@@ -225,7 +272,7 @@ function savePaymentMethod(req, res) {
     OUTPUT INSERTED.Id
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `;
-  
+
   const params = [
     hashedInfo.paymentInfo.provincia,
     hashedInfo.paymentInfo.canton,
@@ -233,31 +280,35 @@ function savePaymentMethod(req, res) {
     hashedInfo.paymentInfo.cardNumber,
     hashedInfo.paymentInfo.expiryDate,
     hashedInfo.paymentInfo.securityCode,
-    paymentInfo.cardHolder || 'Titular no especificado',
-    alias || 'Mi tarjeta'
+    paymentInfo.cardHolder || "Titular no especificado",
+    alias || "Mi tarjeta",
   ];
-  
+
   sql.query(connectionString, query, params, (err, result) => {
     if (err) {
-      console.error('Error saving payment info:', err);
-      return res.status(500).json({ error: 'Error al guardar la información de pago' });
+      console.error("Error saving payment info:", err);
+      return res
+        .status(500)
+        .json({ error: "Error al guardar la información de pago" });
     }
-    
+
     const paymentInfoId = result[0].Id;
-    
+
     if (saveForFuture) {
       // Guardar la tarjeta para futuros pagos
       const saveQuery = `
         INSERT INTO TarjetasGuardadas (UserId, InformacionPagoId, Activa)
         VALUES (?, ?, 1)
       `;
-      
+
       sql.query(connectionString, saveQuery, [userId, paymentInfoId], (err) => {
         if (err) {
-          console.error('Error saving card for future:', err);
-          return res.status(500).json({ error: 'Error al guardar la tarjeta para futuros pagos' });
+          console.error("Error saving card for future:", err);
+          return res
+            .status(500)
+            .json({ error: "Error al guardar la tarjeta para futuros pagos" });
         }
-        
+
         // Solo después de guardar la tarjeta, creamos la orden
         createNewOrder(req, res);
       });
@@ -271,23 +322,27 @@ function savePaymentMethod(req, res) {
 function deleteSavedPaymentMethod(req, res) {
   const userId = req.Id;
   const { cardId } = req.params;
-  
+
   const query = `
     DELETE FROM TarjetasGuardadas 
     WHERE UserId = ? AND InformacionPagoId = ?
   `;
-  
+
   sql.query(connectionString, query, [userId, cardId], (err, result) => {
     if (err) {
-      console.error('Error deleting payment method:', err);
-      return res.status(500).json({ error: 'Error al eliminar la tarjeta guardada' });
+      console.error("Error deleting payment method:", err);
+      return res
+        .status(500)
+        .json({ error: "Error al eliminar la tarjeta guardada" });
     }
-    
+
     if (result.rowsAffected === 0) {
-      return res.status(404).json({ error: 'Tarjeta no encontrada o no pertenece al usuario' });
+      return res
+        .status(404)
+        .json({ error: "Tarjeta no encontrada o no pertenece al usuario" });
     }
-    
-    res.status(200).json({ message: 'Tarjeta eliminada correctamente' });
+
+    res.status(200).json({ message: "Tarjeta eliminada correctamente" });
   });
 }
 
@@ -298,5 +353,5 @@ module.exports = {
   getOrderProducts,
   getSavedPaymentMethods,
   savePaymentMethod,
-  deleteSavedPaymentMethod
+  deleteSavedPaymentMethod,
 };
