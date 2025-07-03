@@ -53,11 +53,6 @@
                 </RouterLink>
               </div>
               <div class="col-md-12">
-                <button class="btn btn-secondary w-100" @click="goToPayment">
-                  Modificar Información de Pago
-                </button>
-              </div>
-              <div class="col-md-12">
                 <button
                   class="btn btn-outline-warning w-100 mt-3"
                   @click="logout"
