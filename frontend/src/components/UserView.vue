@@ -58,15 +58,6 @@
                 </button>
               </div>
               <div class="col-md-12">
-                <RouterLink 
-                  to="/user/payment-methods"
-                  class="btn btn-info w-100"
-                  style="background-color: #3498db; border: none"
-                >
-                  Mis Tarjetas Guardadas
-                </RouterLink>
-              </div>
-              <div class="col-md-12">
                 <button
                   class="btn btn-outline-warning w-100 mt-3"
                   @click="logout"
