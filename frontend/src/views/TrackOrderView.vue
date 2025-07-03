@@ -54,7 +54,7 @@ async function getActiveOrders() {
   try {
     const token = sessionStorage.getItem("token");
     const response = await axios.get(
-      "http://localhost:3000/api/orders/active",
+      "https://localhost:3000/api/orders/active",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -70,7 +70,7 @@ async function getActiveOrders() {
 // async function getAllOrders() {
 //   try {
 //     const token = sessionStorage.getItem("token");
-//     const response = await axios.get("http://localhost:3000/api/orders", {
+//     const response = await axios.get("https://localhost:3000/api/orders", {
 //       headers: {
 //         Authorization: `Bearer ${token}`,
 //       },

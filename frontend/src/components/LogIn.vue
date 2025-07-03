@@ -85,7 +85,7 @@ async function logIn() {
     // Hashea la contraseña antes de enviarla
     const hashedPassword = CryptoJS.SHA256(datosSesion.value.password).toString();
 
-    const response = await fetch("http://localhost:3000/api/users/login", {
+    const response = await fetch("https://localhost:3000/api/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

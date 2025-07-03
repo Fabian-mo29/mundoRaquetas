@@ -56,7 +56,7 @@ function verMasProductos() {
 
 function getProductsByCategory(category) {
   axios
-    .get(`http://localhost:3000/api/categories/${category}`)
+    .get(`https://localhost:3000/api/categories/${category}`)
     .then((response) => {
       filteredProducts.value = response.data;
     })

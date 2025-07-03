@@ -21,7 +21,7 @@ async function fetchCart() {
   try {
     const token = sessionStorage.getItem("token");
     const response = await axios.get(
-      "http://localhost:3000/api/cart/wishlist",
+      "https://localhost:3000/api/cart/wishlist",
       {
         headers: {
           Authorization: `Bearer ${token}`,

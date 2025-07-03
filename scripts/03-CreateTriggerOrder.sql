@@ -1,3 +1,6 @@
+use PADELTADB;
+GO
+
 CREATE OR ALTER TRIGGER dbo.CreateOrderTrigger
 ON Ordenes
 AFTER INSERT

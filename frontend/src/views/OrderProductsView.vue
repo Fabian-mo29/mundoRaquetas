@@ -71,7 +71,7 @@ async function fetchCart() {
     const token = sessionStorage.getItem("token");
     const orderId = route.params.Id;
     const response = await axios.get(
-      `http://localhost:3000/api/orders/${orderId}`,
+      `https://localhost:3000/api/orders/${orderId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

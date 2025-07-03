@@ -56,7 +56,7 @@ function verMasProductos() {
 
 function getProducts() {
   axios
-    .get("http://localhost:3000/api/products")
+    .get("https://localhost:3000/api/products")
     .then((response) => {
       products.value = response.data;
     })
