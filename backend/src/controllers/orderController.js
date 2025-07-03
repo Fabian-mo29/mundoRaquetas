@@ -145,9 +145,9 @@ function getActiveOrders(req, res) {
 function hashPaymentInfo(paymentInfo) {
   return {
     paymentInfo: {
-      cardNumber: CryptoJS.SHA256(paymentInfo.cardNumber).toString(),
-      expiryDate: CryptoJS.SHA256(paymentInfo.expiryDate).toString(),
-      securityCode: CryptoJS.SHA256(paymentInfo.securityCode).toString(),
+      cardNumber: paymentInfo.cardNumber,
+      expiryDate: paymentInfo.expiryDate,
+      securityCode: paymentInfo.securityCode,
       provincia: paymentInfo.provincia,
       canton: paymentInfo.canton,
       infoUbicacion: paymentInfo.infoUbicacion,
@@ -170,19 +170,15 @@ function getSavedPaymentMethods(req, res) {
   const userId = req.Id;
   const query = `
     SELECT 
-      ip.Id, 
-      ip.NumeroTarjeta, 
-      ip.FechaVencimiento, 
-      ip.NombreTitular, 
-      ip.Alias,
-      ip.Provincia,
-      ip.Canton,
-      ip.InformacionUbicacion,
-      CONCAT(
-        SUBSTRING(ip.FechaVencimiento, 1, 2), 
-        '/', 
-        SUBSTRING(ip.FechaVencimiento, 3, 2)
-      ) AS FechaVencimientoFormateada
+    ip.Id, 
+    ip.NumeroTarjeta, 
+    ip.FechaVencimiento, 
+    ip.NombreTitular, 
+    ip.Alias,
+    ip.Provincia,
+    ip.Canton,
+    ip.InformacionUbicacion,
+    ip.FechaVencimiento AS FechaVencimientoFormateada
     FROM InformacionPago ip
     JOIN TarjetasGuardadas tg ON tg.InformacionPagoId = ip.Id
     WHERE tg.UserId = ? AND tg.Activa = 1
@@ -196,8 +192,11 @@ function getSavedPaymentMethods(req, res) {
     
     // Enmascarar los números de tarjeta para mostrar solo los últimos 4 dígitos
     const maskedResults = results.map(card => ({
-      ...card,
-      MaskedNumber: card.NumeroTarjeta.replace(/.(?=.{4})/g, '*')
+       ...card,
+      MaskedNumber: `**** **** **** ${card.NumeroTarjeta.slice(-4)}`,
+      FechaVencimiento: card.FechaVencimiento.includes('/')
+        ? card.FechaVencimiento
+        : `${card.FechaVencimiento.slice(0,2)}/${card.FechaVencimiento.slice(2)}`
     }));
     
     res.status(200).json(maskedResults);
