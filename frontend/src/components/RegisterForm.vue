@@ -190,7 +190,7 @@ async function Register() {
   formToSend.password = CryptoJS.SHA256(formToSend.password).toString();
 
   try {
-    const response = await fetch("http://localhost:3000/api/users/register", {
+    const response = await fetch("https://localhost:3000/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formToSend),

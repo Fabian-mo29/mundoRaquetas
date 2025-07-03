@@ -86,7 +86,7 @@ onMounted(async () => {
 
 async function fetchSavedCards() {
   try {
-    const response = await axios.get('http://localhost:3000/api/payment-methods', {
+    const response = await axios.get('https://localhost:3000/api/payment-methods', {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
@@ -109,7 +109,7 @@ async function saveNewCard() {
       return;
     }
 
-    const response = await axios.post('http://localhost:3000/api/payment-methods', {
+    const response = await axios.post('s//localhost:3000/api/payment-methods', {
       cardNumber: newCard.value.number.replace(/\s/g, ''),
       expiryDate: newCard.value.expiry,
       securityCode: newCard.value.cvv,
@@ -145,7 +145,7 @@ async function deleteCard(cardId) {
   if (!confirm('¿Estás seguro de eliminar esta tarjeta?')) return;
   
   try {
-    await axios.delete(`http://localhost:3000/api/payment-methods/${cardId}`, {
+    await axios.delete(`https://localhost:3000/api/payment-methods/${cardId}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }

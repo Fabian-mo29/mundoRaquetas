@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const fs = require("fs");
+const https = require("https");
 
 const app = express();
 const apiRoutes = require("./routes/apiRoutes");
 
-const allowedOrigins = ["http://localhost:8080"];
+const allowedOrigins = ["https://localhost:8080", "http://localhost:8080"];
 
 app.use(
   cors({
@@ -33,7 +35,12 @@ app.use((req, res, next) => {
   res.status(404).json({ message: "Endpoint not found" });
 });
 
+const httpsOptions = {
+  key: fs.readFileSync(__dirname + '/../certs/localhost-key.pem'),
+  cert: fs.readFileSync(__dirname + '/../certs/localhost.pem')
+};
+
 const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+https.createServer(httpsOptions, app).listen(PORT, () => {
+  console.log(`Server listening on https://localhost:${PORT}`);
 });

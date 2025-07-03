@@ -73,7 +73,7 @@ async function fetchProduct() {
   try {
     const productId = route.params.id || route.params.ofertaId;
     const response = await axios.get(
-      `http://localhost:3000/api/products/${productId}`
+      `https://localhost:3000/api/products/${productId}`
     );
     const productData = response.data;
 
@@ -99,7 +99,7 @@ async function addToCart() {
   try {
     const token = sessionStorage.getItem("token");
     await axios.post(
-      "http://localhost:3000/api/cart",
+      "https://localhost:3000/api/cart",
       {
         product: {
           Id: product.value.id,
@@ -123,7 +123,7 @@ async function addToWishlist() {
   try {
     const token = sessionStorage.getItem("token");
     await axios.post(
-      "http://localhost:3000/api/cart/wishlist",
+      "https://localhost:3000/api/cart/wishlist",
       {
         product: {
           Id: product.value.id,

@@ -113,7 +113,7 @@ const shippingCost = 5;
 async function fetchCart() {
   try {
     const token = sessionStorage.getItem("token");
-    const response = await axios.get("http://localhost:3000/api/cart", {
+    const response = await axios.get("https://localhost:3000/api/cart", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -128,7 +128,7 @@ async function fetchCart() {
 async function subTotalPrice() {
   try {
     const token = sessionStorage.getItem("token");
-    const response = await axios.get("http://localhost:3000/api/cart/total", {
+    const response = await axios.get("https://localhost:3000/api/cart/total", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -153,7 +153,7 @@ const total = computed(
 async function removeFromCart(idProduct) {
   try {
     const token = sessionStorage.getItem("token");
-    await axios.delete(`http://localhost:3000/api/cart/${idProduct}`, {
+    await axios.delete(`https://localhost:3000/api/cart/${idProduct}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

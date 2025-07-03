@@ -100,7 +100,7 @@ const realCards = computed(() => ofertasDelDia.value.length);
 
 async function fetchOfertas() {
   try {
-    const response = await axios.get("http://localhost:3000/api/products/");
+    const response = await axios.get("https://localhost:3000/api/products/");
     ofertasDelDia.value = response.data
       .filter((product) => product.Discount > 0)
       .map((product) => ({

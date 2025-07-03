@@ -62,7 +62,7 @@ const product = ref({});
 
 function getProducts() {
   axios
-    .get("http://localhost:3000/api/products/" + props.productId)
+    .get("https://localhost:3000/api/products/" + props.productId)
     .then((response) => {
       product.value = response.data;
     })
@@ -75,7 +75,7 @@ async function addToCart() {
   try {
     const token = sessionStorage.getItem("token");
     await axios.post(
-      "http://localhost:3000/api/cart",
+      "https://localhost:3000/api/cart",
       {
         product: {
           Id: product.value.Id,
@@ -99,7 +99,7 @@ async function addToWishlist() {
   try {
     const token = sessionStorage.getItem("token");
     await axios.post(
-      "http://localhost:3000/api/cart/wishlist",
+      "https://localhost:3000/api/cart/wishlist",
       {
         product: {
           Id: product.value.Id,

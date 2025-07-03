@@ -316,7 +316,7 @@ async function deleteCard(cardId) {
 
   try {
     const response = await axios.delete(
-      `http://localhost:3000/api/orders/payment-methods/${cardId}`,
+      `https://localhost:3000/api/orders/payment-methods/${cardId}`,
       {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -365,7 +365,7 @@ async function completePayment() {
 
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/orders/payment-methods/save",
+      "https://localhost:3000/api/orders/payment-methods/save",
       {
         paymentInfo: {
           cardNumber: form.value.cardNumber.replace(/\s/g, ""), // Elimina espacios
