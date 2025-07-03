@@ -23,7 +23,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div>
                   <strong>{{ card.Alias }}</strong>
-                  <p class="mb-0">Terminada en {{ card.MaskedNumber.slice(-4) }}</p>
+                  <p class="mb-0">Terminada en {{ card.MaskedNumber }}</p>
                   <small>Vence {{ card.FechaVencimiento }}</small>
                 </div>
                 <button 
@@ -275,11 +275,11 @@ async function fetchSavedCards() {
 }
 
 function selectCard(card) {
-  form.value.cardNumber = card.MaskedNumber; // Esto muestra los últimos 4 dígitos
-  form.value.expiryDate = card.FechaVencimiento;
+  // Solo podemos mostrar los últimos 4 dígitos
+  form.value.cardNumber = card.NumeroTarjeta; 
+  form.value.expiryDate = card.FechaVencimientoFormateada || card.FechaVencimiento;
   form.value.cardHolder = card.NombreTitular;
-  // No podemos mostrar el CVV por seguridad (no debería estar almacenado)
-  form.value.securityCode = ''; // Dejamos vacío para que el usuario lo ingrese
+  form.value.securityCode = ''; // Siempre vacío por seguridad
   form.value.provincia = card.Provincia || '';
   form.value.canton = card.Canton || '';
   form.value.infoUbicacion = card.InformacionUbicacion || '';
