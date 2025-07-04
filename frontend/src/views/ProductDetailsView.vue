@@ -1,5 +1,48 @@
 <template>
   <div class="container mt-5 product-detail">
+    <!-- Toast Notifications -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div
+        id="successToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        ref="successToast"
+      >
+        <div class="toast-header bg-success text-white">
+          <strong class="me-auto">Éxito</strong>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">{{ toastMessage }}</div>
+      </div>
+
+      <div
+        id="errorToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        ref="errorToast"
+      >
+        <div class="toast-header bg-danger text-white">
+          <strong class="me-auto">Error</strong>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">{{ toastMessage }}</div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-6 product-image-container">
         <img
@@ -45,9 +88,9 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from "vue";
+import { defineProps, ref, onMounted } from "vue";
 import axios from "axios";
-import { onMounted } from "vue";
+import { Toast } from 'bootstrap';
 
 const props = defineProps({
   productId: {
@@ -57,8 +100,42 @@ const props = defineProps({
 });
 
 const cantidad = ref(1);
-
 const product = ref({});
+const toastMessage = ref("");
+const successToast = ref(null);
+const errorToast = ref(null);
+let successToastInstance = null;
+let errorToastInstance = null;
+
+onMounted(() => {
+  getProducts();
+  // Inicializar toasts después de que el componente esté montado
+  if (successToast.value) {
+    successToastInstance = new Toast(successToast.value);
+  }
+  if (errorToast.value) {
+    errorToastInstance = new Toast(errorToast.value);
+  }
+});
+
+function showToast(type) {
+  toastMessage.value = type.message;
+  
+  if (type === 'success' && successToastInstance) {
+    successToastInstance.show();
+  } else if (type === 'error' && errorToastInstance) {
+    errorToastInstance.show();
+  }
+  
+  // Ocultar automáticamente después de 5 segundos
+  setTimeout(() => {
+    if (type === 'success' && successToastInstance) {
+      successToastInstance.hide();
+    } else if (type === 'error' && errorToastInstance) {
+      errorToastInstance.hide();
+    }
+  }, 5000);
+}
 
 function getProducts() {
   axios
@@ -68,6 +145,10 @@ function getProducts() {
     })
     .catch((error) => {
       console.error("Error fetching products:", error);
+      showToast({
+        type: 'error',
+        message: "Error al cargar el producto"
+      });
     });
 }
 
@@ -88,9 +169,15 @@ async function addToCart() {
         },
       }
     );
-    alert("Producto agregado al carrito");
+    showToast({
+      type: 'success',
+      message: "Producto agregado al carrito"
+    });
   } catch (error) {
-    alert("Error al agregar al carrito");
+    showToast({
+      type: 'error',
+      message: "Error al agregar al carrito. " + (error.response?.data?.message || "")
+    });
     console.error(error);
   }
 }
@@ -112,19 +199,22 @@ async function addToWishlist() {
         },
       }
     );
-    alert("Producto agregado al wishlist");
+    showToast({
+      type: 'success',
+      message: "Producto agregado al wishlist"
+    });
   } catch (error) {
-    alert("Error al agregar al wishlist");
+    showToast({
+      type: 'error',
+      message: "Error al agregar al wishlist. " + (error.response?.data?.message || "")
+    });
     console.error(error);
   }
 }
-
-onMounted(() => {
-  getProducts();
-});
 </script>
 
 <style scoped>
+/* Tus estilos existentes se mantienen igual */
 .product-detail {
   padding: 2rem;
 }
@@ -229,6 +319,12 @@ onMounted(() => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Toast customization */
+.toast {
+  min-width: 300px;
+  margin-bottom: 1rem;
+}
+
 /* Responsive design */
 @media (max-width: 767px) {
   .product-title {
@@ -242,6 +338,12 @@ onMounted(() => {
   .btn-add-to-cart {
     width: 100%;
     padding: 12px;
+  }
+  
+  .toast {
+    min-width: 250px;
+    max-width: 90%;
+    margin-right: 1rem;
   }
 }
 
